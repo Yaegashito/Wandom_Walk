@@ -1,5 +1,5 @@
 ### 業務フロー
-![alt text](https://raw.githubusercontent.com/Yaegahito/Wandom_Walk/image/image1.png)
+![alt text](https://github.com/Yaegashito/Wandom_Walk/blob/image/image1.png)
 ### 画面遷移図
 
 ### ワイヤーフレーム
