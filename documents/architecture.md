@@ -1,5 +1,5 @@
 ### 業務フロー
-![alt text](image1.png)
+![alt text](https://raw.githubusercontent.com/Wandom_Walk/image/image1.png)
 ### 画面遷移図
 
 ### ワイヤーフレーム
