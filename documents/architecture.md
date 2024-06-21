@@ -1,5 +1,5 @@
 ### 業務フロー
-![alt text](image.png)
+![alt text](image1.png)
 ### 画面遷移図
 
 ### ワイヤーフレーム
