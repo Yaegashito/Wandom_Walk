@@ -11,3 +11,4 @@
 ![alt text](https://github.com/Yaegashito/Wandom_Walk/blob/image/table2.png)
 
 ### システム構成図
+インフラ構築時に作成。
