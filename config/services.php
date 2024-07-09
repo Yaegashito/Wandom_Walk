@@ -31,4 +31,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'graphhopper' => [
+        'api_key' => env('GRAPH_HOPPER_API_KEY'),
+    ],
+
+    'googlemaps' => [
+        'api_key' => env('GOOGLE_MAPS_API_KEY'),
+    ],
 ];

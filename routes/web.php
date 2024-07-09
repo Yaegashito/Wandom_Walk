@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +32,8 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/test', function () {
-    return view('test');
+    $GOOGLE_MAPS_API_KEY = config('services.googlemaps.api_key');
+    return view('test')
+        ->with(['key' => $GOOGLE_MAPS_API_KEY]);
 });
+Route::post('/map', [MapController::class, 'map']);
