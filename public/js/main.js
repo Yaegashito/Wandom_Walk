@@ -159,4 +159,19 @@
     // belongings
 
     // config
+
+    // footer
+    const mains = document.querySelectorAll('main > div');
+    const menus = document.querySelectorAll('footer ul li');
+
+    menus.forEach((menu, i) => {
+        menu.addEventListener('click', () => {
+            mains.forEach((main, j) => {
+                main.style.display = 'none';
+                if (i === j) {
+                    main.style.display = 'block';
+                }
+            })
+        })
+    });
 }

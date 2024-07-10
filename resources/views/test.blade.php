@@ -49,16 +49,16 @@
 
     <footer>
         <ul>
-            <li>地図</li>
+            <li>散歩</li>
             <li>カレンダー</li>
             <li>持ち物リスト編集</li>
             <li>設定</li>
         </ul>
     </footer>
-    <script
+    {{-- <script
         src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ $key }}&callback=initMap"
         async defer>
-    </script>
+    </script> --}}
     <script src="{{asset('js/main.js') }}"></script>
 </body>
 </html>
