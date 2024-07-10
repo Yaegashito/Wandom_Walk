@@ -1,4 +1,55 @@
+/* header */
+header {
+    display: flex;
+    gap: 16px;
+    background: skyblue;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    /* right: 0;
+    left: 0; */
+    user-select: none;
+}
+
+/* main */
+main {
+    width: 95%;
+    margin: 0 auto;
+    padding: 16px 0;
+}
+
 #map {
-    width: 550px;
-    height: 600px;
+    width: 95%;
+    height: 300px;
+    outline: 2px solid red;
+    margin: 0 auto;
+}
+/* footer */
+footer {
+    height: 60px;
+    background: lightgreen;
+    position: sticky;
+    /* right: 0; */
+    bottom: 0;
+    /* left: 0; */
+    user-select: none;
+}
+
+footer ul {
+    display: flex;
+    list-style: none;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+footer li {
+    width: 25%;
+    height: 100%;
+    outline: 1px solid red;
+    cursor: pointer;
+}
+
+footer li:active {
+    opacity: .3;
 }
