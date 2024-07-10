@@ -36,8 +36,69 @@
             <h1>9</h1>
             <h1>10</h1>
         </div>
+
         <div id="calendar" class="container">
-            <h1>カレンダー</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th id="prev">&laquo;</th>
+                        <th id="title" colspan="5">2020/05</th>
+                        <th id="next">&raquo;</th>
+                    </tr>
+                    <tr>
+                        <th>日</th>
+                        <th>月</th>
+                        <th>火</th>
+                        <th>水</th>
+                        <th>木</th>
+                        <th>金</th>
+                        <th>土</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{-- <tr>
+                        <td class="disabled">1</td>
+                        <td class="disabled">1</td>
+                        <td class="disabled">1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td class="today">1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr> --}}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td id="today" colspan="7">今月に戻る</td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
         <div id="belongings" class="container">
             <h1>持ち物リスト</h1>

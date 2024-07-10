@@ -13,7 +13,7 @@ header {
 
 /* main */
 main {
-    padding: 16px 0;
+    padding: 16px 0 76px;
 }
 
 .container {
@@ -22,7 +22,6 @@ main {
 }
 
 /* walk */
-
 #map {
     width: 95%;
     height: 300px;
@@ -31,8 +30,64 @@ main {
 }
 
 /* calendar */
+#calendar {
+    display: none;
+}
+
+table {
+    width: 100%;
+    aspect-ratio: 1;
+    border-collapse: collapse;
+    border: 2px solid #eee;
+}
+
+thead,
+tbody {
+    background: #eee;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: center;
+}
+
+tbody td:first-child {
+    color: red;
+}
+
+tbody td:last-child {
+    color: blue;
+}
+
+tfoot {
+    font-weight: bold;
+}
+
+td.disabled {
+    opacity: .3;
+}
+
+td.today {
+    font-weight: bold;
+}
+
+#prev,
+#next,
+#today {
+    cursor: pointer;
+    user-select: none;
+}
+
 /* belongings */
+#belongings {
+    display: none;
+}
+
 /* config */
+#config {
+    display: none;
+}
 
 /* footer */
 footer {
