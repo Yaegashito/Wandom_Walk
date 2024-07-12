@@ -36,5 +36,5 @@ Route::get('/test', function () {
     $belongings = ['リード', '水', '袋'];
     return view('test')
         ->with(['key' => $GOOGLE_MAPS_API_KEY, 'belongings' => $belongings]);
-});
+})->name('test');
 Route::post('/map', [MapController::class, 'map']);
