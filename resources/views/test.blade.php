@@ -12,8 +12,8 @@
 
 <body>
     <header>
-        <h1>LOGO</h1>
-        <h1>アプリ名</h1>
+        <img src="" alt="">
+        <h1>LOGO アプリ名</h1>
     </header>
 
     <main>

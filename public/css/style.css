@@ -8,14 +8,17 @@ ul {
 /* header */
 header {
     display: flex;
-    gap: 16px;
+    align-items: center;
+    justify-content: center;
     background: skyblue;
     height: 60px;
     position: sticky;
     top: 0;
-    /* right: 0;
-    left: 0; */
     user-select: none;
+}
+
+header h1 {
+    margin: 0;
 }
 
 /* main */
@@ -137,10 +140,14 @@ footer ul {
 footer li {
     width: 25%;
     height: 100%;
-    outline: 1px solid red;
     cursor: pointer;
     text-align: center;
     line-height: 60px;
+    box-sizing: border-box;
+}
+
+footer li + li {
+    border-left: 2px solid green;
 }
 
 footer li:active {

@@ -8,7 +8,7 @@ class MapController extends Controller
 {
     public function map(Request $request)
     {
-        $GRAPH_HOPPER_API_KEY = config('services.graphhopper.api_key');
+        // $GRAPH_HOPPER_API_KEY = config('services.graphhopper.api_key');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // 入力の処理
