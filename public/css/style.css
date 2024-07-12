@@ -1,3 +1,10 @@
+/* common */
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 /* header */
 header {
     display: flex;
@@ -82,6 +89,28 @@ td.today {
 /* belongings */
 #belongings {
     display: none;
+    width: 60%;
+}
+
+#belongings li {
+    margin-bottom: 8px;
+    padding: 4px 8px;
+    border: 1px solid #aaa;
+    display: flex;
+}
+
+#belongings form {
+    display: flex;
+}
+
+#belongings input {
+    margin-right: 8px;
+    flex: 1;
+}
+
+.delete {
+    cursor: pointer;
+    margin-left: auto;
 }
 
 /* config */
@@ -102,10 +131,7 @@ footer {
 
 footer ul {
     display: flex;
-    list-style: none;
     height: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 footer li {
@@ -113,6 +139,8 @@ footer li {
     height: 100%;
     outline: 1px solid red;
     cursor: pointer;
+    text-align: center;
+    line-height: 60px;
 }
 
 footer li:active {

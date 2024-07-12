@@ -33,7 +33,8 @@ require __DIR__.'/auth.php';
 
 Route::get('/test', function () {
     $GOOGLE_MAPS_API_KEY = config('services.googlemaps.api_key');
+    $belongings = ['リード', '水', '袋'];
     return view('test')
-        ->with(['key' => $GOOGLE_MAPS_API_KEY]);
+        ->with(['key' => $GOOGLE_MAPS_API_KEY, 'belongings' => $belongings]);
 });
 Route::post('/map', [MapController::class, 'map']);

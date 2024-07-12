@@ -100,9 +100,24 @@
                 </tfoot>
             </table>
         </div>
+
         <div id="belongings" class="container">
-            <h1>持ち物リスト</h1>
+            <ul>
+                @foreach ($belongings as $belonging)
+                <li>
+                    {{ $belonging }}
+                    <span class="delete">×</span>
+                </li>
+                @endforeach
+            </ul>
+            <form action="">
+                @csrf
+                <input type="text">
+                <button>追加</button>
+            </form>
+
         </div>
+
         <div id="config" class="container">
             <h1>設定</h1>
         </div>
@@ -112,7 +127,7 @@
         <ul>
             <li>散歩</li>
             <li>カレンダー</li>
-            <li>持ち物リスト編集</li>
+            <li>持ち物リスト</li>
             <li>設定</li>
         </ul>
     </footer>
