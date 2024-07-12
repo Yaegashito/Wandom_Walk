@@ -300,6 +300,10 @@
                     main.style.display = 'block';
                 }
             })
+            menus.forEach(menu => {
+                menu.style.background = 'lightgreen';
+            });
+            menu.style.background = 'red';
         })
     });
 }
