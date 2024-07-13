@@ -119,7 +119,21 @@
         </div>
 
         <div id="config" class="container">
-            <h1>設定</h1>
+            <h2>設定</h2>
+            <dl>
+                <div>
+                    <dt>設定1</dt>
+                    <dd>中身</dd>
+                </div>
+                <div>
+                    <dt>設定2</dt>
+                    <dd>中身</dd>
+                </div>
+                <div>
+                    <dt>設定3</dt>
+                    <dd>中身</dd>
+                </div>
+            </dl>
         </div>
     </main>
 

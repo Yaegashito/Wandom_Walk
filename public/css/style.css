@@ -121,6 +121,57 @@ td.today {
     display: none;
 }
 
+#config dl {
+    margin: 0;
+}
+
+#config dl > div {
+    margin-bottom: 8px;
+}
+
+#config dt {
+    padding: 8px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    border: 1px solid #777;
+}
+
+#config dt::after {
+    content: '+';
+    font-weight: bold;
+    color: blue;
+    position: absolute;
+    right: 16px;
+    transition: transform .3s;
+}
+
+#config dl > div.appear dt::after {
+    transform: rotate(45deg);
+}
+
+#config dd {
+    padding: 8px;
+    margin: 0;
+    display: none;
+}
+
+#config dl > div.appear dd {
+    display: block;
+    animation: .3s fadeIn;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 /* footer */
 footer {
     height: 60px;
