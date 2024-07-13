@@ -46,7 +46,7 @@ main {
 
 table {
     width: 100%;
-    aspect-ratio: 1;
+    /* aspect-ratio: 1; */
     border-collapse: collapse;
     /* border: 2px solid #eee; */
 }
@@ -62,7 +62,8 @@ td {
     border: 1px solid #ccc;
 }
 
-td {
+tbody td {
+    height: 64px;
     vertical-align: top;
 }
 

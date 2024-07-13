@@ -247,6 +247,9 @@
                     td.classList.add('disabled');
                 }
                 tr.appendChild(td);
+                // const p = document.createElement('p');
+                // p.textContent = '23m';
+                // td.appendChild(p);
             });
             document.querySelector('tbody').appendChild(tr);
         });
