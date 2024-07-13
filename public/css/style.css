@@ -48,11 +48,10 @@ table {
     width: 100%;
     aspect-ratio: 1;
     border-collapse: collapse;
-    border: 2px solid #eee;
+    /* border: 2px solid #eee; */
 }
 
-thead,
-tbody {
+thead {
     background: #eee;
 }
 
@@ -60,6 +59,11 @@ th,
 td {
     padding: 8px;
     text-align: center;
+    border: 1px solid #ccc;
+}
+
+td {
+    vertical-align: top;
 }
 
 tbody td:first-child {
@@ -72,6 +76,7 @@ tbody td:last-child {
 
 tfoot {
     font-weight: bold;
+    background: #eee;
 }
 
 td.disabled {
@@ -87,6 +92,7 @@ td.today {
 #today {
     cursor: pointer;
     user-select: none;
+    background: #bbb;
 }
 
 /* belongings */
@@ -144,6 +150,10 @@ footer li {
     text-align: center;
     line-height: 60px;
     box-sizing: border-box;
+}
+
+footer li:nth-child(1) {
+    background: red;
 }
 
 footer li + li {
