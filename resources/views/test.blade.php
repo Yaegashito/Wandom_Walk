@@ -119,7 +119,17 @@
         </div>
 
         <div id="config" class="container">
-            <h1>設定</h1>
+            <div>{{ Auth::user()->name }}</div>
+
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-dropdown-link :href="route('logout')"
+                        onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                    {{ __('ログアウト') }}
+                </x-dropdown-link>
+            </form>
         </div>
     </main>
 
