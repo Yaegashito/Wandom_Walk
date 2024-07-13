@@ -135,12 +135,14 @@ td.today {
     user-select: none;
     position: relative;
     border: 1px solid #777;
+    background: green;
+    color: #fff;
 }
 
 #config dt::after {
     content: '+';
     font-weight: bold;
-    color: blue;
+    color: #fff;
     position: absolute;
     right: 16px;
     transition: transform .3s;
@@ -154,6 +156,7 @@ td.today {
     padding: 8px;
     margin: 0;
     display: none;
+    background: lightgreen;
 }
 
 #config dl > div.appear dd {
