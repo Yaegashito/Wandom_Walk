@@ -2,45 +2,57 @@
 
 {
     // walk
+    let lat;
+    let lng;
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-        alert('失敗');
+        alert('Geolocation is not supported by this browser.');
     }
 
     function showPosition(position) {
         let lat = position.coords.latitude;
         let lng = position.coords.longitude;
-        document.querySelector('#lat').value = lat;
-        document.querySelector('#lon').value = lng;
+        // document.querySelector('#lat').value = lat;
+        // document.querySelector('#lon').value = lng;
         initMap(lat, lng);
-    }
 
-    let map;
-
-    function initMap(lat, lng) {
-
-        // 地図の初期設定
-        map = new google.maps.Map(document.getElementById('map'), {
-            // center: { lat: 35.6895, lng: 139.6917 }, // 東京の中心
-            center: new google.maps.LatLng(lat, lng),
-            zoom: 18,
+        document.getElementById('route-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const targetDistance = parseFloat(document.getElementById('distance').value);
+            // const startLocation = new google.maps.LatLng(35.6895, 139.6917);  // 東京を初期地点に設定
+            const startLocation = new google.maps.LatLng(lat, lng);  // 現在地を初期地点に設定
+            generateRoute(startLocation, targetDistance);  // 入力された距離を使って経路を生成
         });
 
-        let marker = new google.maps.Marker({
+    }
+
+    let map, directionsService, directionsRenderer;
+
+    async function initMap(lat, lng) {
+        const { Map } = await google.maps.importLibrary('maps');
+        map = new Map(document.getElementById('map'), {
+            // center: { lat: 35.6895, lng: 139.6917 },  // 東京を初期地点に設定
+            center: new google.maps.LatLng(lat, lng),  // 現在地を初期地点に設定
+            zoom: 16,
+            streetViewControl: false,
+            mapTypeControl: false,
+            fullscreenControl: false,
+        });
+
+        // let marker = new google.maps.Marker({
+        new google.maps.Marker({
             position: new google.maps.LatLng(lat, lng),
             map: map,
-            title: '現在地',
-        });
-    }
-
-    let directionsService;
-    let directionsRenderer;
-
-    function renderRoute(points, waypoints, pickupIdx) {
-        map = new google.maps.Map(document.getElementById('map'), {
-            // center: { lat: 35.6895, lng: 139.6917 },
-            zoom: 8,
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: '#115EC3',
+                fillOpacity: 1,
+                strokeColor: 'white',
+                strokeWeight: 2,
+                scale: 7
+            },
         });
 
         directionsService = new google.maps.DirectionsService();
@@ -51,108 +63,69 @@
                 strokeWeight: 2,      // ポリラインの太さを設定
                 icons: [{
                     icon: {
-                        path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                        path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
                         scale: 3,
                         strokeColor: 'red'
                     },
                     offset: '100%',
                     repeat: '100px'
                 }]
-            }
+            },
         });
         directionsRenderer.setMap(map);
-
-        // 他のAPIから取得した経由地の情報をここに設定
-        const waypointsT = [];
-
-        for (let i = 0; i < waypoints; i++) {
-            waypointsT.push({
-                location: { lat: parseFloat(points[pickupIdx[i]].lat), lng: parseFloat(points[pickupIdx[i]].lon) }
-                // `${points[pickupIdx[i]].lat},${points[pickupIdx[i]].lon}/`
-            });
-        }
-
-        const origin = waypointsT.shift().location;
-        const destination = waypointsT.pop().location;
-
-        directionsService.route(
-            {
-                origin: origin,
-                destination: destination,
-                waypoints: waypointsT,
-                optimizeWaypoints: true,
-                travelMode: 'DRIVING',
-            },
-            (response, status) => {
-                if (status === 'OK') {
-                    directionsRenderer.setDirections(response);
-
-                    const steps = response.routes[0].legs[0].steps;
-                    steps.forEach((step, index) => {
-                        const marker = new google.maps.Marker({
-                            position: step.start_location,
-                            map: map,
-                            label: `${index + 1}`
-                        });
-
-                        const infowindow = new google.maps.InfoWindow({
-                            content: step.instructions
-                        });
-
-                        marker.addListener('click', () => {
-                            infowindow.open(map, marker);
-                        });
-                    });
-
-                    let totalDistance = 0;
-                    const legs = response.routes[0].legs;
-                    for (let i = 0; i < legs.length; i++) {
-                        totalDistance += legs[i].distance.value; // 距離をメートルで取得
-                    }
-                    totalDistance = totalDistance / 1000; // キロメートルに変換
-
-                    console.log('Total Distance: ' + totalDistance + ' km');
-                } else {
-                    window.alert('Directions request failed due to ' + status);
-                }
-            }
-        );
     }
 
-    document.querySelector('#start').addEventListener('click', () => {
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    function generateRoute(startLocation, targetDistance) {
+        let waypoints = generateRandomWaypoints(startLocation, 3);  // ランダムなウェイポイントを生成
+        waypoints.push(startLocation);  // スタート地点に戻る
 
-        fetch('/map', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-CSRF-TOKEN': csrfToken
-            },
-            body: new URLSearchParams({
-                lat: document.querySelector('#lat').value,
-                lon: document.querySelector('#lon').value,
-                per: document.querySelector('#per').value,
-            }),
-        })
-        .then(res => {
-            return res.json();
-        })
-        .then(json => {
-            const points = json.points;
-            const waypoints = json.waypoints;
-            const pickupIdx = json.pickupIdx;
-
-            renderRoute(points, waypoints, pickupIdx);
-
-            const googleMapsURL = 'https://www.google.com/maps/dir/';
-            let finalURL = googleMapsURL;
-            for (let i = 0; i < waypoints; i++) {
-                finalURL += `${points[pickupIdx[i]].lat},${points[pickupIdx[i]].lon}/`;
+        directionsService.route({
+            origin: startLocation,
+            destination: startLocation,
+            waypoints: waypoints.map(location => ({ location: location, stopover: true })),
+            travelMode: 'WALKING'
+        }, function (response, status) {
+            if (status === 'OK') {
+                directionsRenderer.setDirections(response);
+                let route = response.routes[0];
+                let totalDistance = computeTotalDistance(route);
+                // if (Math.abs(totalDistance - targetDistance) > 0.5) {  // 距離が入力値に近くなるように調整
+                //     console.log('再度ウェイポイントを調整して経路を生成');
+                //     generateRoute(startLocation, targetDistance);
+                // }
+            } else {
+                console.error('Directions request failed due to ' + status);
             }
+            let totalDistance = 0;
+            const legs = response.routes[0].legs;
+            for (let i = 0; i < legs.length; i++) {
+                totalDistance += legs[i].distance.value; // 距離をメートルで取得
+            }
+            totalDistance = totalDistance / 1000; // キロメートルに変換
 
-            document.getElementById('result').textContent = finalURL;
+            console.log('Total Distance: ' + totalDistance + ' km');
         });
-    });
+    }
+
+    function generateRandomWaypoints(startLocation, numberOfWaypoints) {
+        let waypoints = [];
+        for (let i = 0; i < numberOfWaypoints; i++) {
+            let randomLat = startLocation.lat() + (Math.random() - 0.5) * 0.02;
+            let randomLng = startLocation.lng() + (Math.random() - 0.5) * 0.02;
+            waypoints.push(new google.maps.LatLng(randomLat, randomLng));
+        }
+        return waypoints;
+    }
+
+    function computeTotalDistance(route) {
+        let total = 0;
+        let legs = route.legs;
+        for (let i = 0; i < legs.length; i++) {
+            total += legs[i].distance.value;
+        }
+        return total / 1000;  // メートルをキロメートルに変換
+    }
+
 
     // calendar
     const today = new Date();
