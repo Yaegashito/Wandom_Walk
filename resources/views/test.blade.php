@@ -131,7 +131,17 @@
                 </div>
                 <div>
                     <dt>設定3</dt>
-                    <dd>中身</dd>
+                    <dd>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('ログアウト') }}
+                            </x-dropdown-link>
+                        </form>
+                    </dd>
                 </div>
             </dl>
         </div>
