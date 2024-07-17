@@ -46,13 +46,12 @@ main {
 
 table {
     width: 100%;
-    aspect-ratio: 1;
+    /* aspect-ratio: 1; */
     border-collapse: collapse;
-    border: 2px solid #eee;
+    /* border: 2px solid #eee; */
 }
 
-thead,
-tbody {
+thead {
     background: #eee;
 }
 
@@ -60,6 +59,12 @@ th,
 td {
     padding: 8px;
     text-align: center;
+    border: 1px solid #ccc;
+}
+
+tbody td {
+    height: 64px;
+    vertical-align: top;
 }
 
 tbody td:first-child {
@@ -72,6 +77,7 @@ tbody td:last-child {
 
 tfoot {
     font-weight: bold;
+    background: #eee;
 }
 
 td.disabled {
@@ -87,6 +93,7 @@ td.today {
 #today {
     cursor: pointer;
     user-select: none;
+    background: #bbb;
 }
 
 /* belongings */
@@ -121,6 +128,60 @@ td.today {
     display: none;
 }
 
+#config dl {
+    margin: 0;
+}
+
+#config dl > div {
+    margin-bottom: 8px;
+}
+
+#config dt {
+    padding: 8px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    border: 1px solid #777;
+    background: green;
+    color: #fff;
+}
+
+#config dt::after {
+    content: '+';
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+    right: 16px;
+    transition: transform .3s;
+}
+
+#config dl > div.appear dt::after {
+    transform: rotate(45deg);
+}
+
+#config dd {
+    padding: 8px;
+    margin: 0;
+    display: none;
+    background: lightgreen;
+}
+
+#config dl > div.appear dd {
+    display: block;
+    animation: .3s fadeIn;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 /* footer */
 footer {
     height: 60px;
@@ -144,6 +205,10 @@ footer li {
     text-align: center;
     line-height: 60px;
     box-sizing: border-box;
+}
+
+footer li:nth-child(1) {
+    background: red;
 }
 
 footer li + li {

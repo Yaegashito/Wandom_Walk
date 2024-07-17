@@ -247,6 +247,9 @@
                     td.classList.add('disabled');
                 }
                 tr.appendChild(td);
+                // const p = document.createElement('p');
+                // p.textContent = '23m';
+                // td.appendChild(p);
             });
             document.querySelector('tbody').appendChild(tr);
         });
@@ -287,6 +290,17 @@
     // belongings
 
     // config
+    const dts = document.querySelectorAll('dt');
+    dts.forEach(dt => {
+        dt.addEventListener('click', () => {
+            dt.parentNode.classList.toggle('appear');
+            dts.forEach(el => {
+                if (dt !==el) {
+                    el.parentNode.classList.remove('appear');
+                }
+            });
+        });
+    });
 
     // footer
     const mains = document.querySelectorAll('main > div');

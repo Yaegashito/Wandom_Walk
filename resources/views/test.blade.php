@@ -119,17 +119,31 @@
         </div>
 
         <div id="config" class="container">
-            <div>{{ Auth::user()->name }}</div>
+            <h2>設定</h2>
+            <dl>
+                <div>
+                    <dt>設定1</dt>
+                    <dd>中身</dd>
+                </div>
+                <div>
+                    <dt>設定2</dt>
+                    <dd>中身</dd>
+                </div>
+                <div>
+                    <dt>設定3</dt>
+                    <dd>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
 
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-
-                <x-dropdown-link :href="route('logout')"
-                        onclick="event.preventDefault();
-                                    this.closest('form').submit();">
-                    {{ __('ログアウト') }}
-                </x-dropdown-link>
-            </form>
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('ログアウト') }}
+                            </x-dropdown-link>
+                        </form>
+                    </dd>
+                </div>
+            </dl>
         </div>
     </main>
 
