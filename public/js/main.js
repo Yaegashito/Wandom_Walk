@@ -23,43 +23,51 @@
     function stopWalk() {
         navigator.geolocation.getCurrentPosition(showPosition);
         walkBtns.forEach(walkBtn => {
-            walkBtn.style = 'display: none';
+            walkBtn.style.display = 'none';
         });
-        walkBelongings.style = 'display: none';
+        walkBelongings.style.display = 'none';
         stopBtn.classList.add('hide');
-        generateRouteBtns[0].style = 'display: inline';
+        generateRouteBtns[0].style.display = 'inline';
         messages.forEach(message => {
-            message.style = 'display: none';
+            message.style.display = 'none';
         });
     }
 
     generateRouteBtns[0].addEventListener('click', () => {
-        generateRouteBtns[0].style = 'display: none';
-        generateRouteBtns[1].style = 'display: inline';
-        decideRoute.style = 'display: inline';
-        messages[0].style = 'display: block';
+        generateRouteBtns[0].style.display = 'none';
+        generateRouteBtns[1].style.display = 'inline';
+        decideRoute.style.display = 'inline';
+        messages[0].style.display = 'block';
     });
     decideRoute.addEventListener('click', () => {
-        generateRouteBtns[1].style = 'display: none';
-        decideRoute.style = 'display: none';
-        startBtn.style = 'display: inline';
-        walkBelongings.style = 'display: block';
+        generateRouteBtns[1].style.display = 'none';
+        decideRoute.style.display = 'none';
+        startBtn.style.display = 'inline';
+        walkBelongings.style.display = 'block';
     });
     startBtn.addEventListener('click', () => {
-        startBtn.style = 'display: none';
-        walkBelongings.style = 'display: none';
-        finishBtn.style = 'display: inline';
-        messages[0].style = 'display: none';
-        messages[1].style = 'display: block';
+        startBtn.style.display = 'none';
+        walkBelongings.style.display = 'none';
+        finishBtn.style.display = 'inline';
+        messages[0].style.display = 'none';
+        messages[1].style.display = 'block';
     });
     finishBtn.addEventListener('click', () => {
+        if (!confirm('本当に家に着きましたか？')) {
+            return;
+        }
         stopWalk();
-        finishBtn.style = 'display: none';
+        finishBtn.style,display = 'none';
         // カレンダーのdoneをtrueにする処理
     });
     stopBtn.addEventListener('click', () => {
+        if (finishBtn.style.display === 'inline') {
+            if (!confirm('今日の散歩は記録されません。本当にやめますか？')) {
+                return;
+            }
+        }
         stopWalk();
-        generateRouteBtns[0].style = 'display: inline';
+        generateRouteBtns[0].style.display = 'inline';
     });
 
     function showPosition(position) {
@@ -163,7 +171,8 @@
             let totalHours = totalDistance / 4.8;
             let hours = Math.floor(totalHours);
             let minutes = Math.round((totalHours - hours) * 60);
-            document.querySelector('#time-result').textContent = `${hours}時間${minutes}`;
+            hours = Math.floor(totalHours) !== 0 ? `${Math.floor(totalHours)}時間` : '';
+            document.querySelector('#time-result').textContent = hours + minutes;
         });
     }
 

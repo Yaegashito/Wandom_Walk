@@ -45,6 +45,10 @@ main {
     text-align: center;
 }
 
+#distance {
+    margin-top: 16px;
+}
+
 #messages > p {
     display: none;
 }
