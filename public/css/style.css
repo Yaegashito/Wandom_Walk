@@ -52,7 +52,14 @@ main {
     box-sizing: border-box;
     margin-top: 16px;
     font-weight: bold;
+    border: 1px solid #999;
     border-radius: 16px;
+    box-shadow: 0 3px black;
+}
+
+.walk-btn:active {
+    box-shadow: none;
+    transform: translateY(3px);
 }
 
 .right-btn {
@@ -67,6 +74,33 @@ main {
 .stop-btn {
     color: #fff;
     background: #FF0000;
+}
+
+.stop-btn.hide {
+    background: #F0F0F0;
+    cursor: auto;
+    color: #000;
+    box-shadow: none;
+    opacity: .4;
+}
+
+.stop-btn.hide:active {
+    transform: none;
+}
+
+#walk-belongings {
+    width: 80%;
+    margin: 0 auto;
+    border: 2px solid #666;
+    border-radius: 4px;
+    padding: 8px 0;
+    position: absolute;
+    top: 80px;
+    right: 32px;
+    left: 32px;
+    height: auto;
+    background: yellow;
+    display: none;
 }
 
 /* calendar */

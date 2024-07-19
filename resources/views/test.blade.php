@@ -24,7 +24,7 @@
                 <label for="distance">距離 (km):
                     <input type="number" id="distance" name="distance" step="0.1" required>
                 </label>
-                <button type="submit">経路を生成</button>
+                <button id="generate-route" type="submit">経路を生成</button>
             </form>
 
             <div>
@@ -35,31 +35,37 @@
                     <option value="3">４０～６０分</option>
                     {{-- 徒歩1分80m(=時速4.8km)と想定、根拠法令も --}}
                 </select>
+                <p>〇〇kmの経路ができました。予想時間は〇〇分です。</p>
             </div>
 
-            <p>〇〇kmの経路ができました。予想時間は〇〇分です。</p>
 
             <div class="walk-btns">
-                {{-- <button class="walk-btn proceed-btn">経路を生成</button> --}}
+                <button class="walk-btn proceed-btn">経路を生成</button>
 
                 {{-- <button class="walk-btn">もう一度生成する</button>
                 <button class="walk-btn proceed-btn right-btn">これでOK！！</button> --}}
 
-                {{-- <button class="walk-btn proceed-btn">散歩を始める</button> --}}
-
-                <button class="walk-btn proceed-btn">散歩完了</button>
+                {{-- <button class="walk-btn proceed-btn">散歩完了</button> --}}
             </div>
 
             <div>
-                <button class="walk-btn stop-btn">やめる</button>
+                <button class="walk-btn stop-btn hide">やめる</button>
             </div>
-            <div>
+
+
+            <div id="walk-belongings">
                 <h2>持ち物リスト</h2>
                 <ul>
                     <li>サンプル</li>
                     <li>サンプル</li>
                     <li>サンプル</li>
                 </ul>
+                <div>
+                    <button class="walk-btn proceed-btn">散歩を始める</button>
+                </div>
+                <div>
+                    <button class="walk-btn stop-btn">やめる</button>
+                </div>
             </div>
         </div>
 
