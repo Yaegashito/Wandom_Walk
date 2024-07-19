@@ -12,46 +12,42 @@
 
 <body>
     <header>
-        <img src="" alt="">
-        <h1>LOGO アプリ名</h1>
+        <img src="" alt="ロゴ画像">
+        <h1> アプリ名</h1>
     </header>
 
     <main>
         <div id="walk" class="container">
             <div id="map"></div>
 
-            <form id="route-form">
-                <label for="distance">距離 (km):
-                    <input type="number" id="distance" name="distance" step="0.1" required>
-                </label>
-                <button id="generate-route" type="submit">経路を生成</button>
-            </form>
-
             <div>
-                <select name="distance">
-                    <option value="" selected>時間を選択してください</option>
+                <select id="distance" name="distance">
+                    <option value="" selected disabled>時間を選択してください</option>
                     <option value="1">１０～１５分</option>
                     <option value="2">２０～３０分</option>
                     <option value="3">４０～６０分</option>
                     {{-- 徒歩1分80m(=時速4.8km)と想定、根拠法令も --}}
                 </select>
-                <p>〇〇kmの経路ができました。予想時間は〇〇分です。</p>
+                <div id="messages">
+                    <p><span id="distance-result"></span>kmの経路ができました。<br>予想時間は<span id="time-result">〇〇</span>分です。</p>
+                    <p>散歩中です。散歩が終わったら<br>「散歩完了」を押してください。</p>
+                </div>
             </div>
 
-
             <div class="walk-btns">
-                <button class="walk-btn proceed-btn">経路を生成</button>
+                <button class="walk-btn proceed-btn generate-route">経路を生成</button>
 
-                {{-- <button class="walk-btn">もう一度生成する</button>
-                <button class="walk-btn proceed-btn right-btn">これでOK！！</button> --}}
+                <button class="walk-btn generate-route">もう一度生成する</button>
+                <button id="decide-route" class="walk-btn proceed-btn right-btn">これでOK！！</button>
 
-                {{-- <button class="walk-btn proceed-btn">散歩完了</button> --}}
+                <button id="start-btn" class="walk-btn proceed-btn">散歩を始める</button>
+
+                <button id="finish-btn" class="walk-btn proceed-btn">散歩完了</button>
             </div>
 
             <div>
-                <button class="walk-btn stop-btn hide">やめる</button>
+                <button id="stop-btn" class="walk-btn hide">やめる</button>
             </div>
-
 
             <div id="walk-belongings">
                 <h2>持ち物リスト</h2>
@@ -60,12 +56,6 @@
                     <li>サンプル</li>
                     <li>サンプル</li>
                 </ul>
-                <div>
-                    <button class="walk-btn proceed-btn">散歩を始める</button>
-                </div>
-                <div>
-                    <button class="walk-btn stop-btn">やめる</button>
-                </div>
             </div>
         </div>
 
@@ -196,14 +186,14 @@
             <li>その他</li>
         </ul>
     </footer>
-    {{-- <script>
+    <script>
         (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
         key: "{{ $key }}",
         v: "weekly",
         // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
         // Add other bootstrap parameters as needed, using camel case.
         });
-    </script> --}}
+    </script>
     <script src="{{asset('js/main.js') }}"></script>
 </body>
 </html>

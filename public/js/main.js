@@ -2,8 +2,8 @@
 
 {
     // walk
-    let lat;
-    let lng;
+    // let lat;
+    // let lng;
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -11,21 +11,73 @@
         alert('Geolocation is not supported by this browser.');
     }
 
+    const generateRouteBtns = document.querySelectorAll('.generate-route');
+    const decideRoute = document.querySelector('#decide-route');
+    const startBtn = document.querySelector('#start-btn');
+    const finishBtn = document.querySelector('#finish-btn');
+    const stopBtn = document.querySelector('#stop-btn');
+    const walkBelongings = document.querySelector('#walk-belongings')
+    const walkBtns = document.querySelectorAll('.walk-btns > .walk-btn');
+    const messages = document.querySelectorAll('#messages > p');
+
+    function stopWalk() {
+        navigator.geolocation.getCurrentPosition(showPosition);
+        walkBtns.forEach(walkBtn => {
+            walkBtn.style = 'display: none';
+        });
+        walkBelongings.style = 'display: none';
+        stopBtn.classList.add('hide');
+        generateRouteBtns[0].style = 'display: inline';
+        messages.forEach(message => {
+            message.style = 'display: none';
+        });
+    }
+
+    generateRouteBtns[0].addEventListener('click', () => {
+        generateRouteBtns[0].style = 'display: none';
+        generateRouteBtns[1].style = 'display: inline';
+        decideRoute.style = 'display: inline';
+        messages[0].style = 'display: block';
+    });
+    decideRoute.addEventListener('click', () => {
+        generateRouteBtns[1].style = 'display: none';
+        decideRoute.style = 'display: none';
+        startBtn.style = 'display: inline';
+        walkBelongings.style = 'display: block';
+    });
+    startBtn.addEventListener('click', () => {
+        startBtn.style = 'display: none';
+        walkBelongings.style = 'display: none';
+        finishBtn.style = 'display: inline';
+        messages[0].style = 'display: none';
+        messages[1].style = 'display: block';
+    });
+    finishBtn.addEventListener('click', () => {
+        stopWalk();
+        finishBtn.style = 'display: none';
+        // カレンダーのdoneをtrueにする処理
+    });
+    stopBtn.addEventListener('click', () => {
+        stopWalk();
+        generateRouteBtns[0].style = 'display: inline';
+    });
+
     function showPosition(position) {
         let lat = position.coords.latitude;
         let lng = position.coords.longitude;
-        // document.querySelector('#lat').value = lat;
-        // document.querySelector('#lon').value = lng;
         initMap(lat, lng);
 
-        document.getElementById('route-form').addEventListener('submit', (event) => {
-            event.preventDefault();
-            const targetDistance = parseFloat(document.getElementById('distance').value);
-            // const startLocation = new google.maps.LatLng(35.6895, 139.6917);  // 東京を初期地点に設定
-            const startLocation = new google.maps.LatLng(lat, lng);  // 現在地を初期地点に設定
-            generateRoute(startLocation, targetDistance);  // 入力された距離を使って経路を生成
-        });
+        document.querySelectorAll('.generate-route').forEach(generateRouteButton => {
+            generateRouteButton.addEventListener('click', () => {
+                // event.preventDefault();
+                const targetDistance = parseFloat(document.getElementById('distance').value);
+                // const startLocation = new google.maps.LatLng(35.6895, 139.6917);  // 東京を初期地点に設定
+                const startLocation = new google.maps.LatLng(lat, lng);  // 現在地を初期地点に設定
+                generateRoute(startLocation, targetDistance);  // 入力された距離を使って経路を生成
 
+                stopBtn.classList.remove('hide');
+            });
+        })
     }
 
     let map, directionsService, directionsRenderer;
@@ -96,14 +148,22 @@
             } else {
                 console.error('Directions request failed due to ' + status);
             }
+
+            // 距離を表示
             let totalDistance = 0;
             const legs = response.routes[0].legs;
             for (let i = 0; i < legs.length; i++) {
                 totalDistance += legs[i].distance.value; // 距離をメートルで取得
             }
             totalDistance = totalDistance / 1000; // キロメートルに変換
+            totalDistance = Math.round(totalDistance * 10) / 10; // 小数第2位を四捨五入
+            document.querySelector('#distance-result').textContent = totalDistance;
 
-            console.log('Total Distance: ' + totalDistance + ' km');
+            // 予想時間を表示
+            let totalHours = totalDistance / 4.8;
+            let hours = Math.floor(totalHours);
+            let minutes = Math.round((totalHours - hours) * 60);
+            document.querySelector('#time-result').textContent = `${hours}時間${minutes}`;
         });
     }
 
