@@ -109,8 +109,8 @@
             map: map,
             content: (function () {
                 const div = document.createElement('div');
-                div.style.width = '14px';
-                div.style.height = '14px';
+                div.style.width = '12px';
+                div.style.height = '12px';
                 div.style.backgroundColor = '#115EC3';
                 div.style.borderRadius = '50%';
                 div.style.border = '2px solid white';
@@ -148,10 +148,11 @@
             waypoints: waypoints.map(location => ({ location: location, stopover: true })),
             travelMode: 'WALKING'
         }, function (response, status) {
+            let totalDistance;
             if (status === 'OK') {
                 directionsRenderer.setDirections(response);
                 let route = response.routes[0];
-                let totalDistance = computeTotalDistance(route);
+                totalDistance = computeTotalDistance(route);
                 // if (Math.abs(totalDistance - targetDistance) > 0.5) {  // 距離が入力値に近くなるように調整
                 //     console.log('再度ウェイポイントを調整して経路を生成');
                 //     generateRoute(startLocation, targetDistance);
@@ -161,12 +162,6 @@
             }
 
             // 距離を表示
-            let totalDistance = 0;
-            const legs = response.routes[0].legs;
-            for (let i = 0; i < legs.length; i++) {
-                totalDistance += legs[i].distance.value; // 距離をメートルで取得
-            }
-            totalDistance = totalDistance / 1000; // キロメートルに変換
             totalDistance = Math.round(totalDistance * 10) / 10; // 小数第2位を四捨五入
             document.querySelector('#distance-result').textContent = totalDistance;
 
