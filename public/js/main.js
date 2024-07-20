@@ -34,10 +34,15 @@
     }
 
     generateRouteBtns[0].addEventListener('click', () => {
+        if (document.querySelector('#distance').value === '') {
+            alert('時間を選択してください');
+            return;
+        }
         generateRouteBtns[0].style.display = 'none';
         generateRouteBtns[1].style.display = 'inline';
         decideRoute.style.display = 'inline';
         messages[0].style.display = 'block';
+        stopBtn.classList.remove('hide');
     });
     decideRoute.addEventListener('click', () => {
         generateRouteBtns[1].style.display = 'none';
@@ -78,12 +83,13 @@
         document.querySelectorAll('.generate-route').forEach(generateRouteButton => {
             generateRouteButton.addEventListener('click', () => {
                 // event.preventDefault();
+                if (document.querySelector('#distance').value === '') {
+                    return;
+                }
                 const targetDistance = parseFloat(document.getElementById('distance').value);
                 // const startLocation = new google.maps.LatLng(35.6895, 139.6917);  // 東京を初期地点に設定
                 const startLocation = new google.maps.LatLng(lat, lng);  // 現在地を初期地点に設定
                 generateRoute(startLocation, targetDistance);  // 入力された距離を使って経路を生成
-
-                stopBtn.classList.remove('hide');
             });
         })
     }
@@ -139,7 +145,25 @@
     }
 
     function generateRoute(startLocation, targetDistance) {
-        let waypoints = generateRandomWaypoints(startLocation, 3);  // ランダムなウェイポイントを生成
+        let numberOfWaypoints, rangeOfWaypoint, rangeOfDistance;
+        switch (targetDistance) {
+            case 1:
+                numberOfWaypoints = 2;
+                rangeOfWaypoint = 0.005; // 微調整が必要
+                rangeOfDistance = 0.2;
+                break;
+            case 2:
+                numberOfWaypoints = 3;
+                rangeOfWaypoint = 0.0077; // 微調整が必要
+                rangeOfDistance = 0.4;
+                break;
+            case 4:
+                numberOfWaypoints = 4;
+                rangeOfWaypoint = 0.015; // 微調整が必要
+                rangeOfDistance = 0.8;
+                break;
+        }
+        let waypoints = generateRandomWaypoints(startLocation, numberOfWaypoints, rangeOfWaypoint);  // ランダムなウェイポイントを生成
         waypoints.push(startLocation);  // スタート地点に戻る
 
         directionsService.route({
@@ -153,10 +177,10 @@
                 directionsRenderer.setDirections(response);
                 let route = response.routes[0];
                 totalDistance = computeTotalDistance(route);
-                // if (Math.abs(totalDistance - targetDistance) > 0.5) {  // 距離が入力値に近くなるように調整
-                //     console.log('再度ウェイポイントを調整して経路を生成');
-                //     generateRoute(startLocation, targetDistance);
-                // }
+                if (Math.abs(totalDistance - targetDistance) > rangeOfDistance) {  // 距離が入力値に近くなるように調整
+                    console.log('再度ウェイポイントを調整して経路を生成');
+                    generateRoute(startLocation, targetDistance);
+                }
             } else {
                 console.error('Directions request failed due to ' + status);
             }
@@ -174,11 +198,11 @@
         });
     }
 
-    function generateRandomWaypoints(startLocation, numberOfWaypoints) {
+    function generateRandomWaypoints(startLocation, numberOfWaypoints, rangeOfWaypoint) {
         let waypoints = [];
         for (let i = 0; i < numberOfWaypoints; i++) {
-            let randomLat = startLocation.lat() + (Math.random() - 0.5) * 0.02;
-            let randomLng = startLocation.lng() + (Math.random() - 0.5) * 0.02;
+            let randomLat = startLocation.lat() + (Math.random() - 0.5) * rangeOfWaypoint;
+            let randomLng = startLocation.lng() + (Math.random() - 0.5) * rangeOfWaypoint;
             waypoints.push(new google.maps.LatLng(randomLat, randomLng));
         }
         return waypoints;
