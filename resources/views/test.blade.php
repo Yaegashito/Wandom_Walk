@@ -23,6 +23,7 @@
             <div>
                 <select id="distance" name="distance">
                     <option value="" selected disabled>時間を選択してください</option>
+                    <option value="3">開発用</option>
                     <option value="1">１０～１５分</option>
                     <option value="2">２０～３０分</option>
                     <option value="4">４０～６０分</option>

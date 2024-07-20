@@ -147,6 +147,11 @@
     function generateRoute(startLocation, targetDistance) {
         let numberOfWaypoints, rangeOfWaypoint, rangeOfDistance;
         switch (targetDistance) {
+            case 3: //開発用
+                numberOfWaypoints = 2;
+                rangeOfWaypoint = 0.005;
+                rangeOfDistance = 100;
+                break;
             case 1:
                 numberOfWaypoints = 2;
                 rangeOfWaypoint = 0.005; // 微調整が必要
