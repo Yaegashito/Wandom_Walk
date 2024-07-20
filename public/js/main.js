@@ -279,7 +279,7 @@
     }
 
     function clearCalendar() {
-        const tbody = document.querySelector('tbody');
+        const tbody = document.querySelector('.tbody');
 
         while (tbody.firstChild) {
             tbody.removeChild(tbody.firstChild);
@@ -320,7 +320,7 @@
                 // p.textContent = '23m';
                 // td.appendChild(p);
             });
-            document.querySelector('tbody').appendChild(tr);
+            document.querySelector('.tbody').appendChild(tr);
         });
     }
 

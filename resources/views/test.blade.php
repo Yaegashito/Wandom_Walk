@@ -78,7 +78,7 @@
                         <th>土</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="tbody">
                     {{-- <tr>
                         <td class="disabled">1</td>
                         <td class="disabled">1</td>
