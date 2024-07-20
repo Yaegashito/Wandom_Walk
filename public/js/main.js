@@ -96,23 +96,26 @@
             // center: { lat: 35.6895, lng: 139.6917 },  // 東京を初期地点に設定
             center: new google.maps.LatLng(lat, lng),  // 現在地を初期地点に設定
             zoom: 16,
+            mapId: 'DEMO_MAP_ID',
             streetViewControl: false,
             mapTypeControl: false,
             fullscreenControl: false,
         });
 
-        // let marker = new google.maps.Marker({
-        new google.maps.Marker({
+        const { AdvancedMarkerElement, PinView } = await google.maps.importLibrary("marker");
+
+        new google.maps.marker.AdvancedMarkerElement({
             position: new google.maps.LatLng(lat, lng),
             map: map,
-            icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                fillColor: '#115EC3',
-                fillOpacity: 1,
-                strokeColor: 'white',
-                strokeWeight: 2,
-                scale: 7
-            },
+            content: (function () {
+                const div = document.createElement('div');
+                div.style.width = '14px';
+                div.style.height = '14px';
+                div.style.backgroundColor = '#115EC3';
+                div.style.borderRadius = '50%';
+                div.style.border = '2px solid white';
+                return div;
+            })(),
         });
 
         directionsService = new google.maps.DirectionsService();

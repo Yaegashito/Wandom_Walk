@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>わんダムウォーク</title>
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -25,7 +25,7 @@
                     <option value="" selected disabled>時間を選択してください</option>
                     <option value="1">１０～１５分</option>
                     <option value="2">２０～３０分</option>
-                    <option value="3">４０～６０分</option>
+                    <option value="4">４０～６０分</option>
                     {{-- 徒歩1分80m(=時速4.8km)と想定、根拠法令も --}}
                 </select>
                 <div id="messages">
