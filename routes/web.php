@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\TopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +32,4 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/test', function () {
-    $GOOGLE_MAPS_API_KEY = config('services.googlemaps.api_key');
-    $belongings = ['リード', '水', '袋'];
-    return view('test')
-        ->with(['key' => $GOOGLE_MAPS_API_KEY, 'belongings' => $belongings]);
-})->name('test');
-Route::post('/map', [MapController::class, 'map']);
+Route::get('/top', [TopController::class, 'top'])->name('top');
