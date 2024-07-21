@@ -53,9 +53,11 @@
             <div id="walk-belongings">
                 <h2>持ち物リスト</h2>
                 <ul>
-                    <li>サンプル</li>
-                    <li>サンプル</li>
-                    <li>サンプル</li>
+                    @foreach ($belongings as $belonging)
+                    <li>
+                        {{ $belonging->belonging }}
+                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -128,7 +130,7 @@
             <ul>
                 @foreach ($belongings as $belonging)
                 <li>
-                    {{ $belonging }}
+                    {{ $belonging->belonging }}
                     <span class="delete">×</span>
                 </li>
                 @endforeach

@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Belonging;
 
 class TopController extends Controller
 {
     public function top()
     {
+        $belongings = Belonging::latest()->get();
+
         $GOOGLE_MAPS_API_KEY = config('services.googlemaps.api_key');
-        $belongings = ['リード', '水', '袋'];
-        return view('test')
+
+        return view('top')
             ->with(['key' => $GOOGLE_MAPS_API_KEY, 'belongings' => $belongings]);
     }
 }
