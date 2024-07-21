@@ -13,12 +13,11 @@ class BelongingController extends Controller
         $belonging->belonging = $request->belonging;
         $belonging->save();
 
-        return redirect()->route('top');
+        return response()->json(['id' => $belonging->id]);
     }
 
     public function destroy(Belonging $belonging)
     {
         $belonging->delete();
-        // return redirect()->route('top');
     }
 }

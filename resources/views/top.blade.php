@@ -139,8 +139,7 @@
                 </li>
                 @endforeach
             </ul>
-            <form action="{{ route('belonging.store') }}" method="post">
-                @csrf
+            <form>
                 <input type="text" name="belonging">
                 <button>追加</button>
             </form>

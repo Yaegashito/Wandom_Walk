@@ -62,7 +62,7 @@
             return;
         }
         stopWalk();
-        finishBtn.style,display = 'none';
+        finishBtn.style.display = 'none';
         // カレンダーのdoneをtrueにする処理
     });
     stopBtn.addEventListener('click', () => {
@@ -359,11 +359,14 @@
     // belongings
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    // 削除の非同期処理
-    const deletes = document.querySelectorAll('.delete');
-    deletes.forEach(span => {
-        const belonging = span.dataset.id;
-        span.addEventListener('click', () => {
+    // 追加の非同期処理
+    const input = document.querySelector('[name="belonging"]');
+    const ul = document.querySelector('#belongings ul');
+
+    // イベントの伝播により、作成直後のliを削除可能に
+    ul.addEventListener('click', e => {
+        const belonging = e.target.dataset.id;
+        if (e.target.classList.contains('delete')) {
             if (!confirm('削除しますか？')) {
                 return;
             }
@@ -373,8 +376,39 @@
                     'X-CSRF-TOKEN': csrfToken,
                 },
             });
-            span.parentNode.remove();
+            e.target.parentNode.remove();
+        }
+    });
+
+    function addBelonging(id, title) {
+        const li = document.createElement('li');
+        const span = document.createElement('span');
+        span.classList.add('delete');
+        span.dataset.id = id;
+        span.textContent = '削除';
+        li.textContent = title;
+        li.appendChild(span);
+        ul.insertBefore(li, ul.firstChild);
+    }
+
+    document.querySelector('#belongings > form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const title = input.value;
+        const response = await fetch('belonging', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                belonging: title,
+            }),
         });
+        const json = await response.json();
+        addBelonging(json.id, title);
+
+        input.value = '';
+        input.focus();
     });
 
     // config
