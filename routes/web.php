@@ -34,3 +34,4 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/top', [TopController::class, 'top'])->name('top');
+Route::resource('belonging', BelongingController::class)->except('index');
