@@ -19,6 +19,6 @@ class BelongingController extends Controller
     public function destroy(Belonging $belonging)
     {
         $belonging->delete();
-        return redirect()->route('top');
+        // return redirect()->route('top');
     }
 }

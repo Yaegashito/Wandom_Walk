@@ -131,11 +131,11 @@
                 @foreach ($belongings as $belonging)
                 <li>
                     {{ $belonging->belonging }}
-                    <form action="{{ route('belonging.destroy', $belonging) }}" method="post">
-                        @method('DELETE')
-                        @csrf
-                        <button class="delete">×</button>
-                    </form>
+                    <span
+                        class="delete"
+                        data-id="{{ $belonging->id }}">
+                        削除
+                    </span>
                 </li>
                 @endforeach
             </ul>

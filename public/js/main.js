@@ -357,6 +357,25 @@
     createCalendar();
 
     // belongings
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    // 削除の非同期処理
+    const deletes = document.querySelectorAll('.delete');
+    deletes.forEach(span => {
+        const belonging = span.dataset.id;
+        span.addEventListener('click', () => {
+            if (!confirm('削除しますか？')) {
+                return;
+            }
+            fetch(`belonging/${belonging}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+            });
+            span.parentNode.remove();
+        });
+    });
 
     // config
     const dts = document.querySelectorAll('dt');
