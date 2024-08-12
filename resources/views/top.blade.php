@@ -53,9 +53,11 @@
             <div id="walk-belongings">
                 <h2>持ち物リスト</h2>
                 <ul>
-                    <li>サンプル</li>
-                    <li>サンプル</li>
-                    <li>サンプル</li>
+                    @foreach ($belongings as $belonging)
+                    <li>
+                        {{ $belonging->belonging }}
+                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -78,7 +80,7 @@
                         <th>土</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="tbody">
                     {{-- <tr>
                         <td class="disabled">1</td>
                         <td class="disabled">1</td>
@@ -128,14 +130,17 @@
             <ul>
                 @foreach ($belongings as $belonging)
                 <li>
-                    {{ $belonging }}
-                    <span class="delete">×</span>
+                    {{ $belonging->belonging }}
+                    <span
+                        class="delete"
+                        data-id="{{ $belonging->id }}">
+                        削除
+                    </span>
                 </li>
                 @endforeach
             </ul>
-            <form action="">
-                @csrf
-                <input type="text">
+            <form>
+                <input type="text" name="belonging">
                 <button>追加</button>
             </form>
 

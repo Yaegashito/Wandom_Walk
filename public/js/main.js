@@ -62,7 +62,7 @@
             return;
         }
         stopWalk();
-        finishBtn.style,display = 'none';
+        finishBtn.style.display = 'none';
         // カレンダーのdoneをtrueにする処理
     });
     stopBtn.addEventListener('click', () => {
@@ -279,7 +279,7 @@
     }
 
     function clearCalendar() {
-        const tbody = document.querySelector('tbody');
+        const tbody = document.querySelector('.tbody');
 
         while (tbody.firstChild) {
             tbody.removeChild(tbody.firstChild);
@@ -320,7 +320,7 @@
                 // p.textContent = '23m';
                 // td.appendChild(p);
             });
-            document.querySelector('tbody').appendChild(tr);
+            document.querySelector('.tbody').appendChild(tr);
         });
     }
 
@@ -357,6 +357,59 @@
     createCalendar();
 
     // belongings
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    // 追加の非同期処理
+    const input = document.querySelector('[name="belonging"]');
+    const ul = document.querySelector('#belongings ul');
+
+    // イベントの伝播により、作成直後のliを削除可能に
+    ul.addEventListener('click', e => {
+        const belonging = e.target.dataset.id;
+        if (e.target.classList.contains('delete')) {
+            if (!confirm('削除しますか？')) {
+                return;
+            }
+            fetch(`belonging/${belonging}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+            });
+            e.target.parentNode.remove();
+        }
+    });
+
+    function addBelonging(id, title) {
+        const li = document.createElement('li');
+        const span = document.createElement('span');
+        span.classList.add('delete');
+        span.dataset.id = id;
+        span.textContent = '削除';
+        li.textContent = title;
+        li.appendChild(span);
+        ul.insertBefore(li, ul.firstChild);
+    }
+
+    document.querySelector('#belongings > form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const title = input.value;
+        const response = await fetch('belonging', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                belonging: title,
+            }),
+        });
+        const json = await response.json();
+        addBelonging(json.id, title);
+
+        input.value = '';
+        input.focus();
+    });
 
     // config
     const dts = document.querySelectorAll('dt');
