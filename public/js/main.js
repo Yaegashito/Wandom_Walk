@@ -57,14 +57,31 @@
         messages[0].style.display = 'none';
         messages[1].style.display = 'block';
     });
-    finishBtn.addEventListener('click', () => {
+    finishBtn.addEventListener('click', async (event) => {
+        event.preventDefault();
         if (!confirm('本当に家に着きましたか？')) {
             return;
         }
+
+        const response = await fetch("recordCalendar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": csrfToken,
+            },
+            body: JSON.stringify({}),
+        })
+        const data = await response.json();
+        if (data.success) {
+            alert(`今日の散歩が記録されました`);
+        }
+
         stopWalk();
         finishBtn.style.display = 'none';
         // カレンダーのdoneをtrueにする処理
+        document.querySelector('#calendar .tbody td.today').classList.add('done');
     });
+
     stopBtn.addEventListener('click', () => {
         if (finishBtn.style.display === 'inline') {
             if (!confirm('今日の散歩は記録されません。本当にやめますか？')) {
@@ -228,7 +245,7 @@
     let year = today.getFullYear();
     let month = today.getMonth();
 
-    function getCalendaHead() {
+    function getCalendarHead() {
         const dates = [];
         const d = new Date(year, month, 0).getDate();
         const n = new Date(year, month, 1).getDay();
@@ -293,7 +310,7 @@
 
     function renderWeeks() {
         const dates = [
-            ...getCalendaHead(),
+            ...getCalendarHead(),
             ...getCalendarBody(),
             ...getCalendarTail(),
         ];
