@@ -253,8 +253,14 @@
         for (let i = 0; i < n; i++) {
             dates.unshift({
                 date: d - i,
-                isToday: today,
+                isToday: false,
                 isDisabled: true,
+                // uniqueDate: `${year}-${String(month).padStart(2, '0')}-${String(d - i).padStart(2, '0')}`,
+                uniqueDate: new Date(year, month - 1, d - i).toLocaleDateString("ja-JP", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit"
+                }).replaceAll('/', '-'),
             });
         }
 
@@ -270,6 +276,12 @@
                 date: i,
                 isToday: false,
                 isDisabled: false,
+                // uniqueDate: `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`,
+                uniqueDate: new Date(year, month, i).toLocaleDateString("ja-JP", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit"
+                }).replaceAll('/', '-'),
             });
         }
 
@@ -289,9 +301,14 @@
                 date: i,
                 isToday: false,
                 isDisabled: true,
+                // uniqueDate: `${year}-${String(month + 2).padStart(2, '0')}-${String(i).padStart(2, '0')}`
+                uniqueDate: new Date(year, month + 1, i).toLocaleDateString("ja-JP", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit"
+                }).replaceAll('/', '-'),
             });
         }
-
         return dates;
     }
 
@@ -339,6 +356,7 @@
             });
             document.querySelector('.tbody').appendChild(tr);
         });
+        console.log(weeks);
     }
 
     function createCalendar() {
