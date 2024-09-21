@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::post('recordCalendar', [CalendarController::class, 'recordCalendar'])->name('recordCalendar');
+Route::post('storeCalendar', [CalendarController::class, 'storeCalendar'])->name('storeCalendar');
 
 Route::get('/top', [TopController::class, 'top'])->name('top');
 Route::resource('belonging', BelongingController::class)->except('index');

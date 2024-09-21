@@ -2,8 +2,7 @@
 
 {
     // walk
-    // let lat;
-    // let lng;
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -325,7 +324,7 @@
         document.querySelector('#title').textContent = title;
     }
 
-    function renderWeeks() {
+    async function renderWeeks() {
         const dates = [
             ...getCalendarHead(),
             ...getCalendarBody(),
@@ -338,6 +337,23 @@
             weeks.push(dates.splice(0, 7));
         }
 
+        const response = await fetch("storeCalendar", {
+            method: "POST",
+            headers: {
+                "X-CSRF-TOKEN": csrfToken,
+            },
+            body: new URLSearchParams({
+                year: year,
+                month: month + 1,
+                date: new Date().getDate(),
+            }),
+        });
+        const records = await response.json();
+        const dateOfRecords = [];
+        records['records'].forEach(record => {
+            dateOfRecords.push(record["date"]);
+        });
+
         weeks.forEach(week => {
             const tr = document.createElement('tr');
             week.forEach(date => {
@@ -349,14 +365,13 @@
                 if (date.isDisabled) {
                     td.classList.add('disabled');
                 }
+                if (dateOfRecords.includes(date.uniqueDate)) {
+                    td.classList.add("done");
+                }
                 tr.appendChild(td);
-                // const p = document.createElement('p');
-                // p.textContent = '23m';
-                // td.appendChild(p);
             });
             document.querySelector('.tbody').appendChild(tr);
         });
-        console.log(weeks);
     }
 
     function createCalendar() {
@@ -392,7 +407,6 @@
     createCalendar();
 
     // belongings
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     // 追加の非同期処理
     const input = document.querySelector('[name="belonging"]');

@@ -18,4 +18,12 @@ class CalendarController extends Controller
 
         return response()->json(['success' => true, 'date' => $today]);
     }
+
+    public function storeCalendar(Request $request)
+    {
+        $today = Carbon::create($request->year, $request->month, $request->date);
+        $lastMonthMiddleDay = $today->clone()->subMonth()->day(15);
+        $records = Calendar::where('date', '>', $lastMonthMiddleDay)->select('date')->get();;
+        return response()->json(['records' => $records]);
+    }
 }
