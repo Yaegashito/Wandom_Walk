@@ -425,11 +425,21 @@
                     'X-CSRF-TOKEN': csrfToken,
                 },
             });
+            // 持ち物リストから削除
             e.target.parentNode.remove();
+            // 持ち物確認画面から削除
+            const text = e.target.parentNode.firstChild.textContent.trim();
+            document.querySelectorAll('#walk #walk-belongings li').forEach(li => {
+                console.log(li.textContent);
+                if (li.textContent.trim() === text) {
+                    li.remove();
+                }
+            });
         }
     });
 
     function addBelonging(id, title) {
+        // 持ち物リストに追加
         const li = document.createElement('li');
         const span = document.createElement('span');
         span.classList.add('delete');
@@ -437,7 +447,11 @@
         span.textContent = '削除';
         li.textContent = title;
         li.appendChild(span);
-        ul.insertBefore(li, ul.firstChild);
+        ul.appendChild(li);
+        // 持ち物確認画面に追加
+        const topLi = document.createElement('li');
+        topLi.textContent = title;
+        document.querySelector('#walk #walk-belongings ul').appendChild(topLi);
     }
 
     document.querySelector('#belongings > form').addEventListener('submit', async (event) => {
