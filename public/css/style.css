@@ -168,7 +168,7 @@ td.today {
 }
 
 td.done {
-    background: red;
+    background: orange;
 }
 
 #prev,
