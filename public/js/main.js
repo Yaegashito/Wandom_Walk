@@ -1,6 +1,11 @@
 'use strict';
 
 {
+    // ブラウザバック等に警告
+    window.addEventListener("beforeunload", (e) => {
+        e.preventDefault();
+        return '';
+    });
     // walk
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
