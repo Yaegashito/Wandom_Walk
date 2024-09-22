@@ -9,7 +9,7 @@ class TopController extends Controller
 {
     public function top()
     {
-        $belongings = Belonging::latest()->get();
+        $belongings = Belonging::oldest()->get();
 
         $GOOGLE_MAPS_API_KEY = config('services.googlemaps.api_key');
 
