@@ -167,6 +167,10 @@ td.today {
     font-weight: bold;
 }
 
+td.done {
+    background: orange;
+}
+
 #prev,
 #next,
 #today {

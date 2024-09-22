@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\BelongingController;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::post('recordCalendar', [CalendarController::class, 'recordCalendar'])->name('recordCalendar');
+Route::post('storeCalendar', [CalendarController::class, 'storeCalendar'])->name('storeCalendar');
 
 Route::get('/top', [TopController::class, 'top'])->name('top');
 Route::resource('belonging', BelongingController::class)->except('index');

@@ -2,8 +2,7 @@
 
 {
     // walk
-    // let lat;
-    // let lng;
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -57,14 +56,31 @@
         messages[0].style.display = 'none';
         messages[1].style.display = 'block';
     });
-    finishBtn.addEventListener('click', () => {
+    finishBtn.addEventListener('click', async (event) => {
+        event.preventDefault();
         if (!confirm('本当に家に着きましたか？')) {
             return;
         }
+
+        const response = await fetch("recordCalendar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": csrfToken,
+            },
+            body: JSON.stringify({}),
+        })
+        const data = await response.json();
+        if (data.success) {
+            alert(`今日の散歩が記録されました`);
+        }
+
         stopWalk();
         finishBtn.style.display = 'none';
         // カレンダーのdoneをtrueにする処理
+        document.querySelector('#calendar .tbody td.today').classList.add('done');
     });
+
     stopBtn.addEventListener('click', () => {
         if (finishBtn.style.display === 'inline') {
             if (!confirm('今日の散歩は記録されません。本当にやめますか？')) {
@@ -228,7 +244,7 @@
     let year = today.getFullYear();
     let month = today.getMonth();
 
-    function getCalendaHead() {
+    function getCalendarHead() {
         const dates = [];
         const d = new Date(year, month, 0).getDate();
         const n = new Date(year, month, 1).getDay();
@@ -236,8 +252,14 @@
         for (let i = 0; i < n; i++) {
             dates.unshift({
                 date: d - i,
-                isToday: today,
+                isToday: false,
                 isDisabled: true,
+                // uniqueDate: `${year}-${String(month).padStart(2, '0')}-${String(d - i).padStart(2, '0')}`,
+                uniqueDate: new Date(year, month - 1, d - i).toLocaleDateString("ja-JP", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit"
+                }).replaceAll('/', '-'),
             });
         }
 
@@ -253,6 +275,12 @@
                 date: i,
                 isToday: false,
                 isDisabled: false,
+                // uniqueDate: `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`,
+                uniqueDate: new Date(year, month, i).toLocaleDateString("ja-JP", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit"
+                }).replaceAll('/', '-'),
             });
         }
 
@@ -272,9 +300,14 @@
                 date: i,
                 isToday: false,
                 isDisabled: true,
+                // uniqueDate: `${year}-${String(month + 2).padStart(2, '0')}-${String(i).padStart(2, '0')}`
+                uniqueDate: new Date(year, month + 1, i).toLocaleDateString("ja-JP", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit"
+                }).replaceAll('/', '-'),
             });
         }
-
         return dates;
     }
 
@@ -291,9 +324,9 @@
         document.querySelector('#title').textContent = title;
     }
 
-    function renderWeeks() {
+    async function renderWeeks() {
         const dates = [
-            ...getCalendaHead(),
+            ...getCalendarHead(),
             ...getCalendarBody(),
             ...getCalendarTail(),
         ];
@@ -303,6 +336,23 @@
         for (let i = 0; i < weeksCount; i++) {
             weeks.push(dates.splice(0, 7));
         }
+
+        const response = await fetch("storeCalendar", {
+            method: "POST",
+            headers: {
+                "X-CSRF-TOKEN": csrfToken,
+            },
+            body: new URLSearchParams({
+                year: year,
+                month: month + 1,
+                date: new Date().getDate(),
+            }),
+        });
+        const records = await response.json();
+        const dateOfRecords = [];
+        records['records'].forEach(record => {
+            dateOfRecords.push(record["date"]);
+        });
 
         weeks.forEach(week => {
             const tr = document.createElement('tr');
@@ -315,10 +365,10 @@
                 if (date.isDisabled) {
                     td.classList.add('disabled');
                 }
+                if (dateOfRecords.includes(date.uniqueDate)) {
+                    td.classList.add("done");
+                }
                 tr.appendChild(td);
-                // const p = document.createElement('p');
-                // p.textContent = '23m';
-                // td.appendChild(p);
             });
             document.querySelector('.tbody').appendChild(tr);
         });
@@ -357,7 +407,6 @@
     createCalendar();
 
     // belongings
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     // 追加の非同期処理
     const input = document.querySelector('[name="belonging"]');
