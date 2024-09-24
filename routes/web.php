@@ -19,6 +19,9 @@ use App\Http\Controllers\CalendarController;
 */
 
 Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect()->route('top'); // ログイン済みなら 'home' にリダイレクト
+    }
     return view('auth.login');
 });
 
