@@ -507,9 +507,11 @@
                 }
             })
             menus.forEach(menu => {
-                menu.style.background = 'lightgreen';
+                menu.style.background = '#fff';
+                menu.style.color = '#000';
             });
-            menu.style.background = 'red';
+            menu.style.background = '#111';
+            menu.style.color = '#fff';
         })
     });
 }

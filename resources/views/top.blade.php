@@ -21,7 +21,7 @@
             <div class="walk-btns">
                 <button class="walk-btn proceed-btn generate-route">経路を生成</button>
 
-                <button class="walk-btn generate-route">もう一度生成する</button>
+                <button class="walk-btn generate-route regenerate">もう一度生成する</button>
                 <button id="decide-route" class="walk-btn proceed-btn right-btn">これでOK！！</button>
 
                 <button id="start-btn" class="walk-btn proceed-btn">散歩を始める</button>

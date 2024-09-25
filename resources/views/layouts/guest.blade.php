@@ -6,6 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
+        <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon">
 
         <!-- Fonts -->
         <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
@@ -20,7 +21,7 @@
     <body>
         <div class="whole-container">
         <header>
-            <img src="" alt="ロゴ画像">
+            <img src="{{ asset('img/favicon.png') }}" alt="ロゴ画像" width="42" height="42" class="favicon">
             <h1> わんダムウォーク</h1>
         </header>
 
