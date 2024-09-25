@@ -137,7 +137,7 @@
                 </div>
                 <div>
                     <dt>あなたのプロフィール</dt>
-                    <dd>中身</dd>
+                    <dd>{{ $userName }}</dd>
                 </div>
                 <div>
                     <dt>設定3</dt>

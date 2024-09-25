@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Calendar;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class CalendarController extends Controller
 {
@@ -13,6 +14,7 @@ class CalendarController extends Controller
         $today = Carbon::today()->toDateString();
 
         $calendar = Calendar::firstOrNew(['date' => $today]);
+        $calendar->user_id = Auth::user()->id;
         $calendar->done = true;
         $calendar->save();
 
@@ -23,7 +25,7 @@ class CalendarController extends Controller
     {
         $today = Carbon::create($request->year, $request->month, $request->date);
         $lastMonthMiddleDay = $today->clone()->subMonth()->day(15);
-        $records = Calendar::where('date', '>', $lastMonthMiddleDay)->select('date')->get();;
+        $records = Auth::user()->calendars()->where('date', '>', $lastMonthMiddleDay)->select('date')->get();;
         return response()->json(['records' => $records]);
     }
 }
