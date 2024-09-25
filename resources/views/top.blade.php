@@ -5,8 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>わんダムウォーク</title>
+    <!-- Fonts -->
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
@@ -140,7 +147,27 @@
                     <dd>{{ $userName }}</dd>
                 </div>
                 <div>
-                    <dt>設定3</dt>
+                    <dt>パスワード変更</dt>
+                    <dd>
+                        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                            <div class="max-w-xl">
+                                @include('profile.partials.update-password-form')
+                            </div>
+                        </div>
+                    </dd>
+                </div>
+                <div>
+                    <dt>アカウント削除</dt>
+                    <dd>
+                        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                            <div class="max-w-xl">
+                                @include('profile.partials.delete-user-form')
+                            </div>
+                        </div>
+                    </dd>
+                </div>
+                <div>
+                    <dt>ログアウト</dt>
                     <dd>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

@@ -2,10 +2,10 @@
 
 {
     // ブラウザバック等に警告
-    window.addEventListener("beforeunload", (e) => {
-        e.preventDefault();
-        return '';
-    });
+    // window.addEventListener("beforeunload", (e) => {
+    //     e.preventDefault();
+    //     return '';
+    // });
     // walk
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -92,8 +92,10 @@
                 return;
             }
         }
-        stopWalk();
-        generateRouteBtns[0].style.display = 'inline';
+        if (stopBtn.classList.contains('hide') === false) {
+            stopWalk();
+            generateRouteBtns[0].style.display = "inline";
+        }
     });
 
     function showPosition(position) {
