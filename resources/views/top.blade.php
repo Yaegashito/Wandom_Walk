@@ -1,28 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>わんダムウォーク</title>
-    <!-- Fonts -->
-    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
-
-<body>
-    <header>
-        <img src="" alt="ロゴ画像">
-        <h1> アプリ名</h1>
-    </header>
-
+<x-guest-layout>
     <main>
         <div id="walk" class="container">
             <div id="map"></div>
@@ -201,5 +177,4 @@
         });
     </script>
     <script src="{{asset('js/main.js') }}"></script>
-</body>
-</html>
+</x-guest-layout>
