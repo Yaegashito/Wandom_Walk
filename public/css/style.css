@@ -27,7 +27,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #CCFFCC;
+    background: #99FF99;
     height: 60px;
     position: sticky;
     top: 0;
@@ -81,7 +81,7 @@ header h1 {
 /* main */
 main {
     padding: 16px 0 76px;
-    min-height: 100vh;
+    min-height: 90vh;
 }
 
 .container {
@@ -315,9 +315,9 @@ td.done {
     cursor: pointer;
     user-select: none;
     position: relative;
-    border: 1px solid #777;
-    background: green;
-    color: #fff;
+    background: #99FF99;
+    border-radius: 4px;
+    /* color: #fff; */
 }
 
 #config dt::after {
@@ -337,7 +337,8 @@ td.done {
     padding: 8px;
     margin: 0;
     display: none;
-    background: lightgreen;
+    background: #CCFFCC;
+    border-radius: 0 0 4px 4px;
 }
 
 #config dl > div.appear dd {
