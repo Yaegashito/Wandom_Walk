@@ -281,6 +281,23 @@ td.done {
 }
 
 /* config */
+.logout {
+    width: 30%;
+    height: 64px;
+    line-height: 64px;
+    background: #bbb;
+    cursor: pointer;
+    user-select: none;
+    box-sizing: border-box;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #999;
+    border-radius: 16px;
+    box-shadow: 0 3px black;
+    margin-bottom: 16px;
+}
+
 #config {
     display: none;
 }
@@ -337,6 +354,19 @@ td.done {
         opacity: 1;
         transform: none;
     }
+}
+
+#opinion,
+#opinion-btn {
+    display: block;
+    width: 80%;
+    margin: 8px auto 0;
+}
+
+#opinion-btn {
+    background: #ccc;
+    border: 1px solid #000;
+    border-radius: 4px;
 }
 
 #thanks {
