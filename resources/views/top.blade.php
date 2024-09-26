@@ -119,6 +119,14 @@
                     <dd>中身</dd>
                 </div>
                 <div>
+                    <dt>ご意見送信フォーム</dt>
+                    <dd>
+                        <textarea id="opinion" cols="30" rows="10"></textarea>
+                        <button id="opinion-btn">送信</button>
+                        <p id="thanks">ご意見ありがとうございました！！</p>
+                    </dd>
+                </div>
+                <div>
                     <dt>あなたのプロフィール</dt>
                     <dd>{{ $userName }}</dd>
                 </div>

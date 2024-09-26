@@ -339,6 +339,10 @@ td.done {
     }
 }
 
+#thanks {
+    display: none;
+}
+
 /* footer */
 footer {
     max-width: 100%;
