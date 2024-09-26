@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>わんダムウォーク</title>
-    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
-
-<body>
-    <header>
-        <img src="" alt="ロゴ画像">
-        <h1> アプリ名</h1>
-    </header>
-
+<x-guest-layout>
     <main>
         <div id="walk" class="container">
             <div id="map"></div>
@@ -38,7 +21,7 @@
             <div class="walk-btns">
                 <button class="walk-btn proceed-btn generate-route">経路を生成</button>
 
-                <button class="walk-btn generate-route">もう一度生成する</button>
+                <button class="walk-btn generate-route regenerate">もう一度生成する</button>
                 <button id="decide-route" class="walk-btn proceed-btn right-btn">これでOK！！</button>
 
                 <button id="start-btn" class="walk-btn proceed-btn">散歩を始める</button>
@@ -137,10 +120,30 @@
                 </div>
                 <div>
                     <dt>あなたのプロフィール</dt>
-                    <dd>中身</dd>
+                    <dd>{{ $userName }}</dd>
                 </div>
                 <div>
-                    <dt>設定3</dt>
+                    <dt>パスワード変更</dt>
+                    <dd>
+                        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                            <div class="max-w-xl">
+                                @include('profile.partials.update-password-form')
+                            </div>
+                        </div>
+                    </dd>
+                </div>
+                <div>
+                    <dt>アカウント削除</dt>
+                    <dd>
+                        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                            <div class="max-w-xl">
+                                @include('profile.partials.delete-user-form')
+                            </div>
+                        </div>
+                    </dd>
+                </div>
+                <div>
+                    <dt>ログアウト</dt>
                     <dd>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -174,5 +177,4 @@
         });
     </script>
     <script src="{{asset('js/main.js') }}"></script>
-</body>
-</html>
+</x-guest-layout>

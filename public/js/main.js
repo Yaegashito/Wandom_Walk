@@ -2,10 +2,10 @@
 
 {
     // ブラウザバック等に警告
-    window.addEventListener("beforeunload", (e) => {
-        e.preventDefault();
-        return '';
-    });
+    // window.addEventListener("beforeunload", (e) => {
+    //     e.preventDefault();
+    //     return '';
+    // });
     // walk
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -92,8 +92,10 @@
                 return;
             }
         }
-        stopWalk();
-        generateRouteBtns[0].style.display = 'inline';
+        if (stopBtn.classList.contains('hide') === false) {
+            stopWalk();
+            generateRouteBtns[0].style.display = "inline";
+        }
     });
 
     function showPosition(position) {
@@ -505,9 +507,11 @@
                 }
             })
             menus.forEach(menu => {
-                menu.style.background = 'lightgreen';
+                menu.style.background = '#fff';
+                menu.style.color = '#000';
             });
-            menu.style.background = 'red';
+            menu.style.background = '#111';
+            menu.style.color = '#fff';
         })
     });
 }
