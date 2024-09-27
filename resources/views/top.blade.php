@@ -49,9 +49,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th id="prev">&laquo;</th>
+                        <th id="prev">前月</th>
                         <th id="title" colspan="5">2020/05</th>
-                        <th id="next">&raquo;</th>
+                        <th id="next">翌月</th>
                     </tr>
                     <tr>
                         <th>日</th>

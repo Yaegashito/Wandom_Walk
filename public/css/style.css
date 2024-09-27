@@ -6,7 +6,7 @@ ul {
 }
 
 body {
-    background: #aaa;
+    background: #ccc;
     font-family: "Meiryo UI", "Hiragino Sans", "Yu Gothic UI", "MS PGothic", "Hiragino Kaku Gothic ProN", sans-serif;
 }
 
@@ -94,7 +94,6 @@ main {
 #map {
     width: 100%;
     height: 300px;
-    outline: 2px solid red;
     margin: 0 auto;
 }
 
@@ -257,22 +256,33 @@ td.done {
 #belongings {
     display: none;
     width: 60%;
+    min-width: 300px;
 }
 
 #belongings li {
     margin-bottom: 8px;
     padding: 4px 8px;
     border: 1px solid #aaa;
+    border-radius: 4px;
     display: flex;
+    background: #fff;
 }
 
 #belongings form {
     display: flex;
+    gap: 8px;
 }
 
 #belongings input {
-    margin-right: 8px;
-    flex: 1;
+    width: calc(80% - 8px);
+}
+
+#belongings button {
+    border: 1px solid #999;
+    background: #ccc;
+    padding: 0 4px;
+    border-radius: 4px;
+    min-width: 20%;
 }
 
 .delete {
@@ -410,8 +420,4 @@ footer li:nth-child(1) {
 
 footer li + li {
     border-left: 2px solid #888;
-}
-
-footer li:active {
-    opacity: .3;
 }
