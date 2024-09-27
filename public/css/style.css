@@ -27,7 +27,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #CCFFCC;
+    background: #99FF99;
     height: 60px;
     position: sticky;
     top: 0;
@@ -81,7 +81,7 @@ header h1 {
 /* main */
 main {
     padding: 16px 0 76px;
-    min-height: 100vh;
+    min-height: 90vh;
 }
 
 .container {
@@ -281,6 +281,23 @@ td.done {
 }
 
 /* config */
+.logout {
+    width: 30%;
+    height: 64px;
+    line-height: 64px;
+    background: #bbb;
+    cursor: pointer;
+    user-select: none;
+    box-sizing: border-box;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #999;
+    border-radius: 16px;
+    box-shadow: 0 3px black;
+    margin-bottom: 16px;
+}
+
 #config {
     display: none;
 }
@@ -298,9 +315,9 @@ td.done {
     cursor: pointer;
     user-select: none;
     position: relative;
-    border: 1px solid #777;
-    background: green;
-    color: #fff;
+    background: #99FF99;
+    border-radius: 4px;
+    /* color: #fff; */
 }
 
 #config dt::after {
@@ -320,7 +337,8 @@ td.done {
     padding: 8px;
     margin: 0;
     display: none;
-    background: lightgreen;
+    background: #CCFFCC;
+    border-radius: 0 0 4px 4px;
 }
 
 #config dl > div.appear dd {
@@ -337,6 +355,23 @@ td.done {
         opacity: 1;
         transform: none;
     }
+}
+
+#opinion,
+#opinion-btn {
+    display: block;
+    width: 80%;
+    margin: 8px auto 0;
+}
+
+#opinion-btn {
+    background: #ccc;
+    border: 1px solid #000;
+    border-radius: 4px;
+}
+
+#thanks {
+    display: none;
 }
 
 /* footer */

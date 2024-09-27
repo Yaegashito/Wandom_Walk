@@ -494,6 +494,27 @@
         });
     });
 
+    // ご意見送信フォーム
+    const textarea = document.querySelector('#opinion');
+    const opinionBtn = document.querySelector("#opinion-btn");
+    const thanks = document.querySelector('#thanks');
+    opinionBtn.addEventListener('click', () => {
+        const opinion = textarea.value;
+        fetch('submitOpinion', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                opinion: opinion,
+            }),
+        });
+        textarea.style.display = 'none';
+        opinionBtn.style.display = 'none';
+        thanks.style.display = 'block';
+    });
+
     // footer
     const mains = document.querySelectorAll('main > div');
     const menus = document.querySelectorAll('footer ul li');

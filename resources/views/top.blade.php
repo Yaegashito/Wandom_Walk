@@ -103,6 +103,16 @@
         </div>
 
         <div id="config" class="container">
+            <form class="logout" method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-dropdown-link :href="route('logout')"
+                        onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                    {{ __('ログアウト') }}
+                </x-dropdown-link>
+            </form>
+
             <dl>
                 <div>
                     <dt>わんダムウォークとは？</dt>
@@ -117,6 +127,15 @@
                 <div>
                     <dt>簡単な使い方</dt>
                     <dd>中身</dd>
+                </div>
+                <div>
+                    <dt>ご意見送信フォーム</dt>
+                    <dd>
+                        <p>良かったところ、使いにくいところなどなど、ご意見お待ちしております！</p>
+                        <textarea id="opinion"></textarea>
+                        <button id="opinion-btn">送信</button>
+                        <p id="thanks">ご意見ありがとうございました！！</p>
+                    </dd>
                 </div>
                 <div>
                     <dt>あなたのプロフィール</dt>
@@ -142,7 +161,7 @@
                         </div>
                     </dd>
                 </div>
-                <div>
+                {{-- <div>
                     <dt>ログアウト</dt>
                     <dd>
                         <form method="POST" action="{{ route('logout') }}">
@@ -155,7 +174,7 @@
                             </x-dropdown-link>
                         </form>
                     </dd>
-                </div>
+                </div> --}}
             </dl>
         </div>
     </main>
