@@ -294,6 +294,7 @@ td.done {
 
 /* config */
 .logout {
+    display: block;
     width: 30%;
     height: 64px;
     line-height: 64px;
