@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('belongings', function (Blueprint $table) {
+        Schema::create('calendar', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('belonging');
-            $table->timestamps();
+            $table->boolean('done')->default(false);
+            $table->date('date');
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('belongings');
+        Schema::dropIfExists('calendar');
     }
 };

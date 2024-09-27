@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\BelongingController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\OpinionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,9 @@ use App\Http\Controllers\BelongingController;
 */
 
 Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect()->route('top'); // ログイン済みなら 'home' にリダイレクト
+    }
     return view('auth.login');
 });
 
@@ -33,5 +38,10 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/top', [TopController::class, 'top'])->name('top');
+Route::post('recordCalendar', [CalendarController::class, 'recordCalendar'])->name('recordCalendar');
+Route::post('storeCalendar', [CalendarController::class, 'storeCalendar'])->name('storeCalendar');
+
+Route::post('submitOpinion', [OpinionController::class, 'submitOpinion'])->name('submitOpinion');
+
+Route::get('/top', [TopController::class, 'top'])->middleware(['auth'])->name('top');
 Route::resource('belonging', BelongingController::class)->except('index');

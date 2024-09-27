@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>わんダムウォーク</title>
-    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
-
-<body>
-    <header>
-        <img src="" alt="ロゴ画像">
-        <h1> アプリ名</h1>
-    </header>
-
+<x-guest-layout>
     <main>
         <div id="walk" class="container">
             <div id="map"></div>
@@ -38,7 +21,7 @@
             <div class="walk-btns">
                 <button class="walk-btn proceed-btn generate-route">経路を生成</button>
 
-                <button class="walk-btn generate-route">もう一度生成する</button>
+                <button class="walk-btn generate-route regenerate">もう一度生成する</button>
                 <button id="decide-route" class="walk-btn proceed-btn right-btn">これでOK！！</button>
 
                 <button id="start-btn" class="walk-btn proceed-btn">散歩を始める</button>
@@ -87,34 +70,7 @@
                         <td class="disabled">1</td>
                         <td>1</td>
                         <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
                         <td class="today">1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
                         <td>1</td>
                     </tr> --}}
                 </tbody>
@@ -147,6 +103,16 @@
         </div>
 
         <div id="config" class="container">
+            <form class="logout" method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-dropdown-link :href="route('logout')"
+                        onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                    {{ __('ログアウト') }}
+                </x-dropdown-link>
+            </form>
+
             <dl>
                 <div>
                     <dt>わんダムウォークとは？</dt>
@@ -163,11 +129,40 @@
                     <dd>中身</dd>
                 </div>
                 <div>
-                    <dt>あなたのプロフィール</dt>
-                    <dd>中身</dd>
+                    <dt>ご意見送信フォーム</dt>
+                    <dd>
+                        <p>良かったところ、使いにくいところなどなど、ご意見お待ちしております！</p>
+                        <textarea id="opinion"></textarea>
+                        <button id="opinion-btn">送信</button>
+                        <p id="thanks">ご意見ありがとうございました！！</p>
+                    </dd>
                 </div>
                 <div>
-                    <dt>設定3</dt>
+                    <dt>あなたのプロフィール</dt>
+                    <dd>{{ $userName }}</dd>
+                </div>
+                <div>
+                    <dt>パスワード変更</dt>
+                    <dd>
+                        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                            <div class="max-w-xl">
+                                @include('profile.partials.update-password-form')
+                            </div>
+                        </div>
+                    </dd>
+                </div>
+                <div>
+                    <dt>アカウント削除</dt>
+                    <dd>
+                        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                            <div class="max-w-xl">
+                                @include('profile.partials.delete-user-form')
+                            </div>
+                        </div>
+                    </dd>
+                </div>
+                {{-- <div>
+                    <dt>ログアウト</dt>
                     <dd>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -179,7 +174,7 @@
                             </x-dropdown-link>
                         </form>
                     </dd>
-                </div>
+                </div> --}}
             </dl>
         </div>
     </main>
@@ -194,12 +189,11 @@
     </footer>
     <script>
         (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
-        key: "{{ $key }}",
+        // key: "{{ $key }}",
         v: "weekly",
         // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
         // Add other bootstrap parameters as needed, using camel case.
         });
     </script>
     <script src="{{asset('js/main.js') }}"></script>
-</body>
-</html>
+</x-guest-layout>
