@@ -498,6 +498,7 @@
     const textarea = document.querySelector('#opinion');
     const opinionBtn = document.querySelector("#opinion-btn");
     const thanks = document.querySelector('#thanks');
+    const opinionSubmit = document.querySelector('#opinion-submit');
     opinionBtn.addEventListener('click', () => {
         const opinion = textarea.value;
         fetch('submitOpinion', {
@@ -510,8 +511,7 @@
                 opinion: opinion,
             }),
         });
-        textarea.style.display = 'none';
-        opinionBtn.style.display = 'none';
+        opinionSubmit.style.display = 'none';
         thanks.style.display = 'block';
     });
 

@@ -131,9 +131,11 @@
                 <div>
                     <dt>ご意見送信フォーム</dt>
                     <dd>
-                        <p>良かったところ、使いにくいところなどなど、ご意見お待ちしております！</p>
-                        <textarea id="opinion"></textarea>
-                        <button id="opinion-btn">送信</button>
+                        <div id="opinion-submit">
+                            <p>良かったところ、使いにくいところなどなど、ご意見お待ちしております！</p>
+                            <textarea id="opinion"></textarea>
+                            <button id="opinion-btn">送信</button>
+                        </div>
                         <p id="thanks">ご意見ありがとうございました！！</p>
                     </dd>
                 </div>
