@@ -49,9 +49,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th id="prev">&laquo;</th>
+                        <th id="prev">前月</th>
                         <th id="title" colspan="5">2020/05</th>
-                        <th id="next">&raquo;</th>
+                        <th id="next">翌月</th>
                     </tr>
                     <tr>
                         <th>日</th>
@@ -103,7 +103,7 @@
         </div>
 
         <div id="config" class="container">
-            <form class="logout" method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('logout') }}">
                 @csrf
 
                 <x-dropdown-link :href="route('logout')"
@@ -118,6 +118,7 @@
                     <dt>わんダムウォークとは？</dt>
                     <dd>
                         <ul>
+                            <li>アプリの概要</li>
                             <li>名前の由来</li>
                             <li>徒歩の時速</li>
                             <li>開発の経緯</li>
@@ -131,15 +132,17 @@
                 <div>
                     <dt>ご意見送信フォーム</dt>
                     <dd>
-                        <p>良かったところ、使いにくいところなどなど、ご意見お待ちしております！</p>
-                        <textarea id="opinion"></textarea>
-                        <button id="opinion-btn">送信</button>
+                        <div id="opinion-submit">
+                            <p>良かったところ、使いにくいところなどなど、ご意見お待ちしております！</p>
+                            <textarea id="opinion"></textarea>
+                            <button id="opinion-btn">送信</button>
+                        </div>
                         <p id="thanks">ご意見ありがとうございました！！</p>
                     </dd>
                 </div>
                 <div>
                     <dt>あなたのプロフィール</dt>
-                    <dd>{{ $userName }}</dd>
+                    <dd>あなたのユーザー名は {{ $userName }} です。</dd>
                 </div>
                 <div>
                     <dt>パスワード変更</dt>
@@ -161,20 +164,6 @@
                         </div>
                     </dd>
                 </div>
-                {{-- <div>
-                    <dt>ログアウト</dt>
-                    <dd>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('ログアウト') }}
-                            </x-dropdown-link>
-                        </form>
-                    </dd>
-                </div> --}}
             </dl>
         </div>
     </main>
