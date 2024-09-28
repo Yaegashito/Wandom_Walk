@@ -98,6 +98,10 @@
         </form>
         </section>
     </div>
+    <div class="introduction">
+        <h1>アプリ紹介</h1>
+        <p>aaaa</p>
+    </div>
 </main>
 <script src="{{asset('js/login.js') }}"></script>
 </x-guest-layout>
