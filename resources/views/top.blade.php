@@ -142,7 +142,7 @@
                 </div>
                 <div>
                     <dt>あなたのプロフィール</dt>
-                    <dd>{{ $userName }}</dd>
+                    <dd>あなたのユーザー名は {{ $userName }} です。</dd>
                 </div>
                 <div>
                     <dt>パスワード変更</dt>

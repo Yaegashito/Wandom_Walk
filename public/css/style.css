@@ -7,7 +7,8 @@ ul {
 
 body {
     background: #ccc;
-    font-family: "Meiryo UI", "Hiragino Sans", "Yu Gothic UI", "MS PGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+    font-family: "Meiryo UI", "Hiragino Sans", "Yu Gothic UI", "MS PGothic",
+        "Hiragino Kaku Gothic ProN", sans-serif;
 }
 
 .favicon {
@@ -19,7 +20,6 @@ body {
     max-width: 500px;
     background: #fff;
     margin: 0 auto;
-    /* min-height: 100vh; */
 }
 
 /* header */
@@ -27,7 +27,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #4CB5F5;
+    background: #4cb5f5;
     height: 60px;
     position: sticky;
     top: 0;
@@ -83,7 +83,7 @@ header h1 {
 main {
     padding: 16px 0 76px;
     min-height: 90vh;
-    background: #B3C100
+    background: #b3c100;
 }
 
 .container {
@@ -140,7 +140,7 @@ main {
 }
 
 .right-btn {
-    margin-left:24px;
+    margin-left: 24px;
 }
 
 .proceed-btn {
@@ -150,7 +150,7 @@ main {
 
 #stop-btn {
     color: #fff;
-    background: #FF0000;
+    background: #ff0000;
     display: inline;
 }
 
@@ -160,7 +160,7 @@ main {
     cursor: auto;
     color: #000;
     box-shadow: none;
-    opacity: .4;
+    opacity: 0.4;
 }
 
 #stop-btn.hide:active {
@@ -238,7 +238,7 @@ tfoot {
 }
 
 td.disabled {
-    opacity: .3;
+    opacity: 0.3;
 }
 
 td.today {
@@ -246,7 +246,7 @@ td.today {
 }
 
 td.done {
-    background: #66CCFF;
+    background: #66ccff;
 }
 
 #prev,
@@ -331,19 +331,19 @@ td.done {
     cursor: pointer;
     user-select: none;
     position: relative;
-    background: #34675C;
+    background: #34675c;
     border-radius: 4px;
     color: #fff;
     box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
 }
 
 #config dt::after {
-    content: '+';
+    content: "+";
     font-weight: bold;
     color: #fff;
     position: absolute;
     right: 16px;
-    transition: transform .3s;
+    transition: transform 0.3s;
 }
 
 #config dl > div.appear dt {
@@ -365,7 +365,7 @@ td.done {
 
 #config dl > div.appear dd {
     display: block;
-    animation: .3s fadeIn;
+    animation: 0.3s fadeIn;
 }
 
 @keyframes fadeIn {
