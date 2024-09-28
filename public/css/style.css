@@ -18,8 +18,12 @@ body {
 .whole-container {
     position: relative;
     max-width: 500px;
-    background: #fff;
+    /* background: #fff; */
     margin: 0 auto;
+}
+
+.indent {
+    text-indent: 1rem;
 }
 
 /* header */
@@ -77,6 +81,21 @@ header h1 {
 
 .content {
     display: none;
+}
+
+.introduction {
+    background: #ddd;
+    border-radius: 4px;
+    margin-top: 64px;
+    width: 80%;
+    padding: 8px;
+    box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
+}
+
+.introduction h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 /* main */
