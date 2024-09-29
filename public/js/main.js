@@ -66,24 +66,31 @@
         if (!confirm('本当に家に着きましたか？')) {
             return;
         }
+        let isStored = false;
+        while (!isStored) {
+            try {
+                const response = await fetch("storeCalendar", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": csrfToken,
+                    },
+                    body: JSON.stringify({}),
+                })
+                const data = await response.json();
+                if (data.success) {
+                    alert(`今日の散歩が記録されました`);
+                }
 
-        const response = await fetch("storeCalendar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": csrfToken,
-            },
-            body: JSON.stringify({}),
-        })
-        const data = await response.json();
-        if (data.success) {
-            alert(`今日の散歩が記録されました`);
+                stopWalk();
+                finishBtn.style.display = 'none';
+                // カレンダーのdoneをtrueにする処理
+                document.querySelector('#calendar .tbody td.today').classList.add('done');
+                isStored = true;
+            } catch (error) {
+                alert('今日の散歩を記録できませんでした。もう一度記録を試みます');
+            }
         }
-
-        stopWalk();
-        finishBtn.style.display = 'none';
-        // カレンダーのdoneをtrueにする処理
-        document.querySelector('#calendar .tbody td.today').classList.add('done');
     });
 
     stopBtn.addEventListener('click', () => {
