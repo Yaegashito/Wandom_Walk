@@ -38,10 +38,10 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::post('recordCalendar', [CalendarController::class, 'recordCalendar'])->name('recordCalendar');
+Route::post('showCalendar', [CalendarController::class, 'showCalendar'])->name('showCalendar');
 Route::post('storeCalendar', [CalendarController::class, 'storeCalendar'])->name('storeCalendar');
 
 Route::post('submitOpinion', [OpinionController::class, 'submitOpinion'])->name('submitOpinion');
 
 Route::get('/top', [TopController::class, 'top'])->middleware(['auth'])->name('top');
-Route::resource('belonging', BelongingController::class)->except('index');
+Route::resource('belonging', BelongingController::class)->except(['index', 'create', 'show', 'edit', 'update']);

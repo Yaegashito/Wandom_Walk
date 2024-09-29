@@ -9,7 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class CalendarController extends Controller
 {
-    public function recordCalendar()
+    public function showCalendar(Request $request)
+    {
+        $today = Carbon::create($request->year, $request->month, $request->date);
+        $lastMonthMiddleDay = $today->clone()->subMonth()->day(15);
+        $records = Auth::user()->calendars()->where('date', '>', $lastMonthMiddleDay)->select('date')->get();;
+        return response()->json(['records' => $records]);
+    }
+
+    public function storeCalendar()
     {
         $today = Carbon::today()->toDateString();
 
@@ -20,11 +28,4 @@ class CalendarController extends Controller
         return response()->json(['success' => true, 'date' => $today]);
     }
 
-    public function storeCalendar(Request $request)
-    {
-        $today = Carbon::create($request->year, $request->month, $request->date);
-        $lastMonthMiddleDay = $today->clone()->subMonth()->day(15);
-        $records = Auth::user()->calendars()->where('date', '>', $lastMonthMiddleDay)->select('date')->get();;
-        return response()->json(['records' => $records]);
-    }
 }

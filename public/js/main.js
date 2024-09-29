@@ -67,7 +67,7 @@
             return;
         }
 
-        const response = await fetch("recordCalendar", {
+        const response = await fetch("storeCalendar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -344,7 +344,7 @@
             weeks.push(dates.splice(0, 7));
         }
 
-        const response = await fetch("storeCalendar", {
+        const response = await fetch("showCalendar", {
             method: "POST",
             headers: {
                 "X-CSRF-TOKEN": csrfToken,
@@ -437,7 +437,6 @@
             // 持ち物確認画面から削除
             const text = e.target.parentNode.firstChild.textContent.trim();
             document.querySelectorAll('#walk #walk-belongings li').forEach(li => {
-                console.log(li.textContent);
                 if (li.textContent.trim() === text) {
                     li.remove();
                 }
