@@ -15,7 +15,6 @@ class CalendarController extends Controller
 
         $calendar = Calendar::firstOrNew(['date' => $today]);
         $calendar->user_id = Auth::user()->id;
-        $calendar->done = true;
         $calendar->save();
 
         return response()->json(['success' => true, 'date' => $today]);
