@@ -469,22 +469,24 @@
 
     document.querySelector('#belongings > form').addEventListener('submit', async (event) => {
         event.preventDefault();
-        const title = input.value;
-        const response = await fetch('belonging', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-                belonging: title,
-            }),
-        });
-        const json = await response.json();
-        addBelonging(json.id, title);
+        const title = input.value.trim();
+        if (title) {
+            const response = await fetch("belonging", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": csrfToken,
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({
+                    belonging: title,
+                }),
+            });
+            const json = await response.json();
+            addBelonging(json.id, title);
 
-        input.value = '';
-        input.focus();
+            input.value = "";
+            input.focus();
+        }
     });
 
     // config
@@ -506,19 +508,21 @@
     const thanks = document.querySelector('#thanks');
     const opinionSubmit = document.querySelector('#opinion-submit');
     opinionBtn.addEventListener('click', () => {
-        const opinion = textarea.value;
-        fetch('submitOpinion', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-                opinion: opinion,
-            }),
-        });
-        opinionSubmit.style.display = 'none';
-        thanks.style.display = 'block';
+        const opinion = textarea.value.trim();
+        if (opinion) {
+            fetch("submitOpinion", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": csrfToken,
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({
+                    opinion: opinion,
+                }),
+            });
+            opinionSubmit.style.display = "none";
+            thanks.style.display = "block";
+        }
     });
 
     // footer
