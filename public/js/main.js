@@ -351,7 +351,7 @@
             weeks.push(dates.splice(0, 7));
         }
 
-        const response = await fetch("showCalendar", {
+        const response = await fetch("changeCalendar", {
             method: "POST",
             headers: {
                 "X-CSRF-TOKEN": csrfToken,

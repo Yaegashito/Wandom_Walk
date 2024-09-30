@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Calendar extends Model
 {
@@ -12,4 +13,11 @@ class Calendar extends Model
     public $timestamps = false;
 
     use HasFactory;
+
+    public static function storeCalendar($today)
+    {
+        $calendar = self::firstOrNew(['date' => $today]);
+        $calendar->user_id = Auth::id();
+        $calendar->save();
+    }
 }

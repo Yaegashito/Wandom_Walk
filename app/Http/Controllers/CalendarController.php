@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CalendarController extends Controller
 {
-    public function showCalendar(Request $request)
+    public function changeCalendar(Request $request)
     {
         $today = Carbon::create($request->year, $request->month, $request->date);
         $lastMonthMiddleDay = $today->clone()->subMonth()->day(15);
@@ -21,9 +21,7 @@ class CalendarController extends Controller
     {
         $today = Carbon::today()->toDateString();
 
-        $calendar = Calendar::firstOrNew(['date' => $today]);
-        $calendar->user_id = Auth::user()->id;
-        $calendar->save();
+        Calendar::storeCalendar($today);
 
         return response()->json(['success' => true, 'date' => $today]);
     }

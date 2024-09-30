@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::post('showCalendar', [CalendarController::class, 'showCalendar'])->name('showCalendar');
+Route::post('changeCalendar', [CalendarController::class, 'changeCalendar'])->name('changeCalendar');
 Route::post('storeCalendar', [CalendarController::class, 'storeCalendar'])->name('storeCalendar');
 
 Route::post('submitOpinion', [OpinionController::class, 'submitOpinion'])->name('submitOpinion');
