@@ -2,10 +2,14 @@
 
 {
     // ブラウザバック等に警告
-    // window.addEventListener("beforeunload", (e) => {
-    //     e.preventDefault();
-    //     return '';
-    // });
+    let isWalking = false;
+    window.addEventListener("beforeunload", (e) => {
+        if (isWalking) {
+            e.preventDefault();
+            return "";
+        }
+    });
+
     // walk
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -15,6 +19,7 @@
         alert('Geolocation is not supported by this browser.');
     }
 
+    const distance = document.querySelector("#distance");
     const generateRouteBtns = document.querySelectorAll('.generate-route');
     const decideRoute = document.querySelector('#decide-route');
     const startBtn = document.querySelector('#start-btn');
@@ -32,13 +37,15 @@
         walkBelongings.style.display = 'none';
         stopBtn.classList.add('hide');
         generateRouteBtns[0].style.display = 'inline';
+        distance.style.display = 'inline';
+        isWalking = false;
         messages.forEach(message => {
             message.style.display = 'none';
         });
     }
 
     generateRouteBtns[0].addEventListener('click', () => {
-        if (document.querySelector('#distance').value === '') {
+        if (distance.value === '') {
             alert('時間を選択してください');
             return;
         }
@@ -46,6 +53,7 @@
         generateRouteBtns[1].style.display = 'inline';
         decideRoute.style.display = 'inline';
         messages[0].style.display = 'block';
+        distance.style.display = 'none';
         stopBtn.classList.remove('hide');
     });
     decideRoute.addEventListener('click', () => {
@@ -60,30 +68,38 @@
         finishBtn.style.display = 'inline';
         messages[0].style.display = 'none';
         messages[1].style.display = 'block';
+        isWalking = true;
     });
     finishBtn.addEventListener('click', async (event) => {
         event.preventDefault();
         if (!confirm('本当に家に着きましたか？')) {
             return;
         }
+        let isStored = false;
+        while (!isStored) {
+            try {
+                const response = await fetch("storeCalendar", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": csrfToken,
+                    },
+                    body: JSON.stringify({}),
+                })
+                const data = await response.json();
+                if (data.success) {
+                    alert(`今日の散歩が記録されました`);
+                }
 
-        const response = await fetch("recordCalendar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": csrfToken,
-            },
-            body: JSON.stringify({}),
-        })
-        const data = await response.json();
-        if (data.success) {
-            alert(`今日の散歩が記録されました`);
+                stopWalk();
+                finishBtn.style.display = 'none';
+                // カレンダーのdoneをtrueにする処理
+                document.querySelector('#calendar .tbody td.today').classList.add('done');
+                isStored = true;
+            } catch (error) {
+                alert('今日の散歩を記録できませんでした。もう一度記録を試みます');
+            }
         }
-
-        stopWalk();
-        finishBtn.style.display = 'none';
-        // カレンダーのdoneをtrueにする処理
-        document.querySelector('#calendar .tbody td.today').classList.add('done');
     });
 
     stopBtn.addEventListener('click', () => {
@@ -344,7 +360,7 @@
             weeks.push(dates.splice(0, 7));
         }
 
-        const response = await fetch("storeCalendar", {
+        const response = await fetch("changeCalendar", {
             method: "POST",
             headers: {
                 "X-CSRF-TOKEN": csrfToken,
@@ -437,7 +453,6 @@
             // 持ち物確認画面から削除
             const text = e.target.parentNode.firstChild.textContent.trim();
             document.querySelectorAll('#walk #walk-belongings li').forEach(li => {
-                console.log(li.textContent);
                 if (li.textContent.trim() === text) {
                     li.remove();
                 }
@@ -463,22 +478,24 @@
 
     document.querySelector('#belongings > form').addEventListener('submit', async (event) => {
         event.preventDefault();
-        const title = input.value;
-        const response = await fetch('belonging', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-                belonging: title,
-            }),
-        });
-        const json = await response.json();
-        addBelonging(json.id, title);
+        const title = input.value.trim();
+        if (title) {
+            const response = await fetch("belonging", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": csrfToken,
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({
+                    belonging: title,
+                }),
+            });
+            const json = await response.json();
+            addBelonging(json.id, title);
 
-        input.value = '';
-        input.focus();
+            input.value = "";
+            input.focus();
+        }
     });
 
     // config
@@ -498,21 +515,23 @@
     const textarea = document.querySelector('#opinion');
     const opinionBtn = document.querySelector("#opinion-btn");
     const thanks = document.querySelector('#thanks');
+    const opinionSubmit = document.querySelector('#opinion-submit');
     opinionBtn.addEventListener('click', () => {
-        const opinion = textarea.value;
-        fetch('submitOpinion', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-                opinion: opinion,
-            }),
-        });
-        textarea.style.display = 'none';
-        opinionBtn.style.display = 'none';
-        thanks.style.display = 'block';
+        const opinion = textarea.value.trim();
+        if (opinion) {
+            fetch("submitOpinion", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": csrfToken,
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({
+                    opinion: opinion,
+                }),
+            });
+            opinionSubmit.style.display = "none";
+            thanks.style.display = "block";
+        }
     });
 
     // footer

@@ -6,8 +6,9 @@ ul {
 }
 
 body {
-    background: #aaa;
-    font-family: "Meiryo UI", "Hiragino Sans", "Yu Gothic UI", "MS PGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+    background: #ccc;
+    font-family: "Meiryo UI", "Hiragino Sans", "Yu Gothic UI", "MS PGothic",
+        "Hiragino Kaku Gothic ProN", sans-serif;
 }
 
 .favicon {
@@ -17,9 +18,12 @@ body {
 .whole-container {
     position: relative;
     max-width: 500px;
-    background: #fff;
+    /* background: #fff; */
     margin: 0 auto;
-    /* min-height: 100vh; */
+}
+
+.indent {
+    text-indent: 1rem;
 }
 
 /* header */
@@ -27,16 +31,17 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #99FF99;
+    background: #4cb5f5;
     height: 60px;
     position: sticky;
     top: 0;
     user-select: none;
     z-index: 1;
+    box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
 }
 
 header h1 {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: bold;
     font-family: fantasy;
     margin: 0 0 0 8px;
@@ -78,10 +83,26 @@ header h1 {
     display: none;
 }
 
+.introduction {
+    background: #ddd;
+    border-radius: 4px;
+    margin-top: 64px;
+    width: 80%;
+    padding: 8px;
+    box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
+}
+
+.introduction h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+
 /* main */
 main {
     padding: 16px 0 76px;
     min-height: 90vh;
+    background: #b3c100;
 }
 
 .container {
@@ -94,8 +115,8 @@ main {
 #map {
     width: 100%;
     height: 300px;
-    outline: 2px solid red;
-    margin: 0 auto;
+    margin: 0 auto 16px;
+    box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
 }
 
 #walk > div {
@@ -106,8 +127,10 @@ main {
     margin-top: 16px;
 }
 
+
 #messages > p {
     display: none;
+    font-weight: bold;
 }
 
 .walk-btn {
@@ -138,7 +161,7 @@ main {
 }
 
 .right-btn {
-    margin-left:24px;
+    margin-left: 24px;
 }
 
 .proceed-btn {
@@ -148,7 +171,7 @@ main {
 
 #stop-btn {
     color: #fff;
-    background: #FF0000;
+    background: #ff0000;
     display: inline;
 }
 
@@ -158,7 +181,7 @@ main {
     cursor: auto;
     color: #000;
     box-shadow: none;
-    opacity: .4;
+    opacity: 0.4;
 }
 
 #stop-btn.hide:active {
@@ -202,6 +225,8 @@ table {
     /* aspect-ratio: 1; */
     border-collapse: collapse;
     /* border: 2px solid #eee; */
+    background: #fff;
+    box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
 }
 
 thead {
@@ -234,7 +259,7 @@ tfoot {
 }
 
 td.disabled {
-    opacity: .3;
+    opacity: 0.3;
 }
 
 td.today {
@@ -242,7 +267,7 @@ td.today {
 }
 
 td.done {
-    background: orange;
+    background: #66ccff;
 }
 
 #prev,
@@ -257,22 +282,33 @@ td.done {
 #belongings {
     display: none;
     width: 60%;
+    min-width: 300px;
 }
 
 #belongings li {
     margin-bottom: 8px;
     padding: 4px 8px;
     border: 1px solid #aaa;
+    border-radius: 4px;
     display: flex;
+    background: #fff;
 }
 
 #belongings form {
     display: flex;
+    gap: 8px;
 }
 
 #belongings input {
-    margin-right: 8px;
-    flex: 1;
+    width: calc(80% - 8px);
+}
+
+#belongings button {
+    border: 1px solid #999;
+    background: #ccc;
+    padding: 0 4px;
+    border-radius: 4px;
+    min-width: 20%;
 }
 
 .delete {
@@ -282,6 +318,7 @@ td.done {
 
 /* config */
 .logout {
+    display: block;
     width: 30%;
     height: 64px;
     line-height: 64px;
@@ -315,18 +352,23 @@ td.done {
     cursor: pointer;
     user-select: none;
     position: relative;
-    background: #99FF99;
+    background: #34675c;
     border-radius: 4px;
-    /* color: #fff; */
+    color: #fff;
+    box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
 }
 
 #config dt::after {
-    content: '+';
+    content: "+";
     font-weight: bold;
     color: #fff;
     position: absolute;
     right: 16px;
-    transition: transform .3s;
+    transition: transform 0.3s;
+}
+
+#config dl > div.appear dt {
+    box-shadow: none;
 }
 
 #config dl > div.appear dt::after {
@@ -337,13 +379,14 @@ td.done {
     padding: 8px;
     margin: 0;
     display: none;
-    background: #CCFFCC;
+    background: #ddd;
     border-radius: 0 0 4px 4px;
+    box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
 }
 
 #config dl > div.appear dd {
     display: block;
-    animation: .3s fadeIn;
+    animation: 0.3s fadeIn;
 }
 
 @keyframes fadeIn {
@@ -378,7 +421,6 @@ td.done {
 footer {
     max-width: 100%;
     height: 60px;
-    /* background: lightgreen; */
     position: sticky;
     right: 0;
     bottom: 0;
@@ -410,8 +452,4 @@ footer li:nth-child(1) {
 
 footer li + li {
     border-left: 2px solid #888;
-}
-
-footer li:active {
-    opacity: .3;
 }

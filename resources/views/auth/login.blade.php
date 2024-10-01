@@ -1,7 +1,7 @@
 <x-guest-layout>
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+<main class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
 
-    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="width: 95%;">
 
         <ul class="tabs">
             <li><a href="#" class="active" data-id="login">ログイン</a></li>
@@ -19,7 +19,9 @@
             <div>
                 <x-input-label for="name" :value="__('Name')" />
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="username" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
+                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+
             </div>
 
             <!-- Password -->
@@ -43,11 +45,11 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
+                {{-- @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
-                @endif
+                @endif --}}
 
                 <x-primary-button class="ms-3">
                     {{ __('Log in') }}
@@ -62,23 +64,16 @@
 
             <!-- Name -->
             <div>
-                <x-input-label for="name" :value="__('Name')" />
-                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                <x-input-label for="name2" :value="__('Name')" />
+                <x-text-input id="name2" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                {{-- <x-input-error :messages="$errors->get('name')" class="mt-2" /> --}}
             </div>
-
-            <!-- Email Address -->
-            {{-- <div class="mt-4">
-                <x-input-label for="email" :value="__('Email')" />
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" autocomplete="username" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div> --}}
 
             <!-- Password -->
             <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
+                <x-input-label for="password2" :value="__('Password')" />
 
-                <x-text-input id="password" class="block mt-1 w-full"
+                <x-text-input id="password2" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
                                 required autocomplete="new-password" />
@@ -98,10 +93,6 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a> --}}
-
                 <x-primary-button class="ms-4">
                     {{ __('Register') }}
                 </x-primary-button>
@@ -109,6 +100,23 @@
         </form>
         </section>
     </div>
-</div>
+    <div class="introduction" data-aos="fade-left">
+        <h1>わんダムウォークとは？</h1>
+        <p class="indent">わんダムウォークは飼い犬の認知症を予防するための散歩補助アプリです。毎日違う経路を散歩することで飼い犬の脳を刺激できます。いつもと違う経路を散歩しようと思っても考えるのが面倒だから結局同じ道に…なんてことはよくあること。このアプリはボタンを押すだけで経路を生成してくれます。また、散歩した日がカレンダーに記録されるので、塗り絵感覚で散歩を楽しむこともできます。</p>
+        <p class="indent">ちなみにアプリ名は、毎日異なるランダムな経路を散歩するという点から「ランダムウォーク」と考えましたが、ちょっと味気ないので犬のためのアプリであることに着目して「ラン」を泣き声の「わん」にして、「わんダムウォーク」となりました。</p>
+    </div>
+    <div class="introduction" data-aos="fade-right">
+        <h1>開発の経緯</h1>
+        <p class="indent">昔飼っていた犬が晩年に認知症になってしまい、そのお世話が非常に大変だったという体験からこのアプリを開発しました。認知症になってしまった犬は昼夜問わず大きいな声で鳴いたり、同じ場所をずっとぐるぐる回るように歩いたり、狭いところに入って出られなくなったりします。愛犬には最期まで健康でいてほしいはずなので、その一助になれば幸いです。</p>
+    </div>
+    <div class="introduction" data-aos="fade-left">
+        <h1>利用上の注意</h1>
+        <p class="indent">利用した散歩経路はデータベースに保存されませんが、「ユーザー名」、「持ち物」、「散歩をした年月日」は開発者が閲覧できるのでプライバシーにかかわる情報を入力しないでください。</p>
+    </div>
+</main>
 <script src="{{asset('js/login.js') }}"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+AOS.init();
+</script>
 </x-guest-layout>

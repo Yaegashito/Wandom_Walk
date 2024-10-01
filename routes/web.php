@@ -26,22 +26,22 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
 
-Route::post('recordCalendar', [CalendarController::class, 'recordCalendar'])->name('recordCalendar');
+Route::post('changeCalendar', [CalendarController::class, 'changeCalendar'])->name('changeCalendar');
 Route::post('storeCalendar', [CalendarController::class, 'storeCalendar'])->name('storeCalendar');
 
 Route::post('submitOpinion', [OpinionController::class, 'submitOpinion'])->name('submitOpinion');
 
 Route::get('/top', [TopController::class, 'top'])->middleware(['auth'])->name('top');
-Route::resource('belonging', BelongingController::class)->except('index');
+Route::resource('belonging', BelongingController::class)->except(['index', 'create', 'show', 'edit', 'update']);

@@ -49,9 +49,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th id="prev">&laquo;</th>
+                        <th id="prev">前月</th>
                         <th id="title" colspan="5">2020/05</th>
-                        <th id="next">&raquo;</th>
+                        <th id="next">翌月</th>
                     </tr>
                     <tr>
                         <th>日</th>
@@ -103,7 +103,7 @@
         </div>
 
         <div id="config" class="container">
-            <form class="logout" method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('logout') }}">
                 @csrf
 
                 <x-dropdown-link :href="route('logout')"
@@ -117,29 +117,45 @@
                 <div>
                     <dt>わんダムウォークとは？</dt>
                     <dd>
-                        <ul>
-                            <li>名前の由来</li>
-                            <li>徒歩の時速</li>
-                            <li>開発の経緯</li>
-                        </ul>
+                        <p class="indent">わんダムウォークは飼い犬の認知症を予防するための散歩補助アプリです。毎日違う経路を散歩することで飼い犬の脳を刺激できます。いつもと違う経路を散歩しようと思っても考えるのが面倒だから結局同じ道に…なんてことはよくあること。このアプリはボタンを押すだけで経路を生成してくれます。また、散歩した日がカレンダーに記録されるので、塗り絵感覚で散歩を楽しむこともできます。</p>
+                        <p class="indent">ちなみにアプリ名は、毎日異なるランダムな経路を散歩するという点から「ランダムウォーク」と考えましたが、ちょっと味気ないので犬のためのアプリであることに着目して「ラン」を泣き声の「わん」にして、「わんダムウォーク」となりました。</p>
                     </dd>
                 </div>
                 <div>
-                    <dt>簡単な使い方</dt>
-                    <dd>中身</dd>
+                    <dt>開発の経緯</dt>
+                    <dd>
+                        <p class="indent">我が家で昔飼っていた犬が晩年に認知症になってしまい、そのお世話が非常に大変だったという体験からこのアプリを開発しました。認知症になってしまった犬は昼夜問わず大きいな声で鳴いたり、同じ場所をずっとぐるぐる回るように歩いたり、狭いところに入って出られなくなったりします。愛犬には最期まで健康でいてほしいはずなので、その一助になれば幸いです。</p>
+                    </dd>
+                </div>
+                <div>
+                    <dt>使い方</dt>
+                    <dd>
+                        <p>本アプリは以下の流れで使用します。</p>
+                        <ul>
+                            <li><br>1. 散歩時間を選択して経路を生成</li>
+                            <li>2. 持ち物をチェック</li>
+                            <li>3. 散歩スタート</li>
+                            <li>4. 終わったらカレンダーに記録</li>
+                        </ul>
+                        <br>
+                        <p class="indent">生成した経路には方向を示す矢印がついています。経路が重複して見にくい場合は、経由地点に立てられたマーカーを参考にしてください。マーカーにはアルファベットが振られており、A→B→C→…という順に進んでください。</p>
+                        <p class="indent">スマートフォンのGPSをオンにしていないと使用できないことに注意してください。なお、散歩時間については10~15分を老犬、20~30分を小型犬、40~60分を大型犬と想定しています。散歩時間は不動産公正取引協議会連合会が定める「不動産の表示に関する公正競争規約施行規則」を参考に、徒歩を時速4.8kmとして計算しています。</p>
+                    </dd>
                 </div>
                 <div>
                     <dt>ご意見送信フォーム</dt>
                     <dd>
-                        <p>良かったところ、使いにくいところなどなど、ご意見お待ちしております！</p>
-                        <textarea id="opinion"></textarea>
-                        <button id="opinion-btn">送信</button>
+                        <div id="opinion-submit">
+                            <p>良かったところ、使いにくいところなどなど、ご意見お待ちしております！</p>
+                            <textarea id="opinion"></textarea>
+                            <button id="opinion-btn">送信</button>
+                        </div>
                         <p id="thanks">ご意見ありがとうございました！！</p>
                     </dd>
                 </div>
                 <div>
                     <dt>あなたのプロフィール</dt>
-                    <dd>{{ $userName }}</dd>
+                    <dd>あなたのユーザー名は {{ $userName }} です。</dd>
                 </div>
                 <div>
                     <dt>パスワード変更</dt>
@@ -161,20 +177,6 @@
                         </div>
                     </dd>
                 </div>
-                {{-- <div>
-                    <dt>ログアウト</dt>
-                    <dd>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('ログアウト') }}
-                            </x-dropdown-link>
-                        </form>
-                    </dd>
-                </div> --}}
             </dl>
         </div>
     </main>
