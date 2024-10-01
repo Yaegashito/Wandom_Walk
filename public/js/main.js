@@ -104,6 +104,7 @@
                 alert(
                     "今日の散歩を記録できませんでした。もう一度記録を試みます",
                 );
+                console.log(error.message);
             }
         }
     });
