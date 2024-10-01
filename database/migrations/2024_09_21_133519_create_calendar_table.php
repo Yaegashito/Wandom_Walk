@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('calendar', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->boolean('done')->default(false);
             $table->date('date');
         });
     }

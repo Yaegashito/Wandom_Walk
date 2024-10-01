@@ -66,24 +66,31 @@
         if (!confirm('本当に家に着きましたか？')) {
             return;
         }
+        let isStored = false;
+        while (!isStored) {
+            try {
+                const response = await fetch("storeCalendar", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": csrfToken,
+                    },
+                    body: JSON.stringify({}),
+                })
+                const data = await response.json();
+                if (data.success) {
+                    alert(`今日の散歩が記録されました`);
+                }
 
-        const response = await fetch("recordCalendar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": csrfToken,
-            },
-            body: JSON.stringify({}),
-        })
-        const data = await response.json();
-        if (data.success) {
-            alert(`今日の散歩が記録されました`);
+                stopWalk();
+                finishBtn.style.display = 'none';
+                // カレンダーのdoneをtrueにする処理
+                document.querySelector('#calendar .tbody td.today').classList.add('done');
+                isStored = true;
+            } catch (error) {
+                alert('今日の散歩を記録できませんでした。もう一度記録を試みます');
+            }
         }
-
-        stopWalk();
-        finishBtn.style.display = 'none';
-        // カレンダーのdoneをtrueにする処理
-        document.querySelector('#calendar .tbody td.today').classList.add('done');
     });
 
     stopBtn.addEventListener('click', () => {
@@ -344,7 +351,7 @@
             weeks.push(dates.splice(0, 7));
         }
 
-        const response = await fetch("storeCalendar", {
+        const response = await fetch("changeCalendar", {
             method: "POST",
             headers: {
                 "X-CSRF-TOKEN": csrfToken,
@@ -437,7 +444,6 @@
             // 持ち物確認画面から削除
             const text = e.target.parentNode.firstChild.textContent.trim();
             document.querySelectorAll('#walk #walk-belongings li').forEach(li => {
-                console.log(li.textContent);
                 if (li.textContent.trim() === text) {
                     li.remove();
                 }
@@ -463,22 +469,24 @@
 
     document.querySelector('#belongings > form').addEventListener('submit', async (event) => {
         event.preventDefault();
-        const title = input.value;
-        const response = await fetch('belonging', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-                belonging: title,
-            }),
-        });
-        const json = await response.json();
-        addBelonging(json.id, title);
+        const title = input.value.trim();
+        if (title) {
+            const response = await fetch("belonging", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": csrfToken,
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({
+                    belonging: title,
+                }),
+            });
+            const json = await response.json();
+            addBelonging(json.id, title);
 
-        input.value = '';
-        input.focus();
+            input.value = "";
+            input.focus();
+        }
     });
 
     // config
@@ -500,19 +508,21 @@
     const thanks = document.querySelector('#thanks');
     const opinionSubmit = document.querySelector('#opinion-submit');
     opinionBtn.addEventListener('click', () => {
-        const opinion = textarea.value;
-        fetch('submitOpinion', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-                opinion: opinion,
-            }),
-        });
-        opinionSubmit.style.display = 'none';
-        thanks.style.display = 'block';
+        const opinion = textarea.value.trim();
+        if (opinion) {
+            fetch("submitOpinion", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": csrfToken,
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({
+                    opinion: opinion,
+                }),
+            });
+            opinionSubmit.style.display = "none";
+            thanks.style.display = "block";
+        }
     });
 
     // footer

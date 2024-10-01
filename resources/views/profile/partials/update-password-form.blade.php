@@ -40,4 +40,15 @@
             @endif
         </div>
     </form>
+    @if ($errors->updatePassword->any())
+        <script>
+            alert('パスワードの変更に失敗しました');
+        </script>
+    @endif
+
+    @if (session('status'))
+        <script>
+            alert('{{ session('status') }}');
+        </script>
+    @endif
 </section>
