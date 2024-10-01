@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 {
     // ブラウザバック等に警告
@@ -11,68 +11,70 @@
     });
 
     // walk
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const csrfToken = document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content");
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-        alert('Geolocation is not supported by this browser.');
+        alert("Geolocation is not supported by this browser.");
     }
 
     const distance = document.querySelector("#distance");
-    const generateRouteBtns = document.querySelectorAll('.generate-route');
-    const decideRoute = document.querySelector('#decide-route');
-    const startBtn = document.querySelector('#start-btn');
-    const finishBtn = document.querySelector('#finish-btn');
-    const stopBtn = document.querySelector('#stop-btn');
-    const walkBelongings = document.querySelector('#walk-belongings')
-    const walkBtns = document.querySelectorAll('.walk-btns > .walk-btn');
-    const messages = document.querySelectorAll('#messages > p');
+    const generateRouteBtns = document.querySelectorAll(".generate-route");
+    const decideRoute = document.querySelector("#decide-route");
+    const startBtn = document.querySelector("#start-btn");
+    const finishBtn = document.querySelector("#finish-btn");
+    const stopBtn = document.querySelector("#stop-btn");
+    const walkBelongings = document.querySelector("#walk-belongings");
+    const walkBtns = document.querySelectorAll(".walk-btns > .walk-btn");
+    const messages = document.querySelectorAll("#messages > p");
 
     function stopWalk() {
         navigator.geolocation.getCurrentPosition(showPosition);
-        walkBtns.forEach(walkBtn => {
-            walkBtn.style.display = 'none';
+        walkBtns.forEach((walkBtn) => {
+            walkBtn.style.display = "none";
         });
-        walkBelongings.style.display = 'none';
-        stopBtn.classList.add('hide');
-        generateRouteBtns[0].style.display = 'inline';
-        distance.style.display = 'inline';
+        walkBelongings.style.display = "none";
+        stopBtn.classList.add("hide");
+        generateRouteBtns[0].style.display = "inline";
+        distance.style.display = "inline";
         isWalking = false;
-        messages.forEach(message => {
-            message.style.display = 'none';
+        messages.forEach((message) => {
+            message.style.display = "none";
         });
     }
 
-    generateRouteBtns[0].addEventListener('click', () => {
-        if (distance.value === '') {
-            alert('時間を選択してください');
+    generateRouteBtns[0].addEventListener("click", () => {
+        if (distance.value === "") {
+            alert("時間を選択してください");
             return;
         }
-        generateRouteBtns[0].style.display = 'none';
-        generateRouteBtns[1].style.display = 'inline';
-        decideRoute.style.display = 'inline';
-        messages[0].style.display = 'block';
-        distance.style.display = 'none';
-        stopBtn.classList.remove('hide');
+        generateRouteBtns[0].style.display = "none";
+        generateRouteBtns[1].style.display = "inline";
+        decideRoute.style.display = "inline";
+        messages[0].style.display = "block";
+        distance.style.display = "none";
+        stopBtn.classList.remove("hide");
     });
-    decideRoute.addEventListener('click', () => {
-        generateRouteBtns[1].style.display = 'none';
-        decideRoute.style.display = 'none';
-        startBtn.style.display = 'inline';
-        walkBelongings.style.display = 'block';
+    decideRoute.addEventListener("click", () => {
+        generateRouteBtns[1].style.display = "none";
+        decideRoute.style.display = "none";
+        startBtn.style.display = "inline";
+        walkBelongings.style.display = "block";
     });
-    startBtn.addEventListener('click', () => {
-        startBtn.style.display = 'none';
-        walkBelongings.style.display = 'none';
-        finishBtn.style.display = 'inline';
-        messages[0].style.display = 'none';
-        messages[1].style.display = 'block';
+    startBtn.addEventListener("click", () => {
+        startBtn.style.display = "none";
+        walkBelongings.style.display = "none";
+        finishBtn.style.display = "inline";
+        messages[0].style.display = "none";
+        messages[1].style.display = "block";
         isWalking = true;
     });
-    finishBtn.addEventListener('click', async (event) => {
+    finishBtn.addEventListener("click", async (event) => {
         event.preventDefault();
-        if (!confirm('本当に家に着きましたか？')) {
+        if (!confirm("本当に家に着きましたか？")) {
             return;
         }
         let isStored = false;
@@ -85,30 +87,34 @@
                         "X-CSRF-TOKEN": csrfToken,
                     },
                     body: JSON.stringify({}),
-                })
+                });
                 const data = await response.json();
                 if (data.success) {
                     alert(`今日の散歩が記録されました`);
                 }
 
                 stopWalk();
-                finishBtn.style.display = 'none';
+                finishBtn.style.display = "none";
                 // カレンダーのdoneをtrueにする処理
-                document.querySelector('#calendar .tbody td.today').classList.add('done');
+                document
+                    .querySelector("#calendar .tbody td.today")
+                    .classList.add("done");
                 isStored = true;
             } catch (error) {
-                alert('今日の散歩を記録できませんでした。もう一度記録を試みます');
+                alert(
+                    "今日の散歩を記録できませんでした。もう一度記録を試みます",
+                );
             }
         }
     });
 
-    stopBtn.addEventListener('click', () => {
-        if (finishBtn.style.display === 'inline') {
-            if (!confirm('今日の散歩は記録されません。本当にやめますか？')) {
+    stopBtn.addEventListener("click", () => {
+        if (finishBtn.style.display === "inline") {
+            if (!confirm("今日の散歩は記録されません。本当にやめますか？")) {
                 return;
             }
         }
-        if (stopBtn.classList.contains('hide') === false) {
+        if (stopBtn.classList.contains("hide") === false) {
             stopWalk();
             generateRouteBtns[0].style.display = "inline";
         }
@@ -119,46 +125,51 @@
         let lng = position.coords.longitude;
         initMap(lat, lng);
 
-        document.querySelectorAll('.generate-route').forEach(generateRouteButton => {
-            generateRouteButton.addEventListener('click', () => {
-                // event.preventDefault();
-                if (document.querySelector('#distance').value === '') {
-                    return;
-                }
-                const targetDistance = parseFloat(document.getElementById('distance').value);
-                // const startLocation = new google.maps.LatLng(35.6895, 139.6917);  // 東京を初期地点に設定
-                const startLocation = new google.maps.LatLng(lat, lng);  // 現在地を初期地点に設定
-                generateRoute(startLocation, targetDistance);  // 入力された距離を使って経路を生成
+        document
+            .querySelectorAll(".generate-route")
+            .forEach((generateRouteButton) => {
+                generateRouteButton.addEventListener("click", () => {
+                    // event.preventDefault();
+                    if (document.querySelector("#distance").value === "") {
+                        return;
+                    }
+                    const targetDistance = parseFloat(
+                        document.getElementById("distance").value,
+                    );
+                    // const startLocation = new google.maps.LatLng(35.6895, 139.6917);  // 東京を初期地点に設定
+                    const startLocation = new google.maps.LatLng(lat, lng); // 現在地を初期地点に設定
+                    generateRoute(startLocation, targetDistance); // 入力された距離を使って経路を生成
+                });
             });
-        })
     }
 
     let map, directionsService, directionsRenderer;
 
     async function initMap(lat, lng) {
-        const { Map } = await google.maps.importLibrary('maps');
-        map = new Map(document.getElementById('map'), {
+        const { Map } = await google.maps.importLibrary("maps");
+        map = new Map(document.getElementById("map"), {
             // center: { lat: 35.6895, lng: 139.6917 },  // 東京を初期地点に設定
-            center: new google.maps.LatLng(lat, lng),  // 現在地を初期地点に設定
+            center: new google.maps.LatLng(lat, lng), // 現在地を初期地点に設定
             zoom: 16,
-            mapId: 'DEMO_MAP_ID',
+            mapId: "DEMO_MAP_ID",
             streetViewControl: false,
             mapTypeControl: false,
             fullscreenControl: false,
         });
 
-        const { AdvancedMarkerElement, PinView } = await google.maps.importLibrary("marker");
+        const { AdvancedMarkerElement, PinView } =
+            await google.maps.importLibrary("marker");
 
         new google.maps.marker.AdvancedMarkerElement({
             position: new google.maps.LatLng(lat, lng),
             map: map,
             content: (function () {
-                const div = document.createElement('div');
-                div.style.width = '12px';
-                div.style.height = '12px';
-                div.style.backgroundColor = '#115EC3';
-                div.style.borderRadius = '50%';
-                div.style.border = '2px solid white';
+                const div = document.createElement("div");
+                div.style.width = "12px";
+                div.style.height = "12px";
+                div.style.backgroundColor = "#115EC3";
+                div.style.borderRadius = "50%";
+                div.style.border = "2px solid white";
                 return div;
             })(),
         });
@@ -167,17 +178,19 @@
         directionsRenderer = new google.maps.DirectionsRenderer({
             // suppressMarkers: true, //経由地のピンを非表示
             polylineOptions: {
-                strokeColor: 'blue', // ポリラインの色を青に設定
-                strokeWeight: 2,      // ポリラインの太さを設定
-                icons: [{
-                    icon: {
-                        path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-                        scale: 3,
-                        strokeColor: 'red'
+                strokeColor: "blue", // ポリラインの色を青に設定
+                strokeWeight: 2, // ポリラインの太さを設定
+                icons: [
+                    {
+                        icon: {
+                            path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+                            scale: 3,
+                            strokeColor: "red",
+                        },
+                        offset: "100%",
+                        repeat: "100px",
                     },
-                    offset: '100%',
-                    repeat: '100px'
-                }]
+                ],
             },
         });
         directionsRenderer.setMap(map);
@@ -207,46 +220,71 @@
                 rangeOfDistance = 0.8;
                 break;
         }
-        let waypoints = generateRandomWaypoints(startLocation, numberOfWaypoints, rangeOfWaypoint);  // ランダムなウェイポイントを生成
-        waypoints.push(startLocation);  // スタート地点に戻る
+        let waypoints = generateRandomWaypoints(
+            startLocation,
+            numberOfWaypoints,
+            rangeOfWaypoint,
+        ); // ランダムなウェイポイントを生成
+        waypoints.push(startLocation); // スタート地点に戻る
 
-        directionsService.route({
-            origin: startLocation,
-            destination: startLocation,
-            waypoints: waypoints.map(location => ({ location: location, stopover: true })),
-            travelMode: 'WALKING'
-        }, function (response, status) {
-            let totalDistance;
-            if (status === 'OK') {
-                directionsRenderer.setDirections(response);
-                let route = response.routes[0];
-                totalDistance = computeTotalDistance(route);
-                if (Math.abs(totalDistance - targetDistance) > rangeOfDistance) {  // 距離が入力値に近くなるように調整
-                    console.log('再度ウェイポイントを調整して経路を生成');
-                    generateRoute(startLocation, targetDistance);
+        directionsService.route(
+            {
+                origin: startLocation,
+                destination: startLocation,
+                waypoints: waypoints.map((location) => ({
+                    location: location,
+                    stopover: true,
+                })),
+                travelMode: "WALKING",
+            },
+            function (response, status) {
+                let totalDistance;
+                if (status === "OK") {
+                    directionsRenderer.setDirections(response);
+                    let route = response.routes[0];
+                    totalDistance = computeTotalDistance(route);
+                    if (
+                        Math.abs(totalDistance - targetDistance) >
+                        rangeOfDistance
+                    ) {
+                        // 距離が入力値に近くなるように調整
+                        console.log("再度ウェイポイントを調整して経路を生成");
+                        generateRoute(startLocation, targetDistance);
+                    }
+                } else {
+                    console.error("Directions request failed due to " + status);
                 }
-            } else {
-                console.error('Directions request failed due to ' + status);
-            }
 
-            // 距離を表示
-            totalDistance = Math.round(totalDistance * 10) / 10; // 小数第2位を四捨五入
-            document.querySelector('#distance-result').textContent = totalDistance;
+                // 距離を表示
+                totalDistance = Math.round(totalDistance * 10) / 10; // 小数第2位を四捨五入
+                document.querySelector("#distance-result").textContent =
+                    totalDistance;
 
-            // 予想時間を表示
-            let totalHours = totalDistance / 4.8;
-            let hours = Math.floor(totalHours);
-            let minutes = Math.round((totalHours - hours) * 60);
-            hours = Math.floor(totalHours) !== 0 ? `${Math.floor(totalHours)}時間` : '';
-            document.querySelector('#time-result').textContent = hours + minutes;
-        });
+                // 予想時間を表示
+                let totalHours = totalDistance / 4.8;
+                let hours = Math.floor(totalHours);
+                let minutes = Math.round((totalHours - hours) * 60);
+                hours =
+                    Math.floor(totalHours) !== 0
+                        ? `${Math.floor(totalHours)}時間`
+                        : "";
+                document.querySelector("#time-result").textContent =
+                    hours + minutes;
+            },
+        );
     }
 
-    function generateRandomWaypoints(startLocation, numberOfWaypoints, rangeOfWaypoint) {
+    function generateRandomWaypoints(
+        startLocation,
+        numberOfWaypoints,
+        rangeOfWaypoint,
+    ) {
         let waypoints = [];
         for (let i = 0; i < numberOfWaypoints; i++) {
-            let randomLat = startLocation.lat() + (Math.random() - 0.5) * rangeOfWaypoint;
-            let randomLng = startLocation.lng() + (Math.random() - 0.5) * rangeOfWaypoint;
+            let randomLat =
+                startLocation.lat() + (Math.random() - 0.5) * rangeOfWaypoint;
+            let randomLng =
+                startLocation.lng() + (Math.random() - 0.5) * rangeOfWaypoint;
             waypoints.push(new google.maps.LatLng(randomLat, randomLng));
         }
         return waypoints;
@@ -258,9 +296,8 @@
         for (let i = 0; i < legs.length; i++) {
             total += legs[i].distance.value;
         }
-        return total / 1000;  // メートルをキロメートルに変換
+        return total / 1000; // メートルをキロメートルに変換
     }
-
 
     // calendar
     const today = new Date();
@@ -278,11 +315,13 @@
                 isToday: false,
                 isDisabled: true,
                 // uniqueDate: `${year}-${String(month).padStart(2, '0')}-${String(d - i).padStart(2, '0')}`,
-                uniqueDate: new Date(year, month - 1, d - i).toLocaleDateString("ja-JP", {
-                    year: "numeric",
-                    month: "2-digit",
-                    day: "2-digit"
-                }).replaceAll('/', '-'),
+                uniqueDate: new Date(year, month - 1, d - i)
+                    .toLocaleDateString("ja-JP", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                    })
+                    .replaceAll("/", "-"),
             });
         }
 
@@ -299,11 +338,13 @@
                 isToday: false,
                 isDisabled: false,
                 // uniqueDate: `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`,
-                uniqueDate: new Date(year, month, i).toLocaleDateString("ja-JP", {
-                    year: "numeric",
-                    month: "2-digit",
-                    day: "2-digit"
-                }).replaceAll('/', '-'),
+                uniqueDate: new Date(year, month, i)
+                    .toLocaleDateString("ja-JP", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                    })
+                    .replaceAll("/", "-"),
             });
         }
 
@@ -324,18 +365,20 @@
                 isToday: false,
                 isDisabled: true,
                 // uniqueDate: `${year}-${String(month + 2).padStart(2, '0')}-${String(i).padStart(2, '0')}`
-                uniqueDate: new Date(year, month + 1, i).toLocaleDateString("ja-JP", {
-                    year: "numeric",
-                    month: "2-digit",
-                    day: "2-digit"
-                }).replaceAll('/', '-'),
+                uniqueDate: new Date(year, month + 1, i)
+                    .toLocaleDateString("ja-JP", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                    })
+                    .replaceAll("/", "-"),
             });
         }
         return dates;
     }
 
     function clearCalendar() {
-        const tbody = document.querySelector('.tbody');
+        const tbody = document.querySelector(".tbody");
 
         while (tbody.firstChild) {
             tbody.removeChild(tbody.firstChild);
@@ -344,7 +387,7 @@
 
     function renderTitle() {
         const title = `${year}年${String(month + 1)}月`;
-        document.querySelector('#title').textContent = title;
+        document.querySelector("#title").textContent = title;
     }
 
     async function renderWeeks() {
@@ -373,27 +416,27 @@
         });
         const records = await response.json();
         const dateOfRecords = [];
-        records['records'].forEach(record => {
+        records["records"].forEach((record) => {
             dateOfRecords.push(record["date"]);
         });
 
-        weeks.forEach(week => {
-            const tr = document.createElement('tr');
-            week.forEach(date => {
-                const td = document.createElement('td');
+        weeks.forEach((week) => {
+            const tr = document.createElement("tr");
+            week.forEach((date) => {
+                const td = document.createElement("td");
                 td.textContent = date.date;
                 if (date.isToday) {
-                    td.classList.add('today');
+                    td.classList.add("today");
                 }
                 if (date.isDisabled) {
-                    td.classList.add('disabled');
+                    td.classList.add("disabled");
                 }
                 if (dateOfRecords.includes(date.uniqueDate)) {
                     td.classList.add("done");
                 }
                 tr.appendChild(td);
             });
-            document.querySelector('.tbody').appendChild(tr);
+            document.querySelector(".tbody").appendChild(tr);
         });
     }
 
@@ -403,7 +446,7 @@
         renderWeeks();
     }
 
-    document.querySelector('#prev').addEventListener('click', () => {
+    document.querySelector("#prev").addEventListener("click", () => {
         month--;
         if (month < 0) {
             year--;
@@ -412,7 +455,7 @@
         createCalendar();
     });
 
-    document.querySelector('#next').addEventListener('click', () => {
+    document.querySelector("#next").addEventListener("click", () => {
         month++;
         if (month > 11) {
             year++;
@@ -421,7 +464,7 @@
         createCalendar();
     });
 
-    document.querySelector('#today').addEventListener('click', () => {
+    document.querySelector("#today").addEventListener("click", () => {
         year = today.getFullYear();
         month = today.getMonth();
         createCalendar();
@@ -433,90 +476,94 @@
 
     // 追加の非同期処理
     const input = document.querySelector('[name="belonging"]');
-    const ul = document.querySelector('#belongings ul');
+    const ul = document.querySelector("#belongings ul");
 
     // イベントの伝播により、作成直後のliを削除可能に
-    ul.addEventListener('click', e => {
+    ul.addEventListener("click", (e) => {
         const belonging = e.target.dataset.id;
-        if (e.target.classList.contains('delete')) {
-            if (!confirm('削除しますか？')) {
+        if (e.target.classList.contains("delete")) {
+            if (!confirm("削除しますか？")) {
                 return;
             }
             fetch(`belonging/${belonging}`, {
-                method: 'DELETE',
+                method: "DELETE",
                 headers: {
-                    'X-CSRF-TOKEN': csrfToken,
+                    "X-CSRF-TOKEN": csrfToken,
                 },
             });
             // 持ち物リストから削除
             e.target.parentNode.remove();
             // 持ち物確認画面から削除
             const text = e.target.parentNode.firstChild.textContent.trim();
-            document.querySelectorAll('#walk #walk-belongings li').forEach(li => {
-                if (li.textContent.trim() === text) {
-                    li.remove();
-                }
-            });
+            document
+                .querySelectorAll("#walk #walk-belongings li")
+                .forEach((li) => {
+                    if (li.textContent.trim() === text) {
+                        li.remove();
+                    }
+                });
         }
     });
 
     function addBelonging(id, title) {
         // 持ち物リストに追加
-        const li = document.createElement('li');
-        const span = document.createElement('span');
-        span.classList.add('delete');
+        const li = document.createElement("li");
+        const span = document.createElement("span");
+        span.classList.add("delete");
         span.dataset.id = id;
-        span.textContent = '削除';
+        span.textContent = "削除";
         li.textContent = title;
         li.appendChild(span);
         ul.appendChild(li);
         // 持ち物確認画面に追加
-        const topLi = document.createElement('li');
+        const topLi = document.createElement("li");
         topLi.textContent = title;
-        document.querySelector('#walk #walk-belongings ul').appendChild(topLi);
+        document.querySelector("#walk #walk-belongings ul").appendChild(topLi);
     }
 
-    document.querySelector('#belongings > form').addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const title = input.value.trim();
-        if (title) {
-            const response = await fetch("belonging", {
-                method: "POST",
-                headers: {
-                    "X-CSRF-TOKEN": csrfToken,
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-                body: new URLSearchParams({
-                    belonging: title,
-                }),
-            });
-            const json = await response.json();
-            addBelonging(json.id, title);
+    document
+        .querySelector("#belongings > form")
+        .addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const title = input.value.trim();
+            if (title) {
+                const response = await fetch("belonging", {
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": csrfToken,
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: new URLSearchParams({
+                        belonging: title,
+                    }),
+                });
+                const json = await response.json();
+                addBelonging(json.id, title);
 
-            input.value = "";
-            input.focus();
-        }
-    });
+                input.value = "";
+                input.focus();
+            }
+        });
 
     // config
-    const dts = document.querySelectorAll('dt');
-    dts.forEach(dt => {
-        dt.addEventListener('click', () => {
-            dt.parentNode.classList.toggle('appear');
-            dts.forEach(el => {
-                if (dt !==el) {
-                    el.parentNode.classList.remove('appear');
+    const dts = document.querySelectorAll("dt");
+    dts.forEach((dt) => {
+        dt.addEventListener("click", () => {
+            dt.parentNode.classList.toggle("appear");
+            dts.forEach((el) => {
+                if (dt !== el) {
+                    el.parentNode.classList.remove("appear");
                 }
             });
         });
     });
 
     // ご意見送信フォーム
-    const textarea = document.querySelector('#opinion');
+    const textarea = document.querySelector("#opinion");
     const opinionBtn = document.querySelector("#opinion-btn");
-    const thanks = document.querySelector('#thanks');
-    const opinionSubmit = document.querySelector('#opinion-submit');
-    opinionBtn.addEventListener('click', () => {
+    const thanks = document.querySelector("#thanks");
+    const opinionSubmit = document.querySelector("#opinion-submit");
+    opinionBtn.addEventListener("click", () => {
         const opinion = textarea.value.trim();
         if (opinion) {
             fetch("submitOpinion", {
@@ -535,23 +582,23 @@
     });
 
     // footer
-    const mains = document.querySelectorAll('main > div');
-    const menus = document.querySelectorAll('footer ul li');
+    const mains = document.querySelectorAll("main > div");
+    const menus = document.querySelectorAll("footer ul li");
 
     menus.forEach((menu, i) => {
-        menu.addEventListener('click', () => {
+        menu.addEventListener("click", () => {
             mains.forEach((main, j) => {
-                main.style.display = 'none';
+                main.style.display = "none";
                 if (i === j) {
-                    main.style.display = 'block';
+                    main.style.display = "block";
                 }
-            })
-            menus.forEach(menu => {
-                menu.style.background = '#fff';
-                menu.style.color = '#000';
             });
-            menu.style.background = '#111';
-            menu.style.color = '#fff';
-        })
+            menus.forEach((menu) => {
+                menu.style.background = "#fff";
+                menu.style.color = "#000";
+            });
+            menu.style.background = "#111";
+            menu.style.color = "#fff";
+        });
     });
 }
