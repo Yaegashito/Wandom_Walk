@@ -2,10 +2,14 @@
 
 {
     // ブラウザバック等に警告
-    // window.addEventListener("beforeunload", (e) => {
-    //     e.preventDefault();
-    //     return '';
-    // });
+    let isWalking = false;
+    window.addEventListener("beforeunload", (e) => {
+        if (isWalking) {
+            e.preventDefault();
+            return "";
+        }
+    });
+
     // walk
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -34,6 +38,7 @@
         stopBtn.classList.add('hide');
         generateRouteBtns[0].style.display = 'inline';
         distance.style.display = 'inline';
+        isWalking = false;
         messages.forEach(message => {
             message.style.display = 'none';
         });
@@ -63,6 +68,7 @@
         finishBtn.style.display = 'inline';
         messages[0].style.display = 'none';
         messages[1].style.display = 'block';
+        isWalking = true;
     });
     finishBtn.addEventListener('click', async (event) => {
         event.preventDefault();
