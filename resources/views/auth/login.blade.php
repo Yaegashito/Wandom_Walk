@@ -112,7 +112,9 @@
     <div class="introduction" data-aos="fade-left">
         <h1>利用上の注意</h1>
         <p class="indent">利用した散歩経路はデータベースに保存されませんが、「ユーザー名」、「持ち物」、「散歩をした年月日」は開発者が閲覧できるのでプライバシーにかかわる情報を入力しないでください。</p>
+        <p class="indent">歩きスマホをしないように注意してください。本アプリをご利用いただくにあたり、万が一、利用中に事故や損害が発生した場合でも当方は一切の責任を負いかねます。ご利用は自己責任にて行っていただきますようお願い申し上げます。</p>
     </div>
+    <a href="#top" class="logout page-top" data-aos="fade-right">はじめる</a>
 </main>
 <script src="{{asset('js/login.js') }}"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
