@@ -15,6 +15,7 @@
         alert('Geolocation is not supported by this browser.');
     }
 
+    const distance = document.querySelector("#distance");
     const generateRouteBtns = document.querySelectorAll('.generate-route');
     const decideRoute = document.querySelector('#decide-route');
     const startBtn = document.querySelector('#start-btn');
@@ -32,13 +33,14 @@
         walkBelongings.style.display = 'none';
         stopBtn.classList.add('hide');
         generateRouteBtns[0].style.display = 'inline';
+        distance.style.display = 'inline';
         messages.forEach(message => {
             message.style.display = 'none';
         });
     }
 
     generateRouteBtns[0].addEventListener('click', () => {
-        if (document.querySelector('#distance').value === '') {
+        if (distance.value === '') {
             alert('時間を選択してください');
             return;
         }
@@ -46,6 +48,7 @@
         generateRouteBtns[1].style.display = 'inline';
         decideRoute.style.display = 'inline';
         messages[0].style.display = 'block';
+        distance.style.display = 'none';
         stopBtn.classList.remove('hide');
     });
     decideRoute.addEventListener('click', () => {
