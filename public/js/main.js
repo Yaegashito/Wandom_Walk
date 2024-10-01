@@ -1,6 +1,8 @@
 "use strict";
 
 {
+    /* global google */
+
     // ブラウザバック等に警告
     let isWalking = false;
     window.addEventListener("beforeunload", (e) => {
@@ -158,8 +160,7 @@
             fullscreenControl: false,
         });
 
-        const { AdvancedMarkerElement, PinView } =
-            await google.maps.importLibrary("marker");
+        await google.maps.importLibrary("marker");
 
         new google.maps.marker.AdvancedMarkerElement({
             position: new google.maps.LatLng(lat, lng),
