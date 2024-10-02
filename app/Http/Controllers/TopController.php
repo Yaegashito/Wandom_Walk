@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Belonging;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class TopController extends Controller
 {
-    public function top()
+    public function top(): View
     {
         $belongings = Auth::user()->belongings()->oldest()->get();
 
