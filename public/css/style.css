@@ -25,6 +25,21 @@ body {
     text-indent: 1rem;
 }
 
+.btn {
+    width: 40%;
+    height: 64px;
+    cursor: pointer;
+    user-select: none;
+    box-sizing: border-box;
+    font-weight: bold;
+    background: #ccc;
+    border: 1px solid #999;
+    border-radius: 16px;
+    box-shadow: 0 3px black;
+    display: none;
+    margin-top: 16px;
+}
+
 /* header */
 header {
     display: flex;
@@ -134,21 +149,7 @@ main {
     font-weight: bold;
 }
 
-.walk-btn {
-    width: 40%;
-    height: 64px;
-    cursor: pointer;
-    user-select: none;
-    box-sizing: border-box;
-    margin-top: 16px;
-    font-weight: bold;
-    border: 1px solid #999;
-    border-radius: 16px;
-    box-shadow: 0 3px black;
-    display: none;
-}
-
-.walk-btn:active {
+.btn:active {
     box-shadow: none;
     transform: translateY(3px);
 }
@@ -157,12 +158,8 @@ main {
     display: inline;
 }
 
-.regenerate {
-    background: #ccc;
-}
-
-.right-btn {
-    margin-left: 24px;
+.walk-btns .btn:nth-child(3){
+    margin-left: 16px;
 }
 
 .proceed-btn {
@@ -316,20 +313,10 @@ td.done {
 
 /* config */
 .logout {
+    margin: 16px auto;
     display: block;
-    width: 30%;
-    height: 64px;
-    line-height: 64px;
-    background: #bbb;
-    cursor: pointer;
-    user-select: none;
-    box-sizing: border-box;
-    margin: 0 auto 16px;
     text-align: center;
-    font-weight: bold;
-    border: 1px solid #999;
-    border-radius: 16px;
-    box-shadow: 0 3px black;
+    line-height: 64px;
 }
 
 #config {

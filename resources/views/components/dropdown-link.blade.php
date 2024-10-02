@@ -1,1 +1,1 @@
-<a {{ $attributes->merge([]) }} class="logout">{{ $slot }}</a>
+<a {{ $attributes->merge([]) }} class="logout btn">{{ $slot }}</a>

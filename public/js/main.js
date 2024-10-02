@@ -30,7 +30,7 @@
     const finishBtn = document.querySelector("#finish-btn");
     const stopBtn = document.querySelector("#stop-btn");
     const walkBelongings = document.querySelector("#walk-belongings");
-    const walkBtns = document.querySelectorAll(".walk-btns > .walk-btn");
+    const walkBtns = document.querySelectorAll(".walk-btns > .btn");
     const messages = document.querySelectorAll("#messages > p");
 
     function stopWalk() {
