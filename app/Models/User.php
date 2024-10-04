@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Belonging;
 use App\Models\Calendar;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -45,12 +46,24 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function belongings()
+    /**
+     * Get the belongings for the user.
+     *
+     * @return HasMany<Belonging>
+     */
+
+     public function belongings(): HasMany
     {
         return $this->hasMany(Belonging::class);
     }
 
-    public function calendars()
+    /**
+     * Get the belongings for the user.
+     *
+     * @return HasMany<Calendar>
+     */
+
+    public function calendars(): HasMany
     {
         return $this->hasMany(Calendar::class);
     }

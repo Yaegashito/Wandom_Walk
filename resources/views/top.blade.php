@@ -19,18 +19,18 @@
             </div>
 
             <div class="walk-btns">
-                <button class="walk-btn proceed-btn generate-route">経路を生成</button>
+                <button class="btn proceed-btn generate-route">経路を生成</button>
 
-                <button class="walk-btn generate-route regenerate">もう一度生成する</button>
-                <button id="decide-route" class="walk-btn proceed-btn right-btn">これでOK！！</button>
+                <button class="btn generate-route">もう一度生成する</button>
+                <button id="decide-route" class="btn proceed-btn">これでOK！！</button>
 
-                <button id="start-btn" class="walk-btn proceed-btn">散歩を始める</button>
+                <button id="start-btn" class="btn proceed-btn">散歩を始める</button>
 
-                <button id="finish-btn" class="walk-btn proceed-btn">散歩完了</button>
+                <button id="finish-btn" class="btn proceed-btn">散歩完了</button>
             </div>
 
             <div>
-                <button id="stop-btn" class="walk-btn hide">やめる</button>
+                <button id="stop-btn" class="btn hide">やめる</button>
             </div>
 
             <div id="walk-belongings">
