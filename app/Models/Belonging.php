@@ -15,7 +15,7 @@ class Belonging extends Model
         'belonging',
     ];
 
-    public static function storeBelonging($belongingInput)
+    public static function storeBelonging(string $belongingInput): Belonging
     {
         return self::create([
             'user_id' => Auth::id(),

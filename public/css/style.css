@@ -18,12 +18,26 @@ body {
 .whole-container {
     position: relative;
     max-width: 500px;
-    /* background: #fff; */
     margin: 0 auto;
 }
 
 .indent {
     text-indent: 1rem;
+}
+
+.btn {
+    width: 40%;
+    height: 64px;
+    cursor: pointer;
+    user-select: none;
+    box-sizing: border-box;
+    font-weight: bold;
+    background: #ccc;
+    border: 1px solid #999;
+    border-radius: 16px;
+    box-shadow: 0 3px black;
+    display: none;
+    margin-top: 16px;
 }
 
 /* header */
@@ -44,7 +58,7 @@ header h1 {
     font-size: 28px;
     font-weight: bold;
     font-family: fantasy;
-    margin: 0 0 0 8px;
+    margin: 0 0 0 16px;
 }
 
 /* login */
@@ -73,8 +87,6 @@ header h1 {
 }
 
 .content.active {
-    /* background: #333; */
-    /* color: #fff; */
     display: block;
     padding: 12px;
 }
@@ -88,7 +100,8 @@ header h1 {
     border-radius: 4px;
     margin-top: 64px;
     width: 80%;
-    padding: 8px;
+    padding: 16px;
+    box-sizing: border-box;
     box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
 }
 
@@ -96,6 +109,10 @@ header h1 {
     text-align: center;
     font-size: 28px;
     font-weight: bold;
+}
+
+.logout.page-top {
+    margin-top: 16px;
 }
 
 /* main */
@@ -127,27 +144,12 @@ main {
     margin-top: 16px;
 }
 
-
 #messages > p {
     display: none;
     font-weight: bold;
 }
 
-.walk-btn {
-    width: 40%;
-    height: 64px;
-    cursor: pointer;
-    user-select: none;
-    box-sizing: border-box;
-    margin-top: 16px;
-    font-weight: bold;
-    border: 1px solid #999;
-    border-radius: 16px;
-    box-shadow: 0 3px black;
-    display: none;
-}
-
-.walk-btn:active {
+.btn:active {
     box-shadow: none;
     transform: translateY(3px);
 }
@@ -156,12 +158,8 @@ main {
     display: inline;
 }
 
-.regenerate {
-    background: #ccc;
-}
-
-.right-btn {
-    margin-left: 24px;
+.walk-btns .btn:nth-child(3){
+    margin-left: 16px;
 }
 
 .proceed-btn {
@@ -176,7 +174,6 @@ main {
 }
 
 #stop-btn.hide {
-    /* background: #F0F0F0; */
     background: #ccc;
     cursor: auto;
     color: #000;
@@ -222,9 +219,7 @@ main {
 
 table {
     width: 100%;
-    /* aspect-ratio: 1; */
     border-collapse: collapse;
-    /* border: 2px solid #eee; */
     background: #fff;
     box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
 }
@@ -318,21 +313,10 @@ td.done {
 
 /* config */
 .logout {
+    margin: 16px auto;
     display: block;
-    width: 30%;
-    height: 64px;
-    line-height: 64px;
-    background: #bbb;
-    cursor: pointer;
-    user-select: none;
-    box-sizing: border-box;
-    margin: 0 auto;
     text-align: center;
-    font-weight: bold;
-    border: 1px solid #999;
-    border-radius: 16px;
-    box-shadow: 0 3px black;
-    margin-bottom: 16px;
+    line-height: 64px;
 }
 
 #config {

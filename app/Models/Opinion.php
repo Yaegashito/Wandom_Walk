@@ -15,7 +15,7 @@ class Opinion extends Model
 
     use HasFactory;
 
-    public static function submitOpinion($opinion)
+    public static function submitOpinion(string $opinion): Opinion
     {
         return self::create([
             'user_id' => Auth::id(),

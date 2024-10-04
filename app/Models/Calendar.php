@@ -14,7 +14,7 @@ class Calendar extends Model
 
     use HasFactory;
 
-    public static function storeCalendar($today)
+    public static function storeCalendar(string $today): void
     {
         $calendar = self::firstOrNew(['date' => $today]);
         $calendar->user_id = Auth::id();
