@@ -24,7 +24,8 @@
   }
 
   const distance = document.querySelector("#distance");
-  const generateRouteBtns = document.querySelectorAll(".generate-route");
+  const [generateRouteBtn, regenerateRouteBtn] =
+    document.querySelectorAll(".generate-route");
   const decideRoute = document.querySelector("#decide-route");
   const startBtn = document.querySelector("#start-btn");
   const finishBtn = document.querySelector("#finish-btn");
@@ -32,6 +33,8 @@
   const walkBelongings = document.querySelector("#walk-belongings");
   const walkBtns = document.querySelectorAll(".walk-btns > .btn");
   const messages = document.querySelectorAll("#messages > p");
+  const DISTANCE_RESULT = 0;
+  const TIME_RESULT = 1;
 
   function stopWalk() {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -40,7 +43,7 @@
     });
     walkBelongings.style.display = "none";
     stopBtn.classList.add("hide");
-    generateRouteBtns[0].style.display = "inline";
+    generateRouteBtn.style.display = "inline";
     distance.style.display = "inline";
     isWalking = false;
     messages.forEach((message) => {
@@ -48,20 +51,20 @@
     });
   }
 
-  generateRouteBtns[0].addEventListener("click", () => {
+  generateRouteBtn.addEventListener("click", () => {
     if (distance.value === "") {
       alert("時間を選択してください");
       return;
     }
-    generateRouteBtns[0].style.display = "none";
-    generateRouteBtns[1].style.display = "inline";
+    generateRouteBtn.style.display = "none";
+    regenerateRouteBtn.style.display = "inline";
     decideRoute.style.display = "inline";
-    messages[0].style.display = "block";
+    messages[DISTANCE_RESULT].style.display = "block";
     distance.style.display = "none";
     stopBtn.classList.remove("hide");
   });
   decideRoute.addEventListener("click", () => {
-    generateRouteBtns[1].style.display = "none";
+    regenerateRouteBtn.style.display = "none";
     decideRoute.style.display = "none";
     startBtn.style.display = "inline";
     walkBelongings.style.display = "block";
@@ -70,8 +73,8 @@
     startBtn.style.display = "none";
     walkBelongings.style.display = "none";
     finishBtn.style.display = "inline";
-    messages[0].style.display = "none";
-    messages[1].style.display = "block";
+    messages[DISTANCE_RESULT].style.display = "none";
+    messages[TIME_RESULT].style.display = "block";
     isWalking = true;
   });
   finishBtn.addEventListener("click", async (event) => {
@@ -117,7 +120,7 @@
     }
     if (stopBtn.classList.contains("hide") === false) {
       stopWalk();
-      generateRouteBtns[0].style.display = "inline";
+      generateRouteBtn.style.display = "inline";
     }
   });
 
@@ -257,7 +260,8 @@
         document.querySelector("#distance-result").textContent = totalDistance;
 
         // 予想時間を表示
-        let totalHours = totalDistance / 4.8;
+        const AVERAGE_WALKING_SPEED = 4.8;
+        let totalHours = totalDistance / AVERAGE_WALKING_SPEED;
         let hours = Math.floor(totalHours);
         let minutes = Math.round((totalHours - hours) * 60);
         hours =
