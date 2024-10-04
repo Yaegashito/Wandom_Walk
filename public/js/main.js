@@ -100,7 +100,7 @@
 
         stopWalk();
         finishBtn.style.display = "none";
-        // カレンダーのdoneをtrueにする処理
+        // カレンダーの今日の日付に着色する処理
         document
           .querySelector("#calendar .tbody td.today")
           .classList.add("done");
@@ -133,7 +133,6 @@
       .querySelectorAll(".generate-route")
       .forEach((generateRouteButton) => {
         generateRouteButton.addEventListener("click", () => {
-          // event.preventDefault();
           if (document.querySelector("#distance").value === "") {
             return;
           }
