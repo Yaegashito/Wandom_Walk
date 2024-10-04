@@ -100,21 +100,21 @@
         </form>
         </section>
     </div>
-    <div class="introduction" data-aos="fade-left">
+    <div class="introduction" data-aos="fade-left" data-aos-offset="200">
         <h1>わんダムウォークとは？</h1>
         <p class="indent">わんダムウォークは飼い犬の認知症を予防するための散歩補助アプリです。毎日違う経路を散歩することで飼い犬の脳を刺激できます。いつもと違う経路を散歩しようと思っても考えるのが面倒だから結局同じ道に…なんてことはよくあること。このアプリはボタンを押すだけで経路を生成してくれます。また、散歩した日がカレンダーに記録されるので、塗り絵感覚で散歩を楽しむこともできます。</p>
         <p class="indent">ちなみにアプリ名は、毎日異なるランダムな経路を散歩するという点から「ランダムウォーク」と考えましたが、ちょっと味気ないので犬のためのアプリであることに着目して「ラン」を泣き声の「わん」にして、「わんダムウォーク」となりました。</p>
     </div>
-    <div class="introduction" data-aos="fade-right">
+    <div class="introduction" data-aos="fade-right" data-aos-offset="200">
         <h1>開発の経緯</h1>
         <p class="indent">昔飼っていた犬が晩年に認知症になってしまい、そのお世話が非常に大変だったという体験からこのアプリを開発しました。認知症になってしまった犬は昼夜問わず大きいな声で鳴いたり、同じ場所をずっとぐるぐる回るように歩いたり、狭いところに入って出られなくなったりします。愛犬には最期まで健康でいてほしいはずなので、その一助になれば幸いです。</p>
     </div>
-    <div class="introduction" data-aos="fade-left">
+    <div class="introduction" data-aos="fade-left" data-aos-offset="200">
         <h1>利用上の注意</h1>
         <p class="indent">利用した散歩経路はデータベースに保存されませんが、「ユーザー名」、「持ち物」、「散歩をした年月日」は開発者が閲覧できるのでプライバシーにかかわる情報を入力しないでください。</p>
         <p class="indent">歩きスマホをしないように注意してください。本アプリをご利用いただくにあたり、万が一、利用中に事故や損害が発生した場合でも当方は一切の責任を負いかねます。ご利用は自己責任にて行っていただきますようお願い申し上げます。</p>
     </div>
-    <a href="#top" class="logout btn page-top" data-aos="fade-right">はじめる</a>
+    <a href="#top" class="logout btn page-top" data-aos="fade-right" data-aos-offset="200">はじめる</a>
 </main>
 <script src="{{asset('js/login.js') }}"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
