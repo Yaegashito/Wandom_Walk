@@ -1,7 +1,11 @@
 <x-guest-layout>
 <main class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+    <div class="consent transparent">
+        <p>ページ下部の「利用上の注意」を理解し、同意する</p>
+        <input id="checkbox" type="checkbox">
+    </div>
 
-    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="width: 95%; margin-top: 96px;">
+    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="width: 95%; margin-top: 48px;">
 
         <ul class="tabs">
             <li><a href="#" class="active" data-id="login">ログイン</a></li>
@@ -65,7 +69,7 @@
                 <!-- Name -->
                 <div>
                     <x-input-label for="name2" :value="__('Name')" />
-                    <x-text-input id="name2" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                    <x-text-input id="name2" disabled class="consented block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                     {{-- <x-input-error :messages="$errors->get('name')" class="mt-2" /> --}}
                 </div>
 
@@ -73,7 +77,7 @@
                 <div class="mt-4">
                     <x-input-label for="password2" :value="__('Password')" />
 
-                    <x-text-input id="password2" class="block mt-1 w-full"
+                    <x-text-input id="password2" disabled class="consented block mt-1 w-full"
                                     type="password"
                                     name="password"
                                     required autocomplete="new-password" />
@@ -85,7 +89,7 @@
                 <div class="mt-4">
                     <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-                    <x-text-input id="password_confirmation" class="block mt-1 w-full"
+                    <x-text-input id="password_confirmation" disabled class="consented block mt-1 w-full"
                                     type="password"
                                     name="password_confirmation" required autocomplete="new-password" />
 

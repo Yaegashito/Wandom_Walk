@@ -62,6 +62,18 @@ header h1 {
 }
 
 /* login */
+.consent {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    gap: 8px;
+    margin-top: 48px;
+}
+
+.transparent {
+    opacity: 0;
+}
+
 .tabs {
     display: flex;
     gap: 8px;
