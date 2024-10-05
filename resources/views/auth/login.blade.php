@@ -9,95 +9,95 @@
         </ul>
 
         <section class="content active" id="login">
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+            <!-- Session Status -->
+            <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
 
-            <!-- Name -->
-            <div>
-                <x-input-label for="name" :value="__('Name')" />
-                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="username" />
-                {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                <!-- Name -->
+                <div>
+                    <x-input-label for="name" :value="__('Name')" />
+                    <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="username" />
+                    {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
 
-            </div>
+                </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
+                <!-- Password -->
+                <div class="mt-4">
+                    <x-input-label for="password" :value="__('Password')" />
 
-                <x-text-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+                    <x-text-input id="password" class="block mt-1 w-full"
+                                    type="password"
+                                    name="password"
+                                    required autocomplete="current-password" />
 
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </div>
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+                <!-- Remember Me -->
+                <div class="block mt-4">
+                    <label for="remember_me" class="inline-flex items-center">
+                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                        <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    </label>
+                </div>
 
-            <div class="flex items-center justify-end mt-4">
-                {{-- @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif --}}
+                <div class="flex items-center justify-end mt-4">
+                    {{-- @if (Route::has('password.request'))
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                            {{ __('Forgot your password?') }}
+                        </a>
+                    @endif --}}
 
-                <x-primary-button class="ms-3">
-                    {{ __('Log in') }}
-                </x-primary-button>
-            </div>
-        </form>
+                    <x-primary-button class="ms-3">
+                        {{ __('Log in') }}
+                    </x-primary-button>
+                </div>
+            </form>
         </section>
 
         <section class="content" id="register">
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
 
-            <!-- Name -->
-            <div>
-                <x-input-label for="name2" :value="__('Name')" />
-                <x-text-input id="name2" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-                {{-- <x-input-error :messages="$errors->get('name')" class="mt-2" /> --}}
-            </div>
+                <!-- Name -->
+                <div>
+                    <x-input-label for="name2" :value="__('Name')" />
+                    <x-text-input id="name2" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                    {{-- <x-input-error :messages="$errors->get('name')" class="mt-2" /> --}}
+                </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-input-label for="password2" :value="__('Password')" />
+                <!-- Password -->
+                <div class="mt-4">
+                    <x-input-label for="password2" :value="__('Password')" />
 
-                <x-text-input id="password2" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
+                    <x-text-input id="password2" class="block mt-1 w-full"
+                                    type="password"
+                                    name="password"
+                                    required autocomplete="new-password" />
 
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </div>
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                <!-- Confirm Password -->
+                <div class="mt-4">
+                    <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-                <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
+                    <x-text-input id="password_confirmation" class="block mt-1 w-full"
+                                    type="password"
+                                    name="password_confirmation" required autocomplete="new-password" />
 
-                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-            </div>
+                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-primary-button class="ms-4">
-                    {{ __('Register') }}
-                </x-primary-button>
-            </div>
-        </form>
+                <div class="flex items-center justify-end mt-4">
+                    <x-primary-button class="ms-4">
+                        {{ __('Register') }}
+                    </x-primary-button>
+                </div>
+            </form>
         </section>
     </div>
     <div class="introduction" data-aos="fade-left" data-aos-anchor-placement="top-center">
@@ -112,7 +112,8 @@
     <div class="introduction" data-aos="fade-left" data-aos-offset="200">
         <h1>利用上の注意</h1>
         <p class="indent">利用した散歩経路はデータベースに保存されませんが、「ユーザー名」、「持ち物」、「散歩をした年月日」は開発者が閲覧できるのでプライバシーにかかわる情報を入力しないでください。</p>
-        <p class="indent">歩きスマホをしないように注意してください。本アプリをご利用いただくにあたり、万が一、利用中に事故や損害が発生した場合でも当方は一切の責任を負いかねます。ご利用は自己責任にて行っていただきますようお願い申し上げます。</p>
+        <p class="indent">歩きスマホをしないように注意してください。当アプリは散歩中に使用することを想定しているものですが、画面を確認する際は必ず周囲の状況を確認してください。</p>
+        <p class="indent">当アプリは、ユーザーの利便性向上を目的として提供されておりますが、利用中に発生した損害やトラブル、または第三者による不正アクセス、情報漏洩等のセキュリティ事故について、開発者は一切の責任を負いません。</p>
     </div>
     <a href="#top" class="logout btn page-top" data-aos="fade-right" data-aos-offset="10">はじめる</a>
 </main>
