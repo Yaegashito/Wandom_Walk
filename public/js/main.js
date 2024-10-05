@@ -517,8 +517,8 @@
 
   document
     .querySelector("#belongings > form")
-    .addEventListener("submit", async (event) => {
-      event.preventDefault();
+    .addEventListener("submit", async (e) => {
+      e.preventDefault();
       const title = input.value.trim();
       if (title) {
         const response = await fetch("belonging", {

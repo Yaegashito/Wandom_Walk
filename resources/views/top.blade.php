@@ -146,7 +146,8 @@
                     <dt>利用上の注意</dt>
                     <dd>
                         <p class="indent">利用した散歩経路はデータベースに保存されませんが、「ユーザー名」、「持ち物」、「散歩をした年月日」は開発者が閲覧できるのでプライバシーにかかわる情報を入力しないでください。</p>
-                        <p class="indent">歩きスマホをしないように注意してください。本アプリをご利用いただくにあたり、万が一、利用中に事故や損害が発生した場合でも当方は一切の責任を負いかねます。ご利用は自己責任にて行っていただきますようお願い申し上げます。</p>
+                        <p class="indent">歩きスマホをしないように注意してください。当アプリは散歩中に使用することを想定しているものですが、画面を確認する際は必ず周囲の状況を確認してください。</p>
+                        <p class="indent">当アプリは、ユーザーの利便性向上を目的として提供されておりますが、利用中に発生した損害やトラブル、または第三者による不正アクセス、情報漏洩等のセキュリティ事故について、開発者は一切の責任を負いません。</p>
                     </dd>
                 </div>
 
@@ -199,7 +200,7 @@
     </footer>
     <script>
         (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
-        // key: "{{ $key }}",
+        key: "{{ $key }}",
         v: "weekly",
         // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
         // Add other bootstrap parameters as needed, using camel case.
