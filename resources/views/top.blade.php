@@ -12,7 +12,7 @@
                     <option value="4">４０～６０分</option>
                 </select>
                 <div id="messages">
-                    <p><span id="distance-result"></span>kmの経路ができました。<br>予想時間は<span id="time-result">〇〇</span>分です。</p>
+                    <p><span id="distance-result"></span>kmの経路ができました。<br>予想時間は<span id="time-result"></span>分です。</p>
                     <p>散歩中です。散歩が終わったら<br>「散歩完了」を押してください。</p>
                 </div>
             </div>
