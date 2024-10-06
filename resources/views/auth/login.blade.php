@@ -1,7 +1,7 @@
 <x-guest-layout>
 <main class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
     <div class="consent transparent">
-        <p>ページ下部の「利用上の注意」を理解し、同意する</p>
+        <p>ページ下部の「利用上の注意」を<br>理解し、同意する</p>
         <input id="checkbox" type="checkbox">
     </div>
 

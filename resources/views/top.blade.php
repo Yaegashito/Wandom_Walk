@@ -6,14 +6,13 @@
             <div>
                 <select id="distance" name="distance">
                     <option value="" selected disabled>時間を選択してください</option>
-                    <option value="3">開発用</option>
+                    {{-- <option value="3">開発用</option> --}}
                     <option value="1">１０～１５分</option>
                     <option value="2">２０～３０分</option>
                     <option value="4">４０～６０分</option>
-                    {{-- 徒歩1分80m(=時速4.8km)と想定、根拠法令も --}}
                 </select>
                 <div id="messages">
-                    <p><span id="distance-result"></span>kmの経路ができました。<br>予想時間は<span id="time-result">〇〇</span>分です。</p>
+                    <p><span id="distance-result"></span>kmの経路ができました。<br>予想時間は<span id="time-result"></span>分です。</p>
                     <p>散歩中です。散歩が終わったら<br>「散歩完了」を押してください。</p>
                 </div>
             </div>
