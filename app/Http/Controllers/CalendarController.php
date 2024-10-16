@@ -26,5 +26,4 @@ class CalendarController extends Controller
 
         return response()->json(['success' => true, 'date' => $today]);
     }
-
 }
