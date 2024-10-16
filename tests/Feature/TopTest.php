@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use App\Models\Belonging;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Belonging;
 use Illuminate\Support\Facades\Config;
 use Tests\TestCase;
 
