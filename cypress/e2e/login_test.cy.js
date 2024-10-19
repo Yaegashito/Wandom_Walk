@@ -1,21 +1,30 @@
 describe("Login Test", () => {
-  it("logs in successfully with valid credentials", () => {
-    // ログインページにアクセス
+  before(() => {
     cy.visit("http://localhost:8000/login");
-
-    // メールアドレスを入力
     cy.get("#name").type("hoge");
-
-    // パスワードを入力
     cy.get("#password").type("hogehoge");
-
-    // ログインボタンをクリック
     cy.contains("button", "ログイン").click();
-
-    // URLがダッシュボードにリダイレクトされているか確認
     cy.url().should("include", "/top");
-
-    // ダッシュボードの要素が表示されていることを確認
     cy.contains("footer li", "散歩");
+  });
+
+  beforeEach(() => {
+    cy.on('window:confirm', () => {
+      return true;
+    });
+  });
+
+  it("walking buttons functionality verification", () => {
+    const generateRoute = (buttonText) => {
+      cy.contains(".generate-route", buttonText).click();
+      cy.contains("#messages", "kmの経路ができました。");
+    };
+    cy.get("#distance").select("1");
+    cy.get("#distance").should("have.value", "1");
+    generateRoute("経路を生成");
+    generateRoute("もう一度生成する");
+    cy.get("#decide-route").click();
+    cy.get("#start-btn").click();
+    cy.get("#finish-btn").click();
   });
 });
