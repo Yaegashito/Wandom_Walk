@@ -5,7 +5,7 @@ describe("Login Test", () => {
     cy.get("#password").type("hogehoge");
     cy.contains("button", "ログイン").click();
     cy.url().should("include", "/top");
-    cy.contains("footer li", "散歩");
+    cy.get("#map").should("be.visible");
   });
 
   beforeEach(() => {
@@ -17,7 +17,7 @@ describe("Login Test", () => {
   it("walking buttons functionality verification", () => {
     const generateRoute = (buttonText) => {
       cy.contains(".generate-route", buttonText).click();
-      cy.contains("#messages", "kmの経路ができました。");
+      cy.contains("#messages", "kmの経路ができました。").should("be.visible");
     };
     cy.get("#distance").select("1");
     cy.get("#distance").should("have.value", "1");
@@ -26,5 +26,8 @@ describe("Login Test", () => {
     cy.get("#decide-route").click();
     cy.get("#start-btn").click();
     cy.get("#finish-btn").click();
+    generateRoute("経路を生成");
+    cy.get("#stop-btn").click();
+    cy.contains("button", "経路を生成").should("be.visible");
   });
 });
