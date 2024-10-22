@@ -584,10 +584,10 @@ menus.forEach((menu, i) => {
       }
     });
     menus.forEach((menu) => {
-      menu.style.background = "#fff";
+      menu.style.background = "rgb(216, 247, 199)";
       menu.style.color = "#000";
     });
-    menu.style.background = "#111";
-    menu.style.color = "#fff";
+    menu.style.background = "#66CDAA";
+    menu.style.color = "#000";
   });
 });
