@@ -13,27 +13,27 @@ https://qiita.com/tomoyaApp/items/a8a84202a8d1d6c66e3c
 　ログイン、新規登録、アプリ説明があります。新規登録時には利用上の注意に同意していただくようになっています。
 　ログインフォームを一番最初に表示することで、利用までの手間ができるだけ少なくなるようにしています。
 
-<img width="300" alt="ログイン画面" src="https://github.com/user-attachments/assets/c7fad7be-881d-47b7-a3f8-b0aa447450a5">
+<img width="300" alt="ログイン画面" src="https://github.com/user-attachments/assets/3f043fc2-8ec6-4aff-b762-8ea887a73505">
 
 ### 散歩画面
 　散歩時間を選択して散歩経路を生成します。散歩時間は１０～１５分（老犬）、２０～３０分（小型犬）、４０～６０分（大型犬）から選択します。散歩開始直前に持ち物リストを確認します。散歩終了ボタンで散歩が記録されるようになっており、散歩中にブラウザバック等をするとアラートが出るようになっています。
 
-<img width="300" alt="散歩画面" src="https://github.com/user-attachments/assets/630a9bc8-871f-4320-bfdb-ae5bbff33ce6">
+<img width="300" alt="散歩画面" src="https://github.com/user-attachments/assets/18c8a523-b15a-46ee-9f7b-a7d5f00865ed">
 
 ### カレンダー
 　シンプルなカレンダーです。
 
-<img width="300" alt="カレンダー" src="https://github.com/user-attachments/assets/03795f2b-c50d-45c7-8ce3-f2f95b0d236e">
+<img width="300" alt="カレンダー" src="https://github.com/user-attachments/assets/aa3c2b93-3985-4d9a-84e0-3b68df9f2c87">
 
 ### 持ち物リスト
 　持ち物リストの追加・削除ができます。
 
-<img width="300" alt="持ち物リスト" src="https://github.com/user-attachments/assets/be23678b-1edf-4ab4-8453-e4c2e5e3be20">
+<img width="300" alt="持ち物リスト" src="https://github.com/user-attachments/assets/52ad0f9a-11a4-493e-9913-e8b4d9eec6c0">
 
 ### その他
 　アプリ説明、ご意見送信フォーム、プロフィール欄、パスワード変更、アカウント削除の項目があります。
 
-<img width="300" alt="その他" src="https://github.com/user-attachments/assets/5b6f1142-2aca-42db-a07e-bfaf6a9cc433">
+<img width="300" alt="その他" src="https://github.com/user-attachments/assets/044a3c36-d850-479e-b65f-03253d0ab6a8">
 
 # 仕様技術
 - JavaScript
