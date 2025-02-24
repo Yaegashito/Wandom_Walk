@@ -1,7 +1,3 @@
-body {
-    background:blue;
-}
-
 /* login */
 .consent {
     display: flex;
@@ -67,3 +63,4 @@ body {
 .logout.page-top {
     margin-top: 48px;
 }
+
