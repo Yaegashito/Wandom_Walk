@@ -1,0 +1,40 @@
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ccc;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", "Meiryo UI", "Hiragino Sans", "Yu Gothic UI", "MS PGothic", sans-serif;
+}
+
+.favicon {
+    border-radius: 50%;
+}
+
+
+.whole-container {
+    background: #fff;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.indent {
+    text-indent: 1rem;
+}
+
+.btn {
+    width: 40%;
+    height: 64px;
+    cursor: pointer;
+    user-select: none;
+    box-sizing: border-box;
+    font-weight: bold;
+    background: #ccc;
+    border: 1px solid #999;
+    border-radius: 16px;
+    box-shadow: 0 3px black;
+    display: none;
+    margin-top: 16px;
+}

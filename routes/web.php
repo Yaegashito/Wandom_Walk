@@ -23,7 +23,7 @@ Route::get('/', function () {
     if (Auth::check()) {
         return redirect()->route('top'); // ログイン済みなら 'home' にリダイレクト
     }
-    return view('auth.login');
+    return view('start');
 });
 
 // Route::get('/dashboard', function () {

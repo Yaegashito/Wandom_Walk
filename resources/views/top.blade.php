@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout css="style">
     <main>
         <div id="walk" class="container">
             <div id="map"></div>
