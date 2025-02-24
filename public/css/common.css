@@ -6,7 +6,8 @@ ul {
 
 body {
     background: #ccc;
-    font-family: "Helvetica Neue", "Helvetica", "Arial", "Meiryo UI", "Hiragino Sans", "Yu Gothic UI", "MS PGothic", sans-serif;
+    /* font-family: "Helvetica Neue", "Helvetica", "Arial", "Meiryo UI", "Hiragino Sans", "Yu Gothic UI", "MS PGothic", sans-serif; */
+    font-family: "Noto Sans JP";
 }
 
 .favicon {
