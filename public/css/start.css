@@ -46,10 +46,44 @@ main img {
     margin: calc(100vh * (19 / 852)) auto;
 }
 
-.go-register {
+.go-explanation {
     color: #2866B8;
     font-size: calc(1rem * (12 / 16));
 }
+
+/* common スタート画面以外に共通 */
+.container {
+    width: calc(100% * (361 / 393));
+    margin: 0 auto;
+}
+
+section h2 {
+    font-weight: 600;
+    border-bottom: 2px #F8E466 solid;
+    line-height: 19.2px;
+}
+
+section p {
+    padding-top: 4px;
+    font-size: calc(1rem * (15 / 16));
+}
+
+/* explanation */
+.container h1 {
+    color: #4EAC31;
+    font-weight: bold;
+    padding-top: calc(100vh * (48 / 852));
+    padding-bottom: calc(100vh * (37 / 852));
+    font-size: 2rem;
+    text-align: center;
+}
+
+.container section {
+    padding-bottom: calc(100vh * (37 / 852));
+}
+
+
+
 
 /* login */
 .consent {
