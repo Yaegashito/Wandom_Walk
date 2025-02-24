@@ -6,7 +6,7 @@
 </main>
 <div class="guide">
     <a href="{{ route('login') }}" class="go-login">はじめる</a>
-    <a href="{{ route('register') }}" class="go-register">わんダムウォークとは？</a>
+    <a href="{{ route('explanation') }}" class="go-register">わんダムウォークとは？</a>
 </div>
 <script src="{{asset('js/login.js') }}"></script>
 </x-guest-layout>

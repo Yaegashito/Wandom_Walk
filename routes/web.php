@@ -7,6 +7,7 @@ use App\Http\Controllers\TopController;
 use App\Http\Controllers\BelongingController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\OpinionController;
+use App\Http\Controllers\ExplanationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Route::get('/', function () {
     }
     return view('start');
 });
+
+Route::get('/explanation', [ExplanationController::class, 'showExplanation'])->name('explanation');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

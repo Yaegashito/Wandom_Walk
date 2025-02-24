@@ -1,5 +1,4 @@
 <x-guest-layout css="start">
-<h1>ログイン画面です</h1>
 <main class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
     <div class="consent transparent">
         <p>ページ下部の「利用上の注意」を<br>理解し、同意する</p>
@@ -105,7 +104,7 @@
             </form>
         </section>
     </div>
-    <div class="introduction" data-aos="fade-left" data-aos-anchor-placement="top-center">
+    {{-- <div class="introduction" data-aos="fade-left" data-aos-anchor-placement="top-center">
         <h1>わんダムウォークとは？</h1>
         <p class="indent">わんダムウォークは飼い犬の認知症を予防するための散歩補助アプリです。毎日違う経路を散歩することで飼い犬の脳を刺激できます。いつもと違う経路を散歩しようと思っても考えるのが面倒だから結局同じ道に…なんてことはよくあること。このアプリはボタンを押すだけで経路を生成してくれます。また、散歩した日がカレンダーに記録されるので、塗り絵感覚で散歩を楽しむこともできます。</p>
         <p class="indent">ちなみにアプリ名は、毎日異なるランダムな経路を散歩するという点から「ランダムウォーク」と考えましたが、ちょっと味気ないので犬のためのアプリであることに着目して「ラン」を泣き声の「わん」にして、「わんダムウォーク」となりました。</p>
@@ -120,7 +119,7 @@
         <p class="indent">歩きスマホをしないように注意してください。当アプリは散歩中に使用することを想定しているものですが、画面を確認する際は必ず周囲の状況を確認してください。</p>
         <p class="indent">当アプリは、ユーザーの利便性向上を目的として提供されておりますが、利用中に発生した損害やトラブル、または第三者による不正アクセス、情報漏洩等のセキュリティ事故について、開発者は一切の責任を負いません。</p>
     </div>
-    <a href="#top" class="logout btn page-top" data-aos="fade-right" data-aos-offset="10">はじめる</a>
+    <a href="#top" class="logout btn page-top" data-aos="fade-right" data-aos-offset="10">はじめる</a> --}}
 </main>
 <script src="{{asset('js/login.js') }}"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
