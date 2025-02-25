@@ -574,6 +574,9 @@ opinionBtn.addEventListener("click", () => {
 // footer
 const mains = document.querySelectorAll("main > div");
 const menus = document.querySelectorAll("footer ul li");
+const pageTitle = document.querySelector("header h1");
+
+// pageTitle.childNodes[2].textContent = "Fuck";
 
 menus.forEach((menu, i) => {
   menu.addEventListener("click", () => {
@@ -584,8 +587,11 @@ menus.forEach((menu, i) => {
       }
     });
     menus.forEach((menu) => {
-      menu.style.background = "rgb(216, 247, 199)";
+      menu.classList.remove("clicked");
     });
-    menu.style.background = "#66CDAA";
+    menu.classList.add("clicked");
+
+    pageTitle.childNodes[2].textContent =
+      document.querySelector("li.clicked span").textContent;
   });
 });

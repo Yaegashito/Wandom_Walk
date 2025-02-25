@@ -362,6 +362,7 @@ footer span {
 footer ul {
     display: flex;
     height: 100%;
+    background: #fff;
 }
 
 footer li {
