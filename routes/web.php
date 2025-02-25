@@ -25,7 +25,7 @@ Route::get('/', function () {
         return redirect()->route('top'); // ログイン済みなら 'home' にリダイレクト
     }
     return view('start');
-});
+})->name('start');
 
 Route::get('/explanation', [ExplanationController::class, 'showExplanation'])->name('explanation');
 

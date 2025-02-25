@@ -1,6 +1,6 @@
 <x-guest-layout css="start">
     <div class="container">
-        <h1>わんダムウォーク</h1>
+        <h1><a href="{{ route('start') }}">わんダムウォーク</a></h1>
         <p></p>
         {{-- <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"> --}}
 
@@ -51,7 +51,6 @@
         {{-- </div> --}}
     </div>
 <script src="{{asset('js/login.js') }}"></script>
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
 AOS.init();
 </script>
