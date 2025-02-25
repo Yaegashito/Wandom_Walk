@@ -112,7 +112,7 @@ section p {
     border-radius: 10px;
 }
 
-.login-btn {
+.login-or-register-btn {
     width: 100%;
     background: #43992B;
     display: inline;
@@ -139,7 +139,7 @@ section p {
   border-bottom: 2px solid #EAEAEA;
 }
 
-.go-register {
+.switch-page {
     display: block;
     width: 100%;
     text-align: center;

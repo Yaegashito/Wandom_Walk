@@ -46,12 +46,12 @@
                         </a>
                     @endif --}}
 
-                    <x-primary-button class="login-btn box-size">
+                    <x-primary-button class="login-or-register-btn box-size">
                         {{ __('Log in') }}
                     </x-primary-button>
                 </div>
                 <p class="partition">または新規アカウント作成</p>
-                <a href="" class="go-register box-size">新規アカウント登録</a>
+                <a href="{{ route('register') }}" class="switch-page box-size">新規アカウント登録</a>
             </form>
         {{-- </div> --}}
     </div>
