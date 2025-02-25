@@ -1,4 +1,18 @@
 <x-guest-layout css="style">
+    <header>
+        <h1>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-dropdown-link class="logout" :href="route('logout')"
+                        onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                    &lt;
+                </x-dropdown-link>
+            </form>
+            散歩
+        </h1>
+    </header>
     <main>
         <div id="walk" class="container">
             <div id="map"></div>
