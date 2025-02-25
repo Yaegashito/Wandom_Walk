@@ -196,10 +196,23 @@
 
     <footer>
         <ul>
-            <li>散歩</li>
-            <li>カレンダー</li>
-            <li>持ち物リスト</li>
-            <li>その他</li>
+            <li class="clicked">
+                    {!! file_get_contents(public_path('img/walking.svg')) !!}
+                <span>散歩</span>
+            </li>
+            <li>
+                {!! file_get_contents(public_path('img/calendar.svg')) !!}
+                <span>カレンダー</span>
+            </li>
+            <li>
+                {!! file_get_contents(public_path('img/belongings.svg')) !!}
+                <span>持ち物</span>
+            </li>
+            <li>
+                {!! file_get_contents(public_path('img/config.svg')) !!}
+                <span>ヒント</span>
+            </li>
+
         </ul>
     </footer>
     {{-- <script>
