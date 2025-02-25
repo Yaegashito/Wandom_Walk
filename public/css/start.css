@@ -57,17 +57,6 @@ main img {
     margin: 0 auto;
 }
 
-section h2 {
-    font-weight: 600;
-    border-bottom: 2px #F8E466 solid;
-    line-height: 19.2px;
-}
-
-section p {
-    padding-top: 4px;
-    font-size: calc(1rem * (15 / 16));
-}
-
 /* explanation */
 .container h1 {
     color: #4EAC31;
@@ -82,71 +71,82 @@ section p {
     padding-bottom: calc(100vh * (37 / 852));
 }
 
+section h2 {
+    font-weight: 600;
+    border-bottom: 2px #F8E466 solid;
+    line-height: 19.2px;
+}
 
-
+section p {
+    padding-top: 4px;
+    font-size: calc(1rem * (15 / 16));
+}
 
 /* login */
-.consent {
+/* .input-space {
+} */
+
+.input-group {
+
+}
+
+.input-group:not(:first-of-type) {
+    margin-top: calc(100vh * (20 / 852));
+}
+
+.box-size {
+    height: calc(100vh * (49 / 852));
+    box-sizing: border-box;
+}
+
+.label {
+    font-size: calc(1rem * (15 / 16));
+    font-weight: 600;
+    line-height: 18px;
+    margin-bottom: calc(100vh * (8 / 852));
+}
+
+.form {
+    width: 100%;
+    border: 2px solid #EAEAEA;
+    border-radius: 10px;
+}
+
+.login-btn {
+    width: 100%;
+    background: #43992B;
+    display: inline;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: calc(100vh * (37 / 852)) 0;
+}
+
+.partition {
+    text-align: center;
+    color: #B8B8B8;
+    font-size: calc(1rem * (14 / 16));
     display: flex;
     align-items: center;
-    font-weight: bold;
-    gap: 8px;
-    margin-top: 48px;
+    text-align: center;
+    gap: 10px;
 }
 
-.transparent {
-    opacity: 0;
+.partition::before,
+.partition::after {
+  content: "";
+  flex: 1;
+  border-bottom: 2px solid #EAEAEA;
 }
 
-.tabs {
-    display: flex;
-    gap: 8px;
-}
-
-.tabs li {
-    flex: 1;
-}
-
-.tabs li a {
-    display: inline-block;
+.go-register {
+    display: block;
     width: 100%;
     text-align: center;
-    padding: 8px 0;
-    color: #333;
-    border-radius: 4px;
-    border: 1px solid #000;
-}
-
-.tabs li a.active {
-    background: #333;
-    color: #fff;
-}
-
-.content.active {
-    display: block;
-    padding: 12px;
-}
-
-.content {
-    display: none;
-}
-
-.introduction {
-    background: #fff;
-    border-radius: 4px;
-    margin-top: 64px;
-    width: 80%;
-    padding: 16px;
-    box-sizing: border-box;
-    box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
-}
-
-.introduction h1 {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.logout.page-top {
-    margin-top: 48px;
+    border: 2px solid #EAEAEA;
+    border-radius: 5px;
+    font-size: calc(1rem * (14 / 16));
+    line-height: calc(100vh * (49 / 852));
+    margin-top: calc(100vh * (20 / 852));
+    font-weight: 500;
 }
