@@ -265,24 +265,27 @@ td.done {
 
 #config dl {
     margin: 0;
+    font-size: 14px;
 }
 
 #config dl > div {
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
+    border-bottom: 1px solid #A2A2A2;
 }
 
 #config dt {
-    padding: 8px;
+    padding: calc(100vh * (16 / 852)) 0 calc(100vh * (15 / 852));
     cursor: pointer;
     user-select: none;
     position: relative;
-    background: #66CDAA;
+    /* background: #66CDAA;
     border-radius: 4px;
-    box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3); */
 }
 
 #config dt::after {
     content: "+";
+    color: #43992B;
     font-weight: bold;
     position: absolute;
     right: 16px;
@@ -290,7 +293,7 @@ td.done {
 }
 
 #config dl > div.appear dt {
-    box-shadow: none;
+    /* box-shadow: none; */
 }
 
 #config dl > div.appear dt::after {
@@ -303,7 +306,7 @@ td.done {
     display: none;
     background: #fff;
     border-radius: 0 0 4px 4px;
-    box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3); */
 }
 
 #config dl > div.appear dd {
