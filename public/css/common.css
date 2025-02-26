@@ -19,6 +19,7 @@ body {
     background: #fff;
     height: 100vh; /* 画面の高さに合わせる */
     width: calc(100vh * (393 / 852));
+    min-width: 350px;
     margin: 0 auto;
     overflow: auto;
     position: relative;
@@ -29,16 +30,13 @@ body {
 }
 
 .btn {
-    width: 40%;
-    height: 64px;
+    width: calc(100% * (170 / 361));
+    height: calc(100vh * (49 / 852));
     cursor: pointer;
     user-select: none;
     box-sizing: border-box;
-    font-weight: bold;
-    background: #ccc;
-    border: 1px solid #999;
-    border-radius: 16px;
-    box-shadow: 0 3px black;
+    font-weight: 500;
+    border-radius: 5px;
     display: none;
-    margin-top: 16px;
+    font-size: 1rem;
 }

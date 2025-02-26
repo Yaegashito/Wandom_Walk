@@ -61,7 +61,4 @@
     <div class="test"></div>
 
 <script src="{{asset('js/login.js') }}"></script>
-<script>
-AOS.init();
-</script>
 </x-guest-layout>
