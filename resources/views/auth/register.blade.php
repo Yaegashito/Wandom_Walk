@@ -1,52 +1,54 @@
-{{-- <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+<x-guest-layout css="start">
+    <div class="container">
+        <h1><a href="{{ route('start') }}">わんダムウォーク</a></h1>
+        <p></p>
+        {{-- <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"> --}}
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+            <!-- Session Status -->
+            <x-auth-session-status :status="session('status')" />
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+                <!-- Name -->
+                <div class="input-group">
+                    <x-input-label class="label" for="name2" :value="__('Name')" />
+                    <x-text-input class="form box-size" id="name2" disabled type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                    {{-- <x-input-error :messages="$errors->get('name')" class="mt-2" /> --}}
+                </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+                <!-- Password -->
+                <div class="input-group">
+                    <x-input-label class="label" for="password2" :value="__('Password')" />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                    <x-text-input class="form box-size" id="password2" disabled
+                                    type="password"
+                                    name="password"
+                                    required autocomplete="new-password" />
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                    <x-input-error :messages="$errors->get('password')" />
+                </div>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                <!-- Confirm Password -->
+                <div class="input-group">
+                    <x-input-label class="label" for="password_confirmation" :value="__('Confirm Password')" />
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+                    <x-text-input class="form box-size" id="password_confirmation" disabled
+                                    type="password"
+                                    name="password_confirmation" required autocomplete="new-password" />
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+                    <x-input-error :messages="$errors->get('password_confirmation')" />
+                </div>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout> --}}
+                <div>
+                    <x-primary-button class="login-or-register-btn box-size">
+                        {{ __('Register') }}
+                    </x-primary-button>
+                </div>
+                <p class="partition">またはログイン</p>
+                <a href="{{ route('login') }}" class="switch-page box-size">ログイン</a>
+            </form>
+        {{-- </div> --}}
+    </div>
+<script src="{{asset('js/login.js') }}"></script>
+</x-guest-layout>

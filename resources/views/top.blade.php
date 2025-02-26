@@ -1,4 +1,18 @@
-<x-guest-layout>
+<x-guest-layout css="style">
+    <header>
+        <h1>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-dropdown-link class="logout" :href="route('logout')"
+                        onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                    &lt;
+                </x-dropdown-link>
+            </form>
+            散歩
+        </h1>
+    </header>
     <main>
         <div id="walk" class="container">
             <div id="map"></div>
@@ -102,15 +116,6 @@
         </div>
 
         <div id="config" class="container">
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-
-                <x-dropdown-link :href="route('logout')"
-                        onclick="event.preventDefault();
-                                    this.closest('form').submit();">
-                    {{ __('ログアウト') }}
-                </x-dropdown-link>
-            </form>
 
             <dl>
                 <div>
@@ -191,10 +196,23 @@
 
     <footer>
         <ul>
-            <li>散歩</li>
-            <li>カレンダー</li>
-            <li>持ち物リスト</li>
-            <li>その他</li>
+            <li class="clicked">
+                    {!! file_get_contents(public_path('img/walking.svg')) !!}
+                <span>散歩</span>
+            </li>
+            <li>
+                {!! file_get_contents(public_path('img/calendar.svg')) !!}
+                <span>カレンダー</span>
+            </li>
+            <li>
+                {!! file_get_contents(public_path('img/belongings.svg')) !!}
+                <span>持ち物</span>
+            </li>
+            <li>
+                {!! file_get_contents(public_path('img/config.svg')) !!}
+                <span>ヒント</span>
+            </li>
+
         </ul>
     </footer>
     <script>

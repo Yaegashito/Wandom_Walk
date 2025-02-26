@@ -1,19 +1,19 @@
 "use strict";
 
 {
-  const checkbox = document.querySelector("#checkbox");
-  checkbox.addEventListener("change", () => {
-    const consented = document.querySelectorAll(".consented");
-    if (checkbox.checked) {
-      consented.forEach(element => {
-        element.disabled = false;
-      });
-    } else {
-      consented.forEach((element) => {
-        element.disabled = true;
-      });
-    }
-  });
+//   const checkbox = document.querySelector("#checkbox");
+//   checkbox.addEventListener("change", () => {
+//     const consented = document.querySelectorAll(".consented");
+//     if (checkbox.checked) {
+//       consented.forEach(element => {
+//         element.disabled = false;
+//       });
+//     } else {
+//       consented.forEach((element) => {
+//         element.disabled = true;
+//       });
+//     }
+//   });
 
   const tabs = document.querySelectorAll(".tabs li a");
   const contents = document.querySelectorAll(".content");

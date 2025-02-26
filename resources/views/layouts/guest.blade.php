@@ -10,20 +10,17 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/' . $attributes->get('css') . '.css') }}">
+        {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"> --}}
     </head>
     <body>
         <div class="whole-container">
-        <header>
-            <img src="{{ asset('img/favicon.png') }}" alt="ロゴ画像" width="42" height="42" class="favicon">
-            <h1> わんダムウォーク</h1>
-        </header>
                 {{ $slot }}
         </div>
     </body>

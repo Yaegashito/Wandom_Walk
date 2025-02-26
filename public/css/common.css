@@ -1,0 +1,42 @@
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ccc;
+    /* font-family: "Helvetica Neue", "Helvetica", "Arial", "Meiryo UI", "Hiragino Sans", "Yu Gothic UI", "MS PGothic", sans-serif; */
+    font-family: "Noto Sans JP";
+}
+
+.favicon {
+    border-radius: 50%;
+}
+
+
+.whole-container {
+    background: #fff;
+    height: 100vh; /* 画面の高さに合わせる */
+    width: calc(100vh * (393 / 852));
+    min-width: 350px;
+    margin: 0 auto;
+    overflow: auto;
+    position: relative;
+}
+
+.indent {
+    text-indent: 1rem;
+}
+
+.btn {
+    width: calc(100% * (170 / 361));
+    height: calc(100vh * (49 / 852));
+    cursor: pointer;
+    user-select: none;
+    box-sizing: border-box;
+    font-weight: 500;
+    border-radius: 5px;
+    display: none;
+    font-size: 1rem;
+}

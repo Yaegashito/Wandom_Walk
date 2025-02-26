@@ -30,6 +30,7 @@ const finishBtn = document.querySelector("#finish-btn");
 const stopBtn = document.querySelector("#stop-btn");
 const walkBelongings = document.querySelector("#walk-belongings");
 const walkBtns = document.querySelectorAll(".walk-btns > .btn");
+const divWalkBtns = document.querySelector(".walk-btns");
 const messages = document.querySelectorAll("#messages > p");
 const DISTANCE_RESULT = 0;
 const TIME_RESULT = 1;
@@ -57,6 +58,7 @@ generateRouteBtn.addEventListener("click", () => {
   generateRouteBtn.style.display = "none";
   regenerateRouteBtn.style.display = "inline";
   decideRoute.style.display = "inline";
+  divWalkBtns.classList.add("flex");
   messages[DISTANCE_RESULT].style.display = "block";
   distance.style.display = "none";
   stopBtn.classList.remove("hide");
@@ -65,6 +67,7 @@ decideRoute.addEventListener("click", () => {
   regenerateRouteBtn.style.display = "none";
   decideRoute.style.display = "none";
   startBtn.style.display = "inline";
+  divWalkBtns.classList.remove("flex");
   walkBelongings.style.display = "block";
 });
 startBtn.addEventListener("click", () => {
@@ -574,6 +577,9 @@ opinionBtn.addEventListener("click", () => {
 // footer
 const mains = document.querySelectorAll("main > div");
 const menus = document.querySelectorAll("footer ul li");
+const pageTitle = document.querySelector("header h1");
+
+// pageTitle.childNodes[2].textContent = "Fuck";
 
 menus.forEach((menu, i) => {
   menu.addEventListener("click", () => {
@@ -584,8 +590,11 @@ menus.forEach((menu, i) => {
       }
     });
     menus.forEach((menu) => {
-      menu.style.background = "rgb(216, 247, 199)";
+      menu.classList.remove("clicked");
     });
-    menu.style.background = "#66CDAA";
+    menu.classList.add("clicked");
+
+    pageTitle.childNodes[2].textContent =
+      document.querySelector("li.clicked span").textContent;
   });
 });
