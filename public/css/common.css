@@ -17,8 +17,8 @@ body {
 
 .whole-container {
     background: #fff;
-    height: 100vh; /* 画面の高さに合わせる */
-    width: calc(100vh * (393 / 852));
+    height: 100dvh; /* 画面の高さに合わせる */
+    width: calc(100dvh * (393 / 852));
     min-width: 350px;
     margin: 0 auto;
     overflow: auto;
