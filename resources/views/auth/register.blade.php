@@ -13,7 +13,7 @@
                 <!-- Name -->
                 <div class="input-group">
                     <x-input-label class="label" for="name2" :value="__('Name')" />
-                    <x-text-input class="form box-size" id="name2" disabled type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                    <x-text-input class="form box-size" id="name2" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                     {{-- <x-input-error :messages="$errors->get('name')" class="mt-2" /> --}}
                 </div>
 
@@ -21,7 +21,7 @@
                 <div class="input-group">
                     <x-input-label class="label" for="password2" :value="__('Password')" />
 
-                    <x-text-input class="form box-size" id="password2" disabled
+                    <x-text-input class="form box-size" id="password2"
                                     type="password"
                                     name="password"
                                     required autocomplete="new-password" />
@@ -33,7 +33,7 @@
                 <div class="input-group">
                     <x-input-label class="label" for="password_confirmation" :value="__('Confirm Password')" />
 
-                    <x-text-input class="form box-size" id="password_confirmation" disabled
+                    <x-text-input class="form box-size" id="password_confirmation"
                                     type="password"
                                     name="password_confirmation" required autocomplete="new-password" />
 
